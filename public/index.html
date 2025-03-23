@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaslesVPN Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #0b132a;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #f53855;
+        }
+
+        nav a {
+            margin: 0 1rem;
+            text-decoration: none;
+            color: #4f5665;
+            font-weight: 500;
+        }
+
+        .header-buttons button {
+            margin-left: 1rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            border: 1px solid #f53855;
+            background: transparent;
+            color: #f53855;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .header-buttons .signup {
+            background-color: #f53855;
+            color: #fff;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 4rem;
+        }
+
+        .hero-text {
+            flex: 1 1 50%;
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: #f53855;
+        }
+
+        .hero-text p {
+            color: #4f5665;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-text button {
+            background-color: #f53855;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .hero-image {
+            flex: 1 1 40%;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem 4rem;
+            background-color: #f8f8f8;
+        }
+
+        .stats div {
+            text-align: center;
+        }
+
+        .stats h2 {
+            font-size: 2rem;
+            color: #0b132a;
+        }
+
+        .stats p {
+            color: #4f5665;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">LaslesVPN</div>
+    <nav>
+        <a href="#">About</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Help</a>
+    </nav>
+    <div class="header-buttons">
+        <button>Sign In</button>
+        <button class="signup">Sign Up</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Want anything to be easy with <span>LaslesVPN</span>.</h1>
+        <p>Provide a network for all your needs with ease and fun using LaslesVPN. Discover interesting features from us.</p>
+        <button>Get Started</button>
+    </div>
+    <div class="hero-image">
+        <img src="https://cdn.uistore.design/assets/images/vpn-free-landing-page-for-figma.webp" alt="LaslesVPN Illustration">
+    </div>
+</section>
+
+<section class="stats">
+    <div>
+        <h2>90+</h2>
+        <p>Users</p>
+    </div>
+    <div>
+        <h2>30+</h2>
+        <p>Locations</p>
+    </div>
+    <div>
+        <h2>50+</h2>
+        <p>Servers</p>
+    </div>
+</section>
+<script type="text/javascript" src="../dist/index.min.js"></script>
+<script language="javascript">
+    Stepflow.init('test')
+</script>
+</body>
+</html>

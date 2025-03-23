@@ -4,9 +4,6 @@ node_modules/
 # Build output
 dist/
 src-legacy/
-public/
-demo/
-example/
 
 # IDE settings
 .idea/

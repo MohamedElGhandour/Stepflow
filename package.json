@@ -10,8 +10,8 @@
     "require": "./dist/index.cjs.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c && tsc"
+    "build": "rollup -c -w && tsc",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
