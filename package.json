@@ -1,0 +1,54 @@
+{
+  "name": "stepflow",
+  "version": "1.0.0",
+  "description": "A lightweight onboarding and user tour library for modern web apps",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohamedElGhandour/Stepflow.git"
+  },
+  "keywords": [
+    "onboarding",
+    "user",
+    "guide",
+    "tour",
+    "walkthrough",
+    "intro"
+  ],
+  "author": "Mohamed Elghandour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohamedElGhandour/Stepflow/issues"
+  },
+  "homepage": "https://github.com/MohamedElGhandour/Stepflow#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.13.11",
+    "prettier": "^3.5.3",
+    "rollup": "^4.36.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "sass": "^1.86.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}

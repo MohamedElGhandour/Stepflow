@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* === Target environment === */
+    "target": "ESNext",                   // Modern JS output (Rollup will handle downleveling)
+    "module": "ESNext",                   // Needed for Rollup to bundle correctly
+    "moduleResolution": "Node",           // Resolves like Node.js (needed for imports)
+
+    /* === Type Declarations === */
+    "declaration": true,                  // Generate .d.ts files
+    "emitDeclarationOnly": true,          // Don't output JS — Rollup handles that
+    "declarationDir": "dist/types",       // Where to put the .d.ts files
+
+    /* === Paths === */
+    "rootDir": "./src",                   // Source folder
+    "outDir": "dist",                     // General output folder
+
+    /* === Import Behavior === */
+    "esModuleInterop": true,              // Makes CommonJS interop easier
+    "allowSyntheticDefaultImports": true, // Allows `import x from 'pkg'` even if no default
+    "resolveJsonModule": true,            // Allow importing .json files (optional)
+
+    /* === Type Checking Strictness === */
+    "strict": true,                       // Enable all strict rules
+//    "noUnusedLocals": true,
+//    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* === Output Cleanup === */
+    "removeComments": true,               // Clean output .d.ts files
+
+    /* === Optional Performance === */
+    "skipLibCheck": true  ,                // Faster build, skip .d.ts checking of node_modules
+    "importHelpers": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
