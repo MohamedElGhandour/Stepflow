@@ -1,4 +1,4 @@
-export interface Onboarding {
+export interface StepflowProps {
     steps: Step[];
     showSkip?: boolean;
     onSkip?: () => void;
@@ -7,10 +7,6 @@ export interface Onboarding {
     onStart?: () => void;
     onNext?: () => void;
     onPrev?: () => void;
-}
-
-export interface OnboardingProps extends Onboarding {
-    destroy: () => void;
 }
 
 export interface Step {
