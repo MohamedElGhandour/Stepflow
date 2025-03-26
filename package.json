@@ -44,6 +44,7 @@
     "prettier": "^3.5.3",
     "rollup": "^4.36.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sass": "^1.15.2",
     "rollup-plugin-visualizer": "^5.14.0",
     "sass": "^1.86.0",
     "typescript": "^5.8.2"

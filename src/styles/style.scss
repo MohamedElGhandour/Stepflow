@@ -1,0 +1,71 @@
+$zIndex: 99999;
+$tooltip-width: 280px;
+$arrow-size: 10px;
+$transition-fast: 0.3s ease-in-out;
+$transition-medium: 0.4s ease-out;
+
+.stepflow {
+  .stepflow-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: $zIndex;
+    opacity: 0;
+    box-sizing: content-box;
+    transition: all $transition-medium;
+  }
+
+  .stepflow-highlight {
+    position: absolute;
+    z-index: $zIndex;
+    pointer-events: none;
+    box-sizing: border-box;
+    transition: all $transition-fast;
+    box-shadow:
+            rgba(244, 117, 26, 0.8) 0 0 1px 2px,
+            rgba(0,0,0,.3) 0 0 0 5000px;
+  }
+
+  .stepflow-tooltip {
+    position: absolute;
+    z-index: $zIndex;
+    width: $tooltip-width;
+    display: block;
+    opacity: 0;
+    transition: opacity $transition-fast;
+    --arrow-offset: 50%;
+
+    &.visible {
+      opacity: 1;
+    }
+
+    .card {
+      width: $tooltip-width;
+      border-radius: var(--ct-border-radius_3) !important;
+      box-shadow: 0 2px 6px #00000029 !important;
+    }
+
+    &.arrow-top::before,
+    &.arrow-bottom::before {
+      content: "";
+      position: absolute;
+      left: var(--arrow-offset, 50%);
+      transform: translateX(-50%);
+      border-left: $arrow-size solid transparent;
+      border-right: $arrow-size solid transparent;
+    }
+
+    &.arrow-top::before {
+      top: -$arrow-size;
+      border-bottom: $arrow-size solid #ffffff;
+    }
+
+    &.arrow-bottom::before {
+      bottom: -$arrow-size;
+      border-top: $arrow-size solid #ffffff;
+    }
+  }
+}
+
+.stepflow-no-transition {
+  transition: none !important;
+}
