@@ -1,8 +1,7 @@
-import { tags } from "../stepflow-core";
+import { tags, add } from "../stepflow-core";
 import overlayUI from "./overlay";
 import highlightUI from "./highlight";
 import tooltipUI from "./tooltip";
-import  "../styles/style.scss";
 
 
 
@@ -15,5 +14,5 @@ export default function inject() {
         highlightUI(),
         tooltipUI(),
     );
-    document.body.appendChild(el);
+    add(document.body, el);
 }

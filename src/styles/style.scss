@@ -21,7 +21,7 @@ $transition-medium: 0.4s ease-out;
     box-sizing: border-box;
     transition: all $transition-fast;
     box-shadow:
-            rgba(244, 117, 26, 0.8) 0 0 1px 2px,
+            rgba(0, 0, 0, 0.8) 0 0 1px 2px,
             rgba(0,0,0,.3) 0 0 0 5000px;
   }
 
@@ -33,6 +33,7 @@ $transition-medium: 0.4s ease-out;
     opacity: 0;
     transition: opacity $transition-fast;
     --arrow-offset: 50%;
+    background: #ffffff;
 
     &.visible {
       opacity: 1;

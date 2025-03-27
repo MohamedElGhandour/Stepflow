@@ -445,7 +445,7 @@ export const derive = <T>(f: () => T, s?: State<T>, dom?: ChildDom): State<T> =>
  * @param {readonly ChildDom[]} children - An array of child elements or arrays of child elements to add.
  * @returns {Element} The modified DOM element after adding all children.
  */
-const add = (dom: Element, ...children: readonly ChildDom[]): Element => {
+export const add = (dom: Element, ...children: readonly ChildDom[]): Element => {
     for (let c of (children as any).flat(Infinity)) {
         const protoOfC = protoOf(c ?? 0);
         const child =

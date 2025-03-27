@@ -2,12 +2,11 @@
 import { StepflowProps } from "../types";
 import { state, derive } from "../stepflow-core";
 import { updateHighlightAndDropdown } from "../utils/updateHighlightAndDropdown.utils";
+import inject from "../components";
 
 export function store(props: StepflowProps) {
   const currentStepIndex = state<number>(0); // main reactive source
   let resizeTimeout: ReturnType<typeof setTimeout>;
-  const highlight = document.getElementById("stepflow-highlight");
-  const tooltip = document.getElementById("stepflow-tooltip");
 
   const steps = props.steps;
   const stepsLength = steps.length;
@@ -23,25 +22,28 @@ export function store(props: StepflowProps) {
   const description = derive(() => currentStep.val.content.description);
 
   function trackTarget() {
-    console.log("trackTarget");
-    if (highlight && tooltip) {
-      console.log('test')
+    const highlight = document.getElementById("stepflow-highlight");
+    const tooltip = document.getElementById("stepflow-tooltip");
+    console.log(currentStepIndex.val)
       updateHighlightAndDropdown(highlight, tooltip, currentTargetElement.val);
-    }
+
   }
 
   function handleResize() {
+    const highlight = document.getElementById("stepflow-highlight");
+    const tooltip = document.getElementById("stepflow-tooltip");
+
     // Disable transition only during resize by adding a class
-    highlight?.classList.add("no-transition");
-    tooltip?.classList.add("no-transition");
+    highlight?.classList.add("stepflow-no-transition");
+    tooltip?.classList.add("stepflow-no-transition");
 
     trackTarget();
 
     // Debounce removal of the class after resizing stops
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      highlight?.classList.remove("no-transition");
-      tooltip?.classList.remove("no-transition");
+      highlight?.classList.remove("stepflow-no-transition");
+      tooltip?.classList.remove("stepflow-no-transition");
     }, 100); // Adjust debounce delay as needed
   }
 
@@ -50,7 +52,7 @@ export function store(props: StepflowProps) {
     if (isLastStep.val) return;
     if (props.onNext) props.onNext();
     if (currentStep.val.onNext) currentStep.val.onNext();
-    currentStepIndex.val++;
+    currentStepIndex.val =   currentStepIndex.val + 1;
     trackTarget();
   }
 
@@ -59,7 +61,7 @@ export function store(props: StepflowProps) {
     if (isFirstStep.val) return;
     if (props.onPrev) props.onPrev();
     if (currentStep.val.onPrev) currentStep.val.onPrev();
-    currentStepIndex.val--;
+    currentStepIndex.val =   currentStepIndex.val - 1;
     trackTarget();
   }
 
@@ -78,9 +80,9 @@ export function store(props: StepflowProps) {
   // Start the step flow.
   function start() {
     if (props.onStart) props.onStart();
+    inject();
     trackTarget();
     window.addEventListener("resize", handleResize);
-
   }
 
   return {
@@ -99,6 +101,7 @@ export function store(props: StepflowProps) {
     description,
     stepsLength,
     //     Actions
+    trackTarget,
     start,
     finish,
     skip,

@@ -1,8 +1,18 @@
-import {tags} from "../stepflow-core";
+import { tags } from "../stepflow-core";
+import { getStore } from "../store";
+import actionsUI from "./actions";
+import stepsUI from "./steps";
 
-const { div } = tags;
+const { div, h3, p } = tags;
 
 export default function tooltipUI() {
-    const el = div({id: 'stepflow-tooltip', class: 'stepflow-tooltip'}, "el sayed basha el balad");
-    return el;
+  const { header, description } = getStore();
+  const el = div(
+    { id: "stepflow-tooltip", class: "stepflow-tooltip" },
+      stepsUI(),
+    h3(header),
+    p(description),
+    actionsUI(),
+  );
+  return el;
 }
