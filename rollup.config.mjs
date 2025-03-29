@@ -36,7 +36,6 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    // visualizer({ open: true }),
     typescript({ tsconfig: "./tsconfig.json" }),
     babel({
       babelHelpers: "bundled",

@@ -1,5 +1,5 @@
 export function vIf(condition: () => boolean, content: () => Node): () => Node {
-  return () => (condition() ? content() : new Text("")); // 👈 ensures bind() always has something to track
+  return () => (condition() ? content() : new Text(""));
 }
 
 export function vIfElse(

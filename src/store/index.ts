@@ -1,5 +1,3 @@
-// index.ts
-
 import { StepflowProps } from "@stepflow/types";
 import { derive, state } from "@stepflow/stepflow-core";
 import { updateHighlightAndDropdown } from "@stepflow/utils/updateHighlightAndDropdown.utils";
