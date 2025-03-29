@@ -1,8 +1,9 @@
 // index.ts
-import { StepflowProps } from "../types";
-import { state, derive } from "../stepflow-core";
-import { updateHighlightAndDropdown } from "../utils/updateHighlightAndDropdown.utils";
-import inject from "../components";
+
+import { StepflowProps } from "@stepflow/types";
+import { derive, state } from "@stepflow/stepflow-core";
+import { updateHighlightAndDropdown } from "@stepflow/utils/updateHighlightAndDropdown.utils";
+import inject from "@stepflow/components";
 
 export function store(props: StepflowProps) {
   const currentStepIndex = state<number>(0); // main reactive source
@@ -14,8 +15,8 @@ export function store(props: StepflowProps) {
   const currentStepIndexDisplay = derive(() => currentStepIndex.val + 1);
   const isFirstStep = derive(() => currentStepIndex.val === 0);
   const isLastStep = derive(() => currentStepIndexDisplay.val === stepsLength);
-  const showPrev = derive(() => props.showPrev && !isFirstStep.val);
-  const showSkip = derive(() => props.showSkip && !isLastStep.val);
+  const showPrev = derive(() => !!props.showPrev && !isFirstStep.val);
+  const showSkip = derive(() => !!(props.showSkip && !isLastStep.val));
   const currentTarget = derive(() => currentStep.val.target);
   const currentTargetElement = derive(() => document.querySelector(currentTarget.val));
   const header = derive(() => currentStep.val.content.header);
@@ -24,9 +25,7 @@ export function store(props: StepflowProps) {
   function trackTarget() {
     const highlight = document.getElementById("stepflow-highlight");
     const tooltip = document.getElementById("stepflow-tooltip");
-    console.log(currentStepIndex.val)
-      updateHighlightAndDropdown(highlight, tooltip, currentTargetElement.val);
-
+    updateHighlightAndDropdown(highlight, tooltip, currentTargetElement.val);
   }
 
   function handleResize() {
@@ -52,17 +51,21 @@ export function store(props: StepflowProps) {
     if (isLastStep.val) return;
     if (props.onNext) props.onNext();
     if (currentStep.val.onNext) currentStep.val.onNext();
-    currentStepIndex.val =   currentStepIndex.val + 1;
-    trackTarget();
+    currentStepIndex.val = currentStepIndex.val + 1;
   }
+
+  derive(() => {
+    if (currentTargetElement.val) {
+      trackTarget();
+    }
+  });
 
   // Move to the previous step.
   function prevStep() {
     if (isFirstStep.val) return;
     if (props.onPrev) props.onPrev();
     if (currentStep.val.onPrev) currentStep.val.onPrev();
-    currentStepIndex.val =   currentStepIndex.val - 1;
-    trackTarget();
+    currentStepIndex.val = currentStepIndex.val - 1;
   }
 
   // Skip the current step.
@@ -82,13 +85,14 @@ export function store(props: StepflowProps) {
     if (props.onStart) props.onStart();
     inject();
     trackTarget();
+    document.body.classList.add("stepflow-overflow-hidden");
     window.addEventListener("resize", handleResize);
   }
 
   return {
-    //   State
+    /* State */
     currentStepIndex,
-    //   Getters
+    /* Getters */
     currentStepIndexDisplay,
     currentStep,
     isFirstStep,
@@ -100,7 +104,7 @@ export function store(props: StepflowProps) {
     header,
     description,
     stepsLength,
-    //     Actions
+    /* Actions */
     trackTarget,
     start,
     finish,

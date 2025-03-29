@@ -1,207 +1,137 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LaslesVPN Landing Page</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #fff;
-        color: #0b132a;
-        line-height: 1.6;
-      }
-
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem 4rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      }
-
-      .logo {
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: #f53855;
-      }
-
-      nav a {
-        margin: 0 1rem;
-        text-decoration: none;
-        color: #4f5665;
-        font-weight: 500;
-      }
-
-      .header-buttons button {
-        margin-left: 1rem;
-        padding: 0.5rem 1.2rem;
-        border-radius: 25px;
-        border: 1px solid #f53855;
-        background: transparent;
-        color: #f53855;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .header-buttons .signup {
-        background-color: #f53855;
-        color: #fff;
-      }
-
-      .hero {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        padding: 4rem 4rem;
-      }
-
-      .hero-text {
-        flex: 1 1 50%;
-        max-width: 500px;
-      }
-
-      .hero-text h1 {
-        font-size: 2.8rem;
-        margin-bottom: 1rem;
-      }
-
-      .hero-text h1 span {
-        color: #f53855;
-      }
-
-      .hero-text p {
-        color: #4f5665;
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-      }
-
-      .hero-text button {
-        background-color: #f53855;
-        color: white;
-        border: none;
-        padding: 0.75rem 2rem;
-        border-radius: 10px;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-
-      .hero-image {
-        flex: 1 1 40%;
-        text-align: center;
-      }
-
-      .hero-image img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      .stats {
-        display: flex;
-        justify-content: space-around;
-        padding: 2rem 4rem;
-        background-color: #f8f8f8;
-      }
-
-      .stats div {
-        text-align: center;
-      }
-
-      .stats h2 {
-        font-size: 2rem;
-        color: #0b132a;
-      }
-
-      .stats p {
-        color: #4f5665;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <link href="../dist/index.min.css" rel="stylesheet">
+    <link href="./style/style.css" rel="stylesheet">
+    <link href="./asset/favicon.svg" rel="icon"/>
+    <title>Stepflow - Guided Tours Made Easy</title>
+</head>
+<body>
+<div id="app">
+    <!-- Header -->
     <header>
-      <div data-stepflow="step-1" class="logo">LaslesVPN</div>
-      <nav>
-        <a href="#">About</a>
-        <a href="#">Features</a>
-        <a href="#">Pricing</a>
-        <a href="#">Testimonials</a>
-        <a href="#">Help</a>
-      </nav>
-      <div class="header-buttons">
-        <button>Sign In</button>
-        <button class="signup">Sign Up</button>
-      </div>
+        <nav>
+            <a href="#">Stepflow</a>
+            <button data-stepflow='step-5'>Mohamed Elghandour</button>
+        </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-text">
-        <h1 data-stepflow="step-2">Want anything to be easy with <span>LaslesVPN</span>.</h1>
-        <p>
-          Provide a network for all your needs with ease and fun using LaslesVPN. Discover
-          interesting features from us.
-        </p>
-        <button>Get Started</button>
-      </div>
-      <div class="hero-image">
-        <img
-          src="https://cdn.uistore.design/assets/images/vpn-free-landing-page-for-figma.webp"
-          alt="LaslesVPN Illustration"
-        />
-      </div>
+        <h1 data-stepflow='step-1'>Welcome to Stepflow</h1>
+        <p>Your lightweight, simple, and customizable guided tour solution.</p>
+        <div>
+            <button class="cta">Get Started</button>
+            <button class="cta" onclick="start()">Demo</button>
+        </div>
     </section>
 
-    <section data-stepflow="step-3" class="stats">
-      <div>
-        <h2>90+</h2>
-        <p>Users</p>
-      </div>
-      <div>
-        <h2>30+</h2>
-        <p>Locations</p>
-      </div>
-      <div>
-        <h2>50+</h2>
-        <p>Servers</p>
-      </div>
+    <!-- Introduction Section -->
+    <section class="introduction">
+        <h2 class="section-title">Introduction</h2>
+        <p data-stepflow='step-2'>
+            Stepflow makes it easy to create guided tours for your web applications. With an emphasis
+            on simplicity and customization, you can onboard your users quickly and efficiently.
+        </p>
     </section>
-    <script type="text/javascript" src="../dist/index.min.js"></script>
-    <script language="javascript">
-      Stepflow.init({
-        steps: [
-          {
-            target: "[data-stepflow='step-1']",
-            content: {
-              header: "Edit the structure",
-              description:
-                "Re-order the website sections and choose which ones you want to display",
-            },
-          },
-          {
-            target: "[data-stepflow='step-2']",
-            content: {
-              header: "Preview the changes",
-              description: "see the changes you made before they go live to visitors",
-            },
-          },
-          {
-            target: "[data-stepflow='step-3']",
-            content: {
-              header: "Publish when ready",
-              description:
-                "when you are ready for your visitors to see the final configuration. press publish!",
-            },
-          },
-        ],
-        showSkip: true,
-        showPrev: true,
-      });
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Features</h2>
+        <div class="features-container">
+            <div class="feature">
+                <h3>Lightweight</h3>
+                <p>Minimal code and fast performance for a seamless user experience.</p>
+            </div>
+            <div class="feature" data-stepflow='step-3'>
+                <h3>Simple</h3>
+                <p>Integrate Stepflow with a straightforward API and minimal effort.</p>
+            </div>
+            <div class="feature">
+                <h3>Customizable</h3>
+                <p>Tailor every element to match your brand and design preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section class="installation" data-stepflow='step-4'>
+        <h2 class="section-title">Installation</h2>
+        <p>You can install Stepflow via NPM or include it directly via CDN.</p>
+        <div style="max-width: 600px; margin: 2rem auto; text-align: left">
+            <h3>Via NPM</h3>
+            <pre><code>npm install stepflow</code></pre>
+            <h3>Via CDN</h3>
+            <pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/stepflow/dist/stepflow.css"&gt;
+&lt;script src="https://unpkg.com/stepflow/dist/stepflow.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            &copy; 2025 Stepflow. Built by
+            <a href="https://mohamedelghandour.com" target="_blank">Mohamed Elghandour</a>.
+        </p>
+    </footer>
+    <!-- Example Stepflow Script (adjust to your actual path/file) -->
+    <script src="../dist/index.min.js" type="text/javascript"></script>
+
+    <!-- Inline script to initialize Stepflow (your custom code) -->
+    <script>
+        // If using Vue, you can remove or adapt this.
+        // If just using Stepflow, keep it as is or adjust as needed.
+        function start() {
+            Stepflow.init({
+                steps: [
+                    {
+                        target: "[data-stepflow='step-1']",
+                        content: {
+                            header: "Edit the structure",
+                            description:
+                                "Re-order the website sections and choose which ones you want to display",
+                        },
+                    },
+                    {
+                        target: "[data-stepflow='step-2']",
+                        content: {
+                            header: "Preview the changes",
+                            description: "See the changes you made before they go live to visitors",
+                        },
+                    },
+                    {
+                        target: "[data-stepflow='step-3']",
+                        content: {
+                            header: "Publish when ready",
+                            description:
+                                "When you are ready for your visitors to see the final configuration, press publish!",
+                        },
+                    },
+                    {
+                        target: "[data-stepflow='step-4']",
+                        content: {
+                            header: "Another Step",
+                            description:
+                                "Show a step with different text or highlight another element in your UI.",
+                        },
+                    },
+                    {
+                        target: "[data-stepflow='step-5']",
+                        content: {
+                            header: "Finish Up",
+                            description:
+                                "Add or remove steps as needed to guide users around your application.",
+                        },
+                    },
+                ],
+                showSkip: true,
+                showPrev: true,
+            });
+        }
     </script>
-  </body>
+</div>
+</body>
 </html>

@@ -3,10 +3,10 @@
  * via: http://stackoverflow.com/questions/5864467/internet-explorer-innerheight
  */
 export function getWinSize(): { width: number; height: number } {
-    if (window.innerWidth !== undefined) {
-        return { width: window.innerWidth, height: window.innerHeight };
-    } else {
-        const D = document.documentElement;
-        return { width: D.clientWidth, height: D.clientHeight };
-    }
+  if (window.innerWidth !== undefined) {
+    return { width: window.innerWidth, height: window.innerHeight };
+  } else {
+    const D = document.documentElement;
+    return { width: D.clientWidth, height: D.clientHeight };
+  }
 }

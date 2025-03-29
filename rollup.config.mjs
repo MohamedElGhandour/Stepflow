@@ -5,7 +5,12 @@ import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 // import { visualizer } from "rollup-plugin-visualizer";
 import postcss from "rollup-plugin-postcss";
-import sass from "rollup-plugin-sass";
+import alias from "@rollup/plugin-alias";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default {
   input: "./src/main.ts",
@@ -39,11 +44,14 @@ export default {
     }),
     // sass(),
     postcss({
-      extract: false,       // Extracts CSS to a separate file
-      minimize: true,      // Minifies output
-      sourceMap: true,     // Enables sourcemaps
-      modules: false,      // Not using CSS Modules
-      use: ["sass"],       // Enables SCSS support
+      extract: true, // Extracts CSS to a separate file
+      minimize: true, // Minifies output
+      sourceMap: true, // Enables sourcemaps
+      modules: false, // Not using CSS Modules
+      use: ["sass"], // Enables SCSS support
+    }),
+    alias({
+      entries: [{ find: "@stepflow", replacement: path.resolve(__dirname, "src") }],
     }),
   ],
 };

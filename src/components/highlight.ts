@@ -1,12 +1,10 @@
-import { tags } from "../stepflow-core";
-import { getStore } from "../store";
+import { tags } from "@stepflow/stepflow-core";
 
 const { div } = tags;
 
 export default function highlightUI() {
-  const el = div({
+  return div({
     id: "stepflow-highlight",
     class: "stepflow-highlight",
   });
-  return el;
 }

@@ -22,30 +22,28 @@ export type ValidChildDomValue = Primitive | Node | null | undefined;
 /**
  * A type representing functions that generate DOM values.
  */
-export type BindingFunc =
-    | ((dom?: Node) => ValidChildDomValue)
-    | ((dom?: Element) => Element);
+export type BindingFunc = ((dom?: Node) => ValidChildDomValue) | ((dom?: Element) => Element);
 
 /**
  * A type representing various possible child DOM values.
  */
 export type ChildDom =
-    | ValidChildDomValue
-    | StateView<Primitive | null | undefined>
-    | BindingFunc
-    | readonly ChildDom[];
+  | ValidChildDomValue
+  | StateView<Primitive | null | undefined>
+  | BindingFunc
+  | readonly ChildDom[];
 
 type ConnectedDom = { isConnected: number };
 
 type Binding = {
-    f: BindingFunc;
-    _dom: HTMLElement | null | undefined;
+  f: BindingFunc;
+  _dom: HTMLElement | null | undefined;
 };
 
 type Listener<T> = {
-    f: BindingFunc;
-    s: State<T>;
-    _dom?: HTMLElement | null | undefined;
+  f: BindingFunc;
+  s: State<T>;
+  _dom?: HTMLElement | null | undefined;
 };
 
 type Connectable<T> = Listener<T> | Binding;
@@ -54,12 +52,12 @@ type Connectable<T> = Listener<T> | Binding;
  * Interface representing a state object with various properties and bindings.
  */
 export interface State<T> {
-    val: T;
-    readonly oldVal: T;
-    rawVal: T;
-    _oldVal: T;
-    _bindings: Array<Binding>;
-    _listeners: Array<Listener<T>>;
+  val: T;
+  readonly oldVal: T;
+  rawVal: T;
+  _oldVal: T;
+  _bindings: Array<Binding>;
+  _listeners: Array<Listener<T>>;
 }
 
 /**
@@ -77,21 +75,18 @@ export type Val<T> = State<T> | T;
  * A type representing a property value, a state view of a property value, or a
  * function returning a property value.
  */
-export type PropValueOrDerived =
-    | PropValue
-    | StateView<PropValue>
-    | (() => PropValue);
+export type PropValueOrDerived = PropValue | StateView<PropValue> | (() => PropValue);
 
 /**
  * A type representing partial props with known keys for a specific
  * element type.
  */
 export type Props = Record<string, PropValueOrDerived> & {
-    class?: PropValueOrDerived;
+  class?: PropValueOrDerived;
 };
 
 export type PropsWithKnownKeys<ElementType> = Partial<{
-    [K in keyof ElementType]: PropValueOrDerived;
+  [K in keyof ElementType]: PropValueOrDerived;
 }>;
 
 /**
@@ -99,31 +94,31 @@ export type PropsWithKnownKeys<ElementType> = Partial<{
  * properties and children.
  */
 export type TagFunc<Result> = (
-    first?: (Props & PropsWithKnownKeys<Result>) | ChildDom,
-    ...rest: readonly ChildDom[]
+  first?: (Props & PropsWithKnownKeys<Result>) | ChildDom,
+  ...rest: readonly ChildDom[]
 ) => Result;
 
 /**
  * Interface representing dependencies with sets for getters and setters.
  */
 interface Dependencies<T> {
-    _getters: Set<State<T>>;
-    _setters: Set<State<T>>;
+  _getters: Set<State<T>>;
+  _setters: Set<State<T>>;
 }
 
 /**
  * A function type for searching property descriptors in a prototype chain.
  */
 type PropertyDescriptorSearchFn<T> = (
-    proto: T
+  proto: T
 ) => ReturnType<typeof Object.getOwnPropertyDescriptor> | undefined;
 
 /**
  * A function type for setting event listeners.
  */
 type EventSetterFn = (
-    v: EventListenerOrEventListenerObject,
-    oldV?: EventListenerOrEventListenerObject
+  v: EventListenerOrEventListenerObject,
+  oldV?: EventListenerOrEventListenerObject
 ) => void;
 
 /**
@@ -144,7 +139,7 @@ type PropSetterFn = (value: any) => void;
  *   namespace.
  */
 export type NamespaceFunction = (
-    namespaceURI: string
+  namespaceURI: string
 ) => Readonly<Record<string, TagFunc<Element>>>;
 
 /**
@@ -162,7 +157,7 @@ export type NamespaceFunction = (
  * specific properties and child elements.
  */
 export type Tags = Readonly<Record<string, TagFunc<Element>>> & {
-    [K in keyof HTMLElementTagNameMap]: TagFunc<HTMLElementTagNameMap[K]>;
+  [K in keyof HTMLElementTagNameMap]: TagFunc<HTMLElementTagNameMap[K]>;
 };
 
 /**
@@ -254,39 +249,35 @@ const funcProto = Function.prototype;
  * executed after a specified delay if the set is initially undefined.
  */
 const addAndScheduleOnFirst = <T>(
-    set: Set<State<T>> | undefined,
-    state: State<T>,
-    fn: () => void,
-    waitMs?: number
+  set: Set<State<T>> | undefined,
+  state: State<T>,
+  fn: () => void,
+  waitMs?: number
 ): Set<State<T>> => {
-    if (set === undefined) {
-        setTimeout(fn, waitMs);
-        set = new Set<State<T>>();
-    }
-    set.add(state);
-    return set;
+  if (set === undefined) {
+    setTimeout(fn, waitMs);
+    set = new Set<State<T>>();
+  }
+  set.add(state);
+  return set;
 };
 
 /**
  * Executes a function with a given argument and tracks dependencies during
  * its execution.
  */
-const runAndCaptureDependencies = <T>(
-    fn: Function,
-    deps: Dependencies<T>,
-    arg: T
-): T => {
-    let prevDeps = curDeps;
-    curDeps = deps;
+const runAndCaptureDependencies = <T>(fn: Function, deps: Dependencies<T>, arg: T): T => {
+  let prevDeps = curDeps;
+  curDeps = deps;
 
-    try {
-        return fn(arg);
-    } catch (e) {
-        console.error(e);
-        return arg;
-    } finally {
-        curDeps = prevDeps;
-    }
+  try {
+    return fn(arg);
+  } catch (e) {
+    console.error(e);
+    return arg;
+  } finally {
+    curDeps = prevDeps;
+  }
 };
 
 /**
@@ -294,7 +285,7 @@ const runAndCaptureDependencies = <T>(
  * property is connected to the current document.
  */
 const keepConnected = <T extends Connectable<T>>(l: T[]): T[] => {
-    return l.filter((b) => b._dom?.isConnected);
+  return l.filter((b) => b._dom?.isConnected);
 };
 
 /**
@@ -302,20 +293,20 @@ const keepConnected = <T extends Connectable<T>>(l: T[]): T[] => {
  * garbage collection.
  */
 const addForGarbageCollection = <T>(discard: State<T>): void => {
-    forGarbageCollection = addAndScheduleOnFirst(
-        forGarbageCollection,
-        discard,
-        () => {
-            if (forGarbageCollection) {
-                for (let s of forGarbageCollection) {
-                    s._bindings = keepConnected(s._bindings);
-                    s._listeners = keepConnected(s._listeners);
-                }
-                forGarbageCollection = _undefined; // Resets `forGarbageCollection` after processing
-            }
-        },
-        gcCycleInMs
-    );
+  forGarbageCollection = addAndScheduleOnFirst(
+    forGarbageCollection,
+    discard,
+    () => {
+      if (forGarbageCollection) {
+        for (let s of forGarbageCollection) {
+          s._bindings = keepConnected(s._bindings);
+          s._listeners = keepConnected(s._listeners);
+        }
+        forGarbageCollection = _undefined; // Resets `forGarbageCollection` after processing
+      }
+    },
+    gcCycleInMs
+  );
 };
 
 /**
@@ -323,33 +314,29 @@ const addForGarbageCollection = <T>(discard: State<T>): void => {
  * `oldVal`.
  */
 const stateProto = {
-    get val() {
-        const state = this as State<unknown>;
-        curDeps?._getters?.add(state);
-        return state.rawVal;
-    },
+  get val() {
+    const state = this as State<unknown>;
+    curDeps?._getters?.add(state);
+    return state.rawVal;
+  },
 
-    get oldVal() {
-        const state = this as State<unknown>;
-        curDeps?._getters?.add(state);
-        return state._oldVal;
-    },
+  get oldVal() {
+    const state = this as State<unknown>;
+    curDeps?._getters?.add(state);
+    return state._oldVal;
+  },
 
-    set val(v) {
-        const state = this as State<unknown>;
-        curDeps?._setters?.add(state);
-        if (v !== state.rawVal) {
-            state.rawVal = v;
-            state._bindings.length + state._listeners.length
-                ? (derivedStates?.add(state),
-                    (changedStates = addAndScheduleOnFirst(
-                        changedStates,
-                        state,
-                        updateDoms
-                    )))
-                : (state._oldVal = v);
-        }
-    },
+  set val(v) {
+    const state = this as State<unknown>;
+    curDeps?._setters?.add(state);
+    if (v !== state.rawVal) {
+      state.rawVal = v;
+      state._bindings.length + state._listeners.length
+        ? (derivedStates?.add(state),
+          (changedStates = addAndScheduleOnFirst(changedStates, state, updateDoms)))
+        : (state._oldVal = v);
+    }
+  },
 };
 
 /**
@@ -357,12 +344,12 @@ const stateProto = {
  * of a state object.
  */
 const statePropertyDescriptor = <T>(value: T): PropertyDescriptor => {
-    return {
-        writable: true,
-        configurable: true,
-        enumerable: true,
-        value: value,
-    };
+  return {
+    writable: true,
+    configurable: true,
+    enumerable: true,
+    value: value,
+  };
 };
 
 /**
@@ -374,18 +361,18 @@ const statePropertyDescriptor = <T>(value: T): PropertyDescriptor => {
  * @returns {State<T>} A state object.
  */
 export const state = <T>(initVal?: T): State<T> => {
-    // In contrast to the VanJS implementation (above), where reducing the bundle
-    // size is a key priority, we use the `Object.create` method instead of the
-    // `Object.prototype.__proto__` accessor since the latter is no longer
-    // recommended.
-    //
-    // [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)
-    return _object.create(stateProto, {
-        rawVal: statePropertyDescriptor(initVal),
-        _oldVal: statePropertyDescriptor(initVal),
-        _bindings: statePropertyDescriptor([]),
-        _listeners: statePropertyDescriptor([]),
-    });
+  // In contrast to the VanJS implementation (above), where reducing the bundle
+  // size is a key priority, we use the `Object.create` method instead of the
+  // `Object.prototype.__proto__` accessor since the latter is no longer
+  // recommended.
+  //
+  // [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)
+  return _object.create(stateProto, {
+    rawVal: statePropertyDescriptor(initVal),
+    _oldVal: statePropertyDescriptor(initVal),
+    _bindings: statePropertyDescriptor([]),
+    _listeners: statePropertyDescriptor([]),
+  });
 };
 
 /**
@@ -398,23 +385,22 @@ export const state = <T>(initVal?: T): State<T> => {
  * @returns {T} The resulting DOM element or text node.*
  */
 const bind = <T>(f: Function, dom?: T | undefined): T => {
-    let deps: Dependencies<any> = { _getters: new Set(), _setters: new Set() };
-    let binding: { [key: string]: any } = { f };
-    let prevNewDerives = curNewDerives;
+  let deps: Dependencies<any> = { _getters: new Set(), _setters: new Set() };
+  let binding: { [key: string]: any } = { f };
+  let prevNewDerives = curNewDerives;
 
-    curNewDerives = [];
-    let newDom = runAndCaptureDependencies(f, deps, dom);
+  curNewDerives = [];
+  let newDom = runAndCaptureDependencies(f, deps, dom);
 
-    newDom = ((newDom ?? _document) as Node).nodeType
-        ? newDom
-        : new Text(newDom as string | undefined);
+  newDom = ((newDom ?? _document) as Node).nodeType
+    ? newDom
+    : new Text(newDom as string | undefined);
 
-    for (let d of deps._getters)
-        deps._setters.has(d) ||
-        (addForGarbageCollection(d as any), (d as any)._bindings.push(binding));
-    for (let l of curNewDerives) l._dom = newDom;
-    curNewDerives = prevNewDerives;
-    return (binding._dom = newDom);
+  for (let d of deps._getters)
+    deps._setters.has(d) || (addForGarbageCollection(d as any), (d as any)._bindings.push(binding));
+  for (let l of curNewDerives) l._dom = newDom;
+  curNewDerives = prevNewDerives;
+  return (binding._dom = newDom);
 };
 
 /**
@@ -427,15 +413,15 @@ const bind = <T>(f: Function, dom?: T | undefined): T => {
  * @returns {State<T>} The State<T> object containing the derived value and associated dependencies.
  */
 export const derive = <T>(f: () => T, s?: State<T>, dom?: ChildDom): State<T> => {
-    s = s ?? state();
-    let deps: Dependencies<T> = { _getters: new Set(), _setters: new Set() };
-    let listener: { [key: string]: any } = { f, s };
-    listener._dom = dom ?? curNewDerives?.push(listener) ?? alwaysConnectedDom;
-    s.val = runAndCaptureDependencies(f, deps, s.rawVal);
-    for (let d of deps._getters)
-        deps._setters.has(d) ||
-        (addForGarbageCollection(d), d._listeners.push(listener as Listener<T>));
-    return s;
+  s = s ?? state();
+  let deps: Dependencies<T> = { _getters: new Set(), _setters: new Set() };
+  let listener: { [key: string]: any } = { f, s };
+  listener._dom = dom ?? curNewDerives?.push(listener) ?? alwaysConnectedDom;
+  s.val = runAndCaptureDependencies(f, deps, s.rawVal);
+  for (let d of deps._getters)
+    deps._setters.has(d) ||
+      (addForGarbageCollection(d), d._listeners.push(listener as Listener<T>));
+  return s;
 };
 
 /**
@@ -446,17 +432,13 @@ export const derive = <T>(f: () => T, s?: State<T>, dom?: ChildDom): State<T> =>
  * @returns {Element} The modified DOM element after adding all children.
  */
 export const add = (dom: Element, ...children: readonly ChildDom[]): Element => {
-    for (let c of (children as any).flat(Infinity)) {
-        const protoOfC = protoOf(c ?? 0);
-        const child =
-            protoOfC === stateProto
-                ? bind(() => c.val)
-                : protoOfC === funcProto
-                    ? bind(c)
-                    : c;
-        child != _undefined && dom.append(child);
-    }
-    return dom;
+  for (let c of (children as any).flat(Infinity)) {
+    const protoOfC = protoOf(c ?? 0);
+    const child =
+      protoOfC === stateProto ? bind(() => c.val) : protoOfC === funcProto ? bind(c) : c;
+    child != _undefined && dom.append(child);
+  }
+  return dom;
 };
 
 /**
@@ -464,51 +446,44 @@ export const add = (dom: Element, ...children: readonly ChildDom[]): Element => 
  * and children.
  */
 const tag = (ns: string | null, name: string, ...args: any): Element => {
-    const [props, ...children] =
-        protoOf(args[0] ?? 0) === objProto ? args : [{}, ...args];
+  const [props, ...children] = protoOf(args[0] ?? 0) === objProto ? args : [{}, ...args];
 
-    const dom: Element | HTMLElement = ns
-        ? _document.createElementNS(ns, name)
-        : _document.createElement(name);
+  const dom: Element | HTMLElement = ns
+    ? _document.createElementNS(ns, name)
+    : _document.createElement(name);
 
-    for (let [k, v] of _object.entries(props)) {
-        const getDesc: PropertyDescriptorSearchFn<any> = (proto: any) =>
-            proto
-                ? _object.getOwnPropertyDescriptor(proto, k as PropertyKey) ??
-                getDesc(protoOf(proto))
-                : _undefined;
+  for (let [k, v] of _object.entries(props)) {
+    const getDesc: PropertyDescriptorSearchFn<any> = (proto: any) =>
+      proto
+        ? (_object.getOwnPropertyDescriptor(proto, k as PropertyKey) ?? getDesc(protoOf(proto)))
+        : _undefined;
 
-        const cacheKey = `${name},${k}`;
+    const cacheKey = `${name},${k}`;
 
-        const propSetter =
-            propSetterCache[cacheKey] ??
-            (propSetterCache[cacheKey] = getDesc(protoOf(dom))?.set ?? 0);
+    const propSetter =
+      propSetterCache[cacheKey] ?? (propSetterCache[cacheKey] = getDesc(protoOf(dom))?.set ?? 0);
 
-        const setter: PropSetterFn | EventSetterFn = k.startsWith("on")
-            ? (
-                v: EventListenerOrEventListenerObject,
-                oldV?: EventListenerOrEventListenerObject
-            ) => {
-                const event = k.slice(2);
-                if (oldV) dom.removeEventListener(event, oldV);
-                dom.addEventListener(event, v);
-            }
-            : propSetter
-                ? propSetter.bind(dom)
-                : dom.setAttribute.bind(dom, k);
+    const setter: PropSetterFn | EventSetterFn = k.startsWith("on")
+      ? (v: EventListenerOrEventListenerObject, oldV?: EventListenerOrEventListenerObject) => {
+          const event = k.slice(2);
+          if (oldV) dom.removeEventListener(event, oldV);
+          dom.addEventListener(event, v);
+        }
+      : propSetter
+        ? propSetter.bind(dom)
+        : dom.setAttribute.bind(dom, k);
 
-        let protoOfV = protoOf(v ?? 0);
+    let protoOfV = protoOf(v ?? 0);
 
-        k.startsWith("on") ||
-        (protoOfV === funcProto &&
-            ((v = derive(v as BindingFunc)), (protoOfV = stateProto)));
+    k.startsWith("on") ||
+      (protoOfV === funcProto && ((v = derive(v as BindingFunc)), (protoOfV = stateProto)));
 
-        protoOfV === stateProto
-            ? bind(() => (setter((v as any).val, (v as any)._oldVal), dom))
-            : setter(v as EventListenerOrEventListenerObject);
-    }
+    protoOfV === stateProto
+      ? bind(() => (setter((v as any).val, (v as any)._oldVal), dom))
+      : setter(v as EventListenerOrEventListenerObject);
+  }
 
-    return add(dom, ...children);
+  return add(dom, ...children);
 };
 
 /**
@@ -517,10 +492,9 @@ const tag = (ns: string | null, name: string, ...args: any): Element => {
  * accessed property name along with an optional namespace.
  */
 const proxyHandler = (namespace?: string): ProxyHandler<object> => {
-    return {
-        get: (_: never, name: string) =>
-            tag.bind(_undefined, namespace ?? null, name),
-    };
+  return {
+    get: (_: never, name: string) => tag.bind(_undefined, namespace ?? null, name),
+  };
 };
 
 /**
@@ -531,9 +505,8 @@ const proxyHandler = (namespace?: string): ProxyHandler<object> => {
  * @returns {Tags & NamespaceFunction} A Proxy object representing tags and namespaces.
  */
 export const tags = new Proxy(
-    (namespace?: string) =>
-        new Proxy(tag, proxyHandler(namespace)) as NamespaceFunction,
-    proxyHandler()
+  (namespace?: string) => new Proxy(tag, proxyHandler(namespace)) as NamespaceFunction,
+  proxyHandler()
 ) as Tags & NamespaceFunction;
 
 /**
@@ -546,41 +519,36 @@ export const tags = new Proxy(
  * @returns {void}
  */
 const update = <T>(dom: T, newDom: T): void => {
-    newDom
-        ? newDom !== dom &&
-        (dom as HTMLElement).replaceWith(newDom as string | Node)
-        : (dom as HTMLElement).remove();
+  newDom
+    ? newDom !== dom && (dom as HTMLElement).replaceWith(newDom as string | Node)
+    : (dom as HTMLElement).remove();
 };
 
 /**
  * Updates DOM elements based on changed and derived states.
  */
 const updateDoms = () => {
-    let iter = 0,
-        derivedStatesArray = changedStates
-            ? [...changedStates].filter((s) => s.rawVal !== s._oldVal)
-            : [];
-    do {
-        derivedStates = new Set();
-        for (let l of new Set(
-            derivedStatesArray.flatMap(
-                (s) => (s._listeners = keepConnected(s._listeners))
-            )
-        ))
-            derive(l.f, l.s, l._dom), (l._dom = _undefined);
-    } while (++iter < 100 && (derivedStatesArray = [...derivedStates]).length);
-    let changedStatesArray = changedStates
-        ? [...changedStates].filter((s) => s.rawVal !== s._oldVal)
-        : [];
-    changedStates = _undefined;
-    for (let b of new Set(
-        changedStatesArray.flatMap(
-            (s) => (s._bindings = keepConnected(s._bindings))
-        )
+  let iter = 0,
+    derivedStatesArray = changedStates
+      ? [...changedStates].filter((s) => s.rawVal !== s._oldVal)
+      : [];
+  do {
+    derivedStates = new Set();
+    for (let l of new Set(
+      derivedStatesArray.flatMap((s) => (s._listeners = keepConnected(s._listeners)))
     ))
-        b._dom && update(b._dom, bind(b.f, b._dom)), (b._dom = _undefined);
+      derive(l.f, l.s, l._dom), (l._dom = _undefined);
+  } while (++iter < 100 && (derivedStatesArray = [...derivedStates]).length);
+  let changedStatesArray = changedStates
+    ? [...changedStates].filter((s) => s.rawVal !== s._oldVal)
+    : [];
+  changedStates = _undefined;
+  for (let b of new Set(
+    changedStatesArray.flatMap((s) => (s._bindings = keepConnected(s._bindings)))
+  ))
+    b._dom && update(b._dom, bind(b.f, b._dom)), (b._dom = _undefined);
 
-    for (let s of changedStatesArray) s._oldVal = s.rawVal;
+  for (let s of changedStatesArray) s._oldVal = s.rawVal;
 };
 
 /**
@@ -591,11 +559,11 @@ const updateDoms = () => {
  * @param {(stepflow-core: T) => T | null | undefined} updateFn - The function to update the DOM node.
  * @returns {T | void} The updated DOM node or void if update fails.
  */
-const hydrate = <T extends Node>(
-    dom: T,
-    updateFn: (dom: T) => T | null | undefined
+export const hydrate = <T extends Node>(
+  dom: T,
+  updateFn: (dom: T) => T | null | undefined
 ): T | void => {
-    return update(dom, bind(updateFn, dom));
+  return update(dom, bind(updateFn, dom));
 };
 
 export default { add, tags, state, derive, hydrate };

@@ -1,8 +1,7 @@
-import {tags} from "../stepflow-core";
+import { tags } from "@stepflow/stepflow-core";
 
 const { div } = tags;
 
 export default function overlayUI() {
-    const el = div({id: 'stepflow-overlay', class: 'stepflow-overlay'});
-    return el;
+  return div({ id: "stepflow-overlay", class: "stepflow-overlay" });
 }

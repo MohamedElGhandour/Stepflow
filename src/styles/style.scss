@@ -20,9 +20,8 @@ $transition-medium: 0.4s ease-out;
     pointer-events: none;
     box-sizing: border-box;
     transition: all $transition-fast;
-    box-shadow:
-            rgba(0, 0, 0, 0.8) 0 0 1px 2px,
-            rgba(0,0,0,.3) 0 0 0 5000px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 0 1px 2px,
+    rgba(0, 0, 0, 0.3) 0 0 0 5000px;
   }
 
   .stepflow-tooltip {
@@ -69,4 +68,8 @@ $transition-medium: 0.4s ease-out;
 
 .stepflow-no-transition {
   transition: none !important;
+}
+
+.stepflow-overflow-hidden {
+  overflow: hidden !important;
 }

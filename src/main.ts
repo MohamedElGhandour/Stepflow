@@ -1,13 +1,11 @@
-
-import inject from "./components";
-import {getStore, initStore} from "./store";
-import {StepflowProps} from "./types";
-import  "./styles/style.scss";
+import { getStore, initStore } from "@stepflow/store";
+import { StepflowProps } from "@stepflow/types";
+import "@stepflow/styles/style.scss";
 
 export function init(props: StepflowProps) {
-    initStore(props);
-    console.log("init", props);
-    console.log("store",getStore());
-    const {start }= getStore();
-    start();
+  initStore(props);
+  console.log("init", props);
+  console.log("store", getStore());
+  const { start } = getStore();
+  start();
 }
