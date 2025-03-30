@@ -25,6 +25,7 @@ $transition-medium: 0.4s ease-out;
   }
 
   .stepflow-tooltip {
+    padding: 14px;
     position: absolute;
     z-index: $zIndex;
     width: $tooltip-width;
@@ -33,6 +34,8 @@ $transition-medium: 0.4s ease-out;
     transition: opacity $transition-fast;
     --arrow-offset: 50%;
     background: #ffffff;
+    box-shadow: 0 3px 30px rgba(33, 33, 33, .3);
+
 
     &.visible {
       opacity: 1;

@@ -1,4 +1,4 @@
-import { tags } from "@stepflow/stepflow-core";
+import { tags } from "@stepflow/utils/dom";
 
 const { div } = tags;
 

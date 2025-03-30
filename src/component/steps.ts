@@ -1,5 +1,5 @@
-import { tags } from "@stepflow/stepflow-core";
-import { getStore } from "@stepflow/store";
+import { tags } from "@stepflow/utils/dom";
+import { getStore } from "@stepflow/core/store";
 
 const { div } = tags;
 
