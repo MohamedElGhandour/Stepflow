@@ -1,14 +1,14 @@
-import elementInViewport from "@stepflow/utils/elementOnViewport.utils";
-import {getWinSize} from "@stepflow/utils/getWinSize.utils";
+import {useElementVisibility} from "@stepflow/utils/dom/useElementVisibility";
+import {useWindowSize} from "@stepflow/utils/dom/useWindowSize";
 
 /**
  * To change the scroll of `window` after highlighting an element
  */
-export default function scrollTo(scrollPadding: number, targetElement: HTMLElement | Element) {
+export default function scrollTo(scrollPadding: number, targetElement: Element) {
   const rect = targetElement.getBoundingClientRect();
 
-  if (!elementInViewport(targetElement)) {
-    const winHeight = getWinSize().height;
+  if (!useElementVisibility(targetElement)) {
+    const winHeight = useWindowSize().height;
     const top = rect.bottom - (rect.bottom - rect.top);
 
     if (top < 0 || targetElement.clientHeight > winHeight) {

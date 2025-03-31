@@ -1,3 +1,5 @@
+import {PlacementEnum, ProgressIndicatorPositionEnum, ProgressIndicatorTypesEnum,} from "@stepflow/enums";
+
 /**
  * Core Stepflow Configuration
  */
@@ -15,13 +17,12 @@ export interface StepflowConfig {
 export interface Step {
   target: string | HTMLElement;
   content: StepContent;
-  validation?: StepValidation;
-  metadata?: StepMetadata;
+  metadata?: StepMetadata; //  @todo This feature is not implemented yet.
   callbacks?: StepCallbacks;
 }
 
 /**
- * Callback Types
+ * General Callback Types
  */
 export interface StepflowCallbacks {
   onStart?: (firstStep: Step) => Promise<void> | void;
@@ -29,12 +30,15 @@ export interface StepflowCallbacks {
   onCancel?: (currentStep: Step) => Promise<void> | void;
   onNext?: (currentStep: Step) => Promise<void> | void;
   onPrev?: (currentStep: Step) => Promise<void> | void;
-  onError?: (error: Error) => void;
+  onError?: (error: Error | unknown) => void;
 }
 
+/**
+ * Local Callback Types
+ */
 export interface StepCallbacks {
-  onStepEnter?: (currentStep: Step) => Promise<void> | void;
-  onStepExit?: (currentStep: Step) => Promise<void> | void;
+  onNext?: (currentStep: Step) => Promise<void> | void;
+  onPrev?: (currentStep: Step) => Promise<void> | void;
 }
 
 /**
@@ -73,15 +77,7 @@ export interface StepContent {
   body?: string | HTMLElement;
   footer?: string | HTMLElement;
   component?: (step: Step) => string | HTMLElement;
-  placement?: "top" | "bottom" | "left" | "right" | "auto";
-}
-
-/**
- * Validation Types
- */
-export interface StepValidation {
-  beforeNext?: (currentStep: Step) => boolean | Promise<boolean>;
-  beforePrev?: (currentStep: Step) => boolean | Promise<boolean>;
+  placement?: PlacementEnum;
 }
 
 /**
@@ -90,24 +86,28 @@ export interface StepValidation {
 export interface StepflowOptions {
   keyboardControls?: boolean;
   escapeToCancel?: boolean;
+  //  @todo This feature is not implemented yet.
   overlay?: {
     enabled?: boolean;
     opacity?: number;
     closeOnClick?: boolean;
   };
+  //  @todo This feature is not implemented yet.
   transitions?: {
     smoothScroll?: boolean;
     animationDuration?: number;
   };
+  //  @todo This feature is not implemented yet.
   debug?: boolean;
 }
 
 /**
  * Progress Tracking (Vanilla JS version)
  */
+//  @todo This feature is not implemented yet.
 export interface ProgressIndicator {
-  type?: "dots" | "counter" | "percentage" | "custom";
-  position?: "header" | "footer" | "inline";
+  type?: ProgressIndicatorTypesEnum;
+  position?: ProgressIndicatorPositionEnum;
   component?: (current: number, total: number) => string | HTMLElement;
 }
 

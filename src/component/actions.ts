@@ -1,11 +1,11 @@
-import { tags } from "@stepflow/utils/dom";
-import { getStore } from "@stepflow/core/store";
+import { tags } from "@stepflow/lib/dom";
+import { getStore } from "@stepflow/store";
 import { vIf, vIfElse } from "@stepflow/utils/helpers";
 
 const { div, button } = tags;
 
 export default function actionsUI() {
-  const { nextStep, prevStep, cancel, showCancel, showPrev, isLastStep, finish } = getStore();
+  const { nextStep, prevStep, cancel, complete, showCancel, showPrev, isLastStep } = getStore();
 
   return div(
     { class: "stepflow-tooltip-actions" },
@@ -19,7 +19,7 @@ export default function actionsUI() {
     ),
     vIfElse(
       () => isLastStep.val,
-      () => button({ onclick: finish }, "done"),
+      () => button({ onclick: complete }, "done"),
       () => button({ onclick: nextStep }, "next")
     )
   );

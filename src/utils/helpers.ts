@@ -1,4 +1,5 @@
-import { StepContent, StepflowConfig } from "@stepflow/types";
+import { StepflowConfig } from "@stepflow/types";
+import { ProgressIndicatorPositionEnum, ProgressIndicatorTypesEnum } from "@stepflow/enums";
 
 export function vIf(condition: () => boolean, content: () => Node): () => Node {
   return () => (condition() ? content() : new Text(""));
@@ -36,8 +37,8 @@ export const defaultStepflowConfig: Partial<StepflowConfig> = {
     complete: { label: "Finish", visible: true },
   },
   progress: {
-    type: "counter",
-    position: "header",
+    type: ProgressIndicatorTypesEnum.counter,
+    position: ProgressIndicatorPositionEnum.header,
   },
 };
 
@@ -47,26 +48,12 @@ export const defaultStepflowConfig: Partial<StepflowConfig> = {
 export type StepflowStatus = "active" | "completed" | "upcoming" | "blocked";
 export type NavigationDirection = "forward" | "backward";
 
-/**
- * Configuration Validation
- */
-export function validateStepflowConfig(config: StepflowConfig) {
-  if (!config.steps?.length) throw new Error("Stepflow requires at least one step");
-  if (
-    config.options?.overlay?.opacity &&
-    (config.options.overlay.opacity < 0 || config.options.overlay.opacity > 1)
-  ) {
-    throw new Error("Overlay opacity must be between 0 and 1");
-  }
+export function getElement(target: string | HTMLElement): HTMLElement | null {
+  return typeof target === "string" ? document.querySelector(target) : target;
 }
 
-/**
- * Type Guards
- */
-export function isHTMLElement(target: unknown): target is HTMLElement {
-  return target instanceof HTMLElement;
-}
-
-export function isCustomContent(content: StepContent): boolean {
-  return !!content.component;
+export function getUIHandler() {
+  const highlight = getElement("#stepflow-highlight");
+  const tooltip = getElement("#stepflow-tooltip");
+  return { highlight, tooltip };
 }

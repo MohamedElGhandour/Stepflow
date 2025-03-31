@@ -77,13 +77,8 @@
             <a href="https://mohamedelghandour.com" target="_blank">Mohamed Elghandour</a>.
         </p>
     </footer>
-    <!-- Example Stepflow Script (adjust to your actual path/file) -->
     <script src="../dist/index.min.js" type="text/javascript"></script>
-
-    <!-- Inline script to initialize Stepflow (your custom code) -->
     <script>
-        // If using Vue, you can remove or adapt this.
-        // If just using Stepflow, keep it as is or adjust as needed.
         function start() {
             Stepflow.init({
                 steps: [
@@ -130,6 +125,10 @@
                 buttons: {
                     prev: {visible: true},
                     cancel: {visible: true},
+                },
+                options: {
+                    keyboardControls: true,
+                    escapeToCancel: true,
                 }
             });
         }

@@ -1,4 +1,4 @@
-import { getStore, initStore } from "@stepflow/core/store";
+import { getStore, initStore } from "@stepflow/store";
 import { StepflowConfig } from "@stepflow/types";
 import "@stepflow/styles/style.scss";
 

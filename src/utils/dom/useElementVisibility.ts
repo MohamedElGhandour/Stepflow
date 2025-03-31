@@ -1,8 +1,8 @@
 /**
  * Check to see if the element is in the viewport or not
- * http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+ *
  */
-export default function elementInViewport(el: HTMLElement | Element): boolean {
+export function useElementVisibility(el: HTMLElement | Element): boolean {
   const rect = el.getBoundingClientRect();
 
   return (
