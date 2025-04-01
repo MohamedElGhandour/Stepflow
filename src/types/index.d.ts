@@ -1,5 +1,3 @@
-import {PlacementEnum, ProgressIndicatorPositionEnum, ProgressIndicatorTypesEnum,} from "@stepflow/enums";
-
 /**
  * Core Stepflow Configuration
  */
@@ -78,7 +76,7 @@ export interface StepContent {
   body?: string | HTMLElement;
   footer?: string | HTMLElement;
   component?: (step: Step) => string | HTMLElement;
-  placement?: PlacementEnum;
+  placement?: Placement;
 }
 
 /**
@@ -106,8 +104,8 @@ export interface StepflowOptions {
  */
 //  @todo This feature is not implemented yet.
 export interface ProgressIndicator {
-  type?: ProgressIndicatorTypesEnum;
-  position?: ProgressIndicatorPositionEnum;
+  type?: ProgressIndicatorTypes;
+  position?: ProgressIndicatorPosition;
   component?: (current: number, total: number) => string | HTMLElement;
 }
 
@@ -124,3 +122,11 @@ export interface StepMetadata {
     payload?: Record<string, unknown>;
   };
 }
+
+export type Status = "active" | "completed" | "canceled" | "error" | "idle";
+
+export type Placement = "top" | "bottom" | "left" | "right" | "auto";
+
+export type ProgressIndicatorTypes = "dots" | "counter" | "percentage" | "custom";
+
+export type ProgressIndicatorPosition = "header" | "footer" | "inline";

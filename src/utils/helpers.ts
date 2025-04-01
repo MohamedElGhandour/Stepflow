@@ -40,5 +40,11 @@ export function getElement(target: string | HTMLElement): HTMLElement | null {
 export function getUIHandler() {
   const highlight = getElement(".stepflow-highlight");
   const tooltip = getElement(".stepflow-tooltip");
-  return { highlight, tooltip };
+  const app = getElement(".stepflow");
+  return { highlight, tooltip, app };
+}
+
+export function destroy() {
+  const { app } = getUIHandler();
+  app?.remove();
 }

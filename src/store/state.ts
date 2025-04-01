@@ -1,6 +1,5 @@
-import { StepflowConfig } from "@stepflow/types";
+import { Status, StepflowConfig } from "@stepflow/types";
 import { state } from "@stepflow/lib/dom";
-import { StatusEnum } from "@stepflow/enums";
 
 export type State = ReturnType<typeof useState>;
 
@@ -35,7 +34,7 @@ export function useState(config: StepflowConfig) {
 
   // Reactive state variables for dynamic parts of the store.
   const currentStepIndex = state<number>(0);
-  const status = state<StatusEnum>(StatusEnum.idle);
+  const status = state<Status>("idle");
   const error = state<Error | null>(null);
 
   return {

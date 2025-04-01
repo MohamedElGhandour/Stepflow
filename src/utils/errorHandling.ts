@@ -4,6 +4,7 @@ export async function executeWithErrorHandling<T>(state: State, fn: () => Promis
   try {
     return await fn();
   } catch (error) {
+    state.status.val = "error";
     if (state.config.callbacks?.onError) {
       state.config.callbacks.onError(error);
     }
