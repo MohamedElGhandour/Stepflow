@@ -1,0 +1,7 @@
+#!/bin/sh
+branch=$(git symbolic-ref --short HEAD)
+if [ "$branch" = "handle-transitions-by-configuration" ]; then
+  echo "Direct pushes to master are disabled. Please push from a feature branch and open a pull request."
+  exit 1
+fi
+exit 0
