@@ -1,2 +1,12 @@
+#!/bin/sh
+# Prevent commits on master branch
+
+branch=$(git symbolic-ref --short HEAD)
+if [ "$branch" = "master" ]; then
+  echo "Direct commits to master are disabled. Please commit on a feature branch and open a pull request."
+  exit 1
+fi
+
+# Run your pre-commit tasks (e.g., type-check and lint-staged)
 npm run type-check
 npx lint-staged
