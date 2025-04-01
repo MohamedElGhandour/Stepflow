@@ -1,4 +1,3 @@
-import { ProgressIndicatorPositionEnum, ProgressIndicatorTypesEnum } from "@stepflow/enums";
 import { StepflowConfig } from "@stepflow/types";
 import { merge } from "@stepflow/utils/merge";
 
@@ -25,13 +24,12 @@ const defaultStepflowConfig: StepflowConfig = {
     complete: { label: "Done" },
   },
   progress: {
-    type: ProgressIndicatorTypesEnum.counter,
-    position: ProgressIndicatorPositionEnum.header,
+    type: "counter",
+    position: "header",
   },
 };
 
 export function mergeStepflowConfig(userConfig: Partial<StepflowConfig>): StepflowConfig {
   const config = merge(defaultStepflowConfig, userConfig);
-  console.log(config);
   return config;
 }

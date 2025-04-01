@@ -20,6 +20,7 @@ function store(config: StepflowConfig) {
 }
 
 export function useStore(prop: StepflowConfig) {
+  if (storeInstance) return;
   const config = mergeStepflowConfig(prop);
   validateStepflowConfig(config);
   storeInstance = store(config);
