@@ -1,6 +1,3 @@
-import { StepflowConfig } from "@stepflow/types";
-import { ProgressIndicatorPositionEnum, ProgressIndicatorTypesEnum } from "@stepflow/enums";
-
 export function vIf(condition: () => boolean, content: () => Node): () => Node {
   return () => (condition() ? content() : new Text(""));
 }
@@ -14,33 +11,21 @@ export function vIfElse(
 }
 
 /**
- * Default Configuration
+ * Joins class names, filtering out falsy values.
+ * @param classes - A list of class names that might be falsy.
+ * @returns A string of class names separated by spaces.
  */
-export const defaultStepflowConfig: Partial<StepflowConfig> = {
-  options: {
-    keyboardControls: true,
-    escapeToCancel: true,
-    overlay: {
-      enabled: true,
-      opacity: 0.7,
-      closeOnClick: false,
-    },
-    transitions: {
-      smoothScroll: true,
-      animationDuration: 300,
-    },
-  },
-  buttons: {
-    cancel: { visible: true, label: "Done" },
-    prev: { visible: true, label: "Previous" },
-    next: { label: "Continue" },
-    complete: { label: "Finish", visible: true },
-  },
-  progress: {
-    type: ProgressIndicatorTypesEnum.counter,
-    position: ProgressIndicatorPositionEnum.header,
-  },
-};
+export function classNames(...classes: (string | false | undefined | null)[]): string {
+  return classes.filter(Boolean).join(" ");
+}
+
+export function setHighlightStyle(color = "rgba(0, 0, 0, 0.8)", opacity = 0.3) {
+  const { highlight } = getUIHandler();
+  highlight?.style.setProperty(
+    "--box-shadow",
+    `${color} 0 0 1px 2px,  rgba(0, 0, 0, ${opacity}) 0 0 0 5000px`
+  );
+}
 
 /**
  * Helper Types
@@ -53,7 +38,7 @@ export function getElement(target: string | HTMLElement): HTMLElement | null {
 }
 
 export function getUIHandler() {
-  const highlight = getElement("#stepflow-highlight");
-  const tooltip = getElement("#stepflow-tooltip");
+  const highlight = getElement(".stepflow-highlight");
+  const tooltip = getElement(".stepflow-tooltip");
   return { highlight, tooltip };
 }

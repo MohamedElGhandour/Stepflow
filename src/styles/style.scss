@@ -20,8 +20,16 @@ $transition-medium: 0.4s ease-out;
     pointer-events: none;
     box-sizing: border-box;
     transition: all $transition-fast;
-    box-shadow: rgba(0, 0, 0, 0.8) 0 0 1px 2px,
-    rgba(0, 0, 0, 0.3) 0 0 0 5000px;
+    --box-shadow: rgba(0, 0, 0, 0.8) 0 0 1px 2px, rgba(0, 0, 0, 0.3) 0 0 0 5000px;
+    box-shadow: var(--box-shadow);
+
+    &.stepflow-no-shadow {
+      box-shadow: rgba(0, 0, 0, 0.8) 0 0 1px 2px;
+    }
+  }
+
+  .stepflow-cursor-pointer {
+    cursor: pointer !important;
   }
 
   .stepflow-tooltip {

@@ -17,7 +17,7 @@ export interface StepflowConfig {
 export interface Step {
   target: string | HTMLElement;
   content: StepContent;
-  metadata?: StepMetadata; //  @todo This feature is not implemented yet.
+  metadata?: StepMetadata;
   callbacks?: StepCallbacks;
 }
 
@@ -55,17 +55,18 @@ export interface ButtonConfig {
     visible?: boolean;
     label?: string;
     className?: string;
-    disabled?: boolean;
+    ariaLabel?: string;
   };
   next?: {
     label?: string;
     className?: string;
     loading?: boolean;
+    ariaLabel?: string;
   };
   complete?: {
     label?: string;
     className?: string;
-    visible?: boolean;
+    ariaLabel?: string;
   };
 }
 
@@ -86,13 +87,12 @@ export interface StepContent {
 export interface StepflowOptions {
   keyboardControls?: boolean;
   escapeToCancel?: boolean;
-  //  @todo This feature is not implemented yet.
+  highlightBorderColor?: string;
   overlay?: {
     enabled?: boolean;
     opacity?: number;
     closeOnClick?: boolean;
   };
-  //  @todo This feature is not implemented yet.
   transitions?: {
     smoothScroll?: boolean;
     animationDuration?: number;
@@ -114,6 +114,7 @@ export interface ProgressIndicator {
 /**
  * Step Metadata
  */
+//  @todo This feature is not implemented yet.
 export interface StepMetadata {
   id?: string;
   required?: boolean;
