@@ -1,13 +1,14 @@
 import { State } from "@stepflow/store/state";
 import { Getters } from "@stepflow/store/getters";
 import { executeWithErrorHandling } from "@stepflow/utils/errorHandling";
-import render from "@stepflow/component";
+import render from "@stepflow/component/index";
 import { handleResize, keyboardControls, updateUIPositions } from "@stepflow/utils/dom/positioning";
 import { useStepActions } from "@stepflow/store/actions/stepActions";
+import { setHighlightStyle } from "@stepflow/utils/helpers";
 
 export function useLifecycle(state: State, getters: Getters) {
   const { currentStep, currentTargetElement } = getters;
-  const { config } = state;
+  const { config, highlightBorderColor, overlayOpacity } = state;
   const { prevStep, nextStep } = useStepActions(state, getters);
 
   const keyUpHandler = (event: KeyboardEvent) => {
@@ -22,6 +23,8 @@ export function useLifecycle(state: State, getters: Getters) {
     if (config.options?.keyboardControls || config.options?.escapeToCancel) {
       document.addEventListener("keyup", keyUpHandler);
     }
+
+    setHighlightStyle(highlightBorderColor, overlayOpacity);
   }
 
   function cleanupUI() {
