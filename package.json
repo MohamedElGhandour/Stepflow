@@ -1,6 +1,6 @@
 {
   "name": "stepflow",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A lightweight onboarding and user tour library for modern web apps",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
