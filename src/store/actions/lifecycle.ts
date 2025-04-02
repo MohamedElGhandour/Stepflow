@@ -1,7 +1,6 @@
 import { State } from "@stepflow/store/state";
 import { Getters } from "@stepflow/store/getters";
 import { executeWithErrorHandling } from "@stepflow/utils/errorHandling";
-import render from "@stepflow/component/app";
 import { handleResize, keyboardControls, updateUIPositions } from "@stepflow/utils/dom/positioning";
 import { useStepActions } from "@stepflow/store/actions/stepActions";
 import { destroy, setHighlightStyle } from "@stepflow/utils/helpers";
@@ -62,6 +61,7 @@ export function useLifecycle(state: State, getters: Getters) {
       await executeWithErrorHandling(state, async () => {
         // Run the global callback if defined.
         await config.callbacks?.onStart?.(currentStep.val);
+        const { default: render } = await import("@stepflow/component/app"); // Dynamic import
         render();
         updateUIPositions(currentTargetElement.val);
         initializeUI();

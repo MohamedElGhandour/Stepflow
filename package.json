@@ -2,22 +2,32 @@
   "name": "stepflow",
   "version": "0.1.0",
   "description": "A lightweight onboarding and user tour library for modern web apps",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/stepflow.cjs.js",
+  "module": "dist/stepflow.esm.js",
+  "browser": "dist/stepflow.iife.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    "import": "./dist/index.esm.js",
-    "require": "./dist/index.cjs.js"
+    "import": "./dist/stepflow.esm.js",
+    "import:min": "./dist/stepflow.esm.min.js",
+    "require": "./dist/stepflow.cjs.js",
+    "require:min": "./dist/stepflow.cjs.min.js",
+    "browser": "./dist/stepflow.iife.js",
+    "browser:min": "./dist/stepflow.iife.min.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "dev": "rollup -c -w",
     "prepublishOnly": "npm run build",
     "format": "prettier --write .",
-    "type-check": "tsc --noEmit"
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "check": "npm run lint && npm run type-check"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "npx eslint --fix"
+    "*.{js,ts,tsx}": "eslint --fix"
   },
   "repository": {
     "type": "git",
@@ -32,7 +42,7 @@
     "intro"
   ],
   "author": "Mohamed Elghandour",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/MohamedElGhandour/Stepflow/issues"
   },
