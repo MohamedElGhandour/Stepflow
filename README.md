@@ -8,7 +8,7 @@
 ---
 
 [![npm](https://img.shields.io/npm/v/stepflow?color=red&label=Status:%20Pre-release)](https://github.com/MohamedElGhandour/Stepflow)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A lightweight onboarding and user tour library for modern web apps.  
 **Current phase**: Early development (unstable).
