@@ -8,12 +8,14 @@ import alias from "@rollup/plugin-alias";
 import path from "path";
 import { fileURLToPath } from "url";
 import postcss from "rollup-plugin-postcss";
+import json from "@rollup/plugin-json";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Shared plugins for consistency across builds
 const commonPlugins = [
+  json(),
   resolve(), // Resolve node_modules imports
   commonjs(), // Convert CommonJS to ESM
   typescript({ tsconfig: "./tsconfig.json" }), // TypeScript support
