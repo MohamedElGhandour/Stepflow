@@ -5,7 +5,7 @@ import { useActions } from "@stepflow/store/actions";
 import { validateStepflowConfig } from "@stepflow/validation";
 import { mergeStepflowConfig } from "@stepflow/config";
 
-let storeInstance: ReturnType<typeof store>;
+let storeInstance: ReturnType<typeof store> | undefined;
 
 function store(config: StepflowConfig) {
   const state: State = useState(config);
@@ -27,5 +27,9 @@ export function useStore(prop: StepflowConfig) {
 }
 
 export function getStore() {
-  return storeInstance;
+  return storeInstance!;
+}
+
+export function destroyStore() {
+  storeInstance = undefined;
 }

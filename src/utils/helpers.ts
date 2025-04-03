@@ -1,3 +1,5 @@
+import { destroyStore } from "@stepflow/store";
+
 export function vIf(condition: () => boolean, content: () => Node): () => Node {
   return () => (condition() ? content() : new Text(""));
 }
@@ -47,4 +49,5 @@ export function getUIHandler() {
 export function destroy() {
   const { app } = getUIHandler();
   app?.remove();
+  destroyStore();
 }
