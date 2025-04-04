@@ -1,6 +1,6 @@
 /**
  * Provides a cross-browser way to get the screen dimensions
- * via: http://stackoverflow.com/questions/5864467/internet-explorer-innerheight
+ *
  */
 export function useWindowSize(): { width: number; height: number } {
   if (window.innerWidth !== undefined) {

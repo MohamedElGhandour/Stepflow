@@ -4,6 +4,7 @@ import { Getters, useGetters } from "@stepflow/store/getters";
 import { useActions } from "@stepflow/store/actions";
 import { validateStepflowConfig } from "@stepflow/validation";
 import { mergeStepflowConfig } from "@stepflow/config";
+import { getUIHandler } from "@stepflow/utils/helpers";
 
 let storeInstance: ReturnType<typeof store> | undefined;
 
@@ -30,6 +31,8 @@ export function getStore() {
   return storeInstance!;
 }
 
-export function destroyStore() {
+export function destroy() {
+  const { app } = getUIHandler();
+  app?.remove();
   storeInstance = undefined;
 }
