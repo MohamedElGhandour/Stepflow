@@ -61,7 +61,7 @@ export function useLifecycle(state: State, getters: Getters) {
       await executeWithErrorHandling(state, async () => {
         // Run the global callback if defined.
         await config.callbacks?.onStart?.(currentStep.val);
-        const { default: render } = await import("@stepflow/Components/app"); // Dynamic import
+        const { render } = await import("@stepflow/components/app"); // Dynamic import
         render();
         updateUIPositions(currentTargetElement.val);
         initializeUI();
