@@ -5,7 +5,7 @@
 > 🔄 API may change | 🧪 Experimental features | 🪲 Here be dragons!  
 > Will publish to npm once complete and tested 🔜 (read: when tests exist 🧪)
 
-<div style="text-align: center">
+<div align="center">
   <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGt6eW43d2p3MDE4M2ZsMTc4aXpoZzI1aXN4cDA1YzN3anpvanJ6NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G2cpDFcKzAPMScb0MC/giphy.gif" alt="Developer vibing with code" width="400" />
   <br>
   <em>"The first 90% of the code takes 10% of the time ⏳<br>
