@@ -3,7 +3,7 @@ import { Getters } from "@stepflow/store/getters";
 import { executeWithErrorHandling } from "@stepflow/utils/errorHandling";
 import { handleResize, keyboardControls, updateUIPositions } from "@stepflow/utils/dom/positioning";
 import { useStepActions } from "@stepflow/store/actions/stepActions";
-import { destroy, setHighlightStyle } from "@stepflow/utils/helpers";
+import { setHighlightStyle } from "@stepflow/utils/helpers";
 
 export function useLifecycle(state: State, getters: Getters) {
   const { currentStep, currentTargetElement } = getters;
@@ -28,10 +28,11 @@ export function useLifecycle(state: State, getters: Getters) {
     setHighlightStyle(highlightBorderColor, overlayOpacity);
   }
 
-  function cleanupUI() {
+  async function cleanupUI() {
     document.body.classList.remove("stepflow-overflow-hidden");
     window.removeEventListener("resize", resizeHandler);
     document.removeEventListener("keyup", keyUpHandler);
+    const { destroy } = await import("@stepflow/store"); // Dynamic import
     destroy();
   }
 
@@ -51,7 +52,7 @@ export function useLifecycle(state: State, getters: Getters) {
       // Run the global callback if defined.
       await config.callbacks?.onCancel?.(currentStep.val);
 
-      cleanupUI();
+      await cleanupUI();
     });
   }
 

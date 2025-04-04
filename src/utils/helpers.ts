@@ -1,5 +1,3 @@
-import { destroyStore } from "@stepflow/store";
-
 export function vIf(condition: () => boolean, content: () => Node): () => Node {
   return () => (condition() ? content() : new Text(""));
 }
@@ -44,10 +42,4 @@ export function getUIHandler() {
   const tooltip = getElement(".stepflow-tooltip");
   const app = getElement(".stepflow");
   return { highlight, tooltip, app };
-}
-
-export function destroy() {
-  const { app } = getUIHandler();
-  app?.remove();
-  destroyStore();
 }

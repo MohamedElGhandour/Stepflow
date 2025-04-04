@@ -3,6 +3,7 @@ import {useWindowSize} from "@stepflow/utils/dom/useWindowSize";
 
 /**
  * To change the scroll of `window` after highlighting an element
+ *
  */
 export default function scrollTo(scrollPadding: number, targetElement: Element) {
   const rect = targetElement.getBoundingClientRect();
