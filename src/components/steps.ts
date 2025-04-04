@@ -3,7 +3,7 @@ import { getStore } from "@stepflow/store";
 
 const { div } = tags;
 
-export default function stepsUI() {
+export function stepsUI() {
   const { stepsLength, currentStepIndexDisplay } = getStore();
   const el = div(
     { class: "stepflow-tooltip-steps" },

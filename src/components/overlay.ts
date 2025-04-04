@@ -4,7 +4,7 @@ import { getStore } from "@stepflow/store";
 
 const { div } = tags;
 
-export default function overlayUI() {
+export function overlayUI() {
   const { showOverlay, cancel, overlayCloseOnClick } = getStore();
   const onClickHandler = async () => {
     if (overlayCloseOnClick) await cancel();
