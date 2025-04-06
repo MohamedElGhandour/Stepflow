@@ -1,126 +1,139 @@
-import { destroy, getStore, useStore } from "@stepflow/store";
+import { destroy, getStore, useStore } from "@stepflow/store/index";
 import { StepflowConfig } from "@stepflow/types";
-import { useState } from "@stepflow/store/state";
-import { useGetters } from "@stepflow/store/getters";
-import { useNavigation } from "../../src/store/useNavigation";
-import { useHooks } from "../../src/store/useHooks";
+import { State, useState } from "@stepflow/store/state";
+import { Getters, useGetters } from "@stepflow/store/getters";
+import { useNavigation } from "@stepflow/store/useNavigation";
+import { useHooks } from "@stepflow/store/useHooks";
+import { useWatch } from "@stepflow/store/useWatch";
 import { mergeStepflowConfig } from "@stepflow/config";
 import { validateStepflowConfig } from "@stepflow/validation";
-import { getUIHandler } from "@stepflow/utils/helpers";
+import { getUIHandler } from "@stepflow/helpers";
 
-jest.mock("@stepflow/store/state", () => ({
-  useState: jest.fn(),
-}));
-jest.mock("@stepflow/store/getters", () => ({
-  useGetters: jest.fn(),
-}));
-jest.mock("../../src/store/useNavigation", () => ({
-  useTourSteps: jest.fn(),
-}));
-jest.mock("../../src/store/useHooks", () => ({
-  useLifecycle: jest.fn(),
-}));
-jest.mock("@stepflow/config", () => ({
-  mergeStepflowConfig: jest.fn(),
-}));
-jest.mock("@stepflow/validation", () => ({
-  validateStepflowConfig: jest.fn(),
-}));
-jest.mock("@stepflow/utils/helpers", () => ({
-  getUIHandler: jest.fn(),
-}));
+jest.mock("@stepflow/store/state");
+jest.mock("@stepflow/store/getters");
+jest.mock("@stepflow/store/useNavigation");
+jest.mock("@stepflow/store/useHooks");
+jest.mock("@stepflow/store/useWatch");
+jest.mock("@stepflow/config");
+jest.mock("@stepflow/validation");
+jest.mock("@stepflow/helpers");
 
-describe("Store", () => {
-  const mockConfig: StepflowConfig = {
-    steps: [
-      { target: "#step1", content: {} },
-      { target: "#step2", content: {} },
-    ],
-  };
-  const mockState = {
-    showOverlay: false,
-    steps: [
-      { target: "#step1", content: {} },
-      { target: "#step2", content: {} },
-    ],
-    stepsLength: 2,
-    currentStepIndex: { val: 0 },
-    status: { val: "idle" },
-    error: { val: null },
-    config: mockConfig,
-  };
-  const mockGetters = {
-    currentStep: { val: { target: "#step1", content: {} } },
-    currentStepIndexDisplay: { val: 1 },
-    isFirstStep: { val: true },
-    isLastStep: { val: false },
-    showPrev: { val: false },
-    showCancel: { val: false },
-    currentTarget: { val: "#step1" },
-    currentTargetElement: { val: null },
-    header: { val: undefined },
-    body: { val: undefined },
-  };
-  const mockActions = { nextStep: jest.fn(), prevStep: jest.fn() };
-  const mockLifecycle = { start: jest.fn(), complete: jest.fn(), cancel: jest.fn() };
-  const mockStore = { ...mockState, ...mockGetters, ...mockActions, ...mockLifecycle };
+// Set up getUIHandler mock before any tests run
+const mockApp = { remove: jest.fn() } as unknown as HTMLElement;
+(getUIHandler as jest.Mock).mockReturnValue({ app: mockApp });
+
+describe("store", () => {
+  let mockConfig: StepflowConfig;
+  let mockState: State;
+  let mockGetters: Getters;
+  let mockTourSteps: ReturnType<typeof useNavigation>;
+  let mockLifecycle: ReturnType<typeof useHooks>;
 
   beforeEach(() => {
     jest.clearAllMocks();
+
+    // Reset storeInstance
+    destroy();
+
+    // Mock config
+    mockConfig = {
+      steps: [{ target: "#step1", content: { header: "Step 1", body: "Body 1" } }],
+    };
+
+    // Mock state
+    mockState = {
+      steps: mockConfig.steps,
+      currentStepIndex: { val: 0 },
+      status: { val: "idle" },
+    } as unknown as State;
     (useState as jest.Mock).mockReturnValue(mockState);
+
+    // Mock getters
+    mockGetters = {
+      currentStep: { val: mockConfig.steps[0] },
+      isFirstStep: { val: true },
+    } as unknown as Getters;
     (useGetters as jest.Mock).mockReturnValue(mockGetters);
-    (useNavigation as jest.Mock).mockReturnValue(mockActions);
+
+    // Mock tourSteps
+    mockTourSteps = {
+      nextStep: jest.fn(),
+      prevStep: jest.fn(),
+    };
+    (useNavigation as jest.Mock).mockReturnValue(mockTourSteps);
+
+    // Mock lifecycle
+    mockLifecycle = {
+      start: jest.fn(),
+      cancel: jest.fn(),
+      complete: jest.fn(),
+    };
     (useHooks as jest.Mock).mockReturnValue(mockLifecycle);
+
+    // Mock useWatch
+    (useWatch as jest.Mock).mockImplementation(() => {});
+
+    // Mock config and validation
     (mergeStepflowConfig as jest.Mock).mockReturnValue(mockConfig);
-    (validateStepflowConfig as jest.Mock).mockReturnValue(undefined);
-    (getUIHandler as jest.Mock).mockReturnValue({ highlight: null, tooltip: null, app: null });
-    destroy();
+    (validateStepflowConfig as jest.Mock).mockImplementation(() => {});
   });
 
-  it("useStore initializes storeInstance with config", () => {
-    useStore(mockConfig);
-    expect(getStore()).toEqual(mockStore);
-  });
-
-  it("getStore returns storeInstance after initialization", () => {
-    useStore(mockConfig);
-    const store = getStore();
-    expect(store.showOverlay).toBe(false);
-    expect(typeof store.nextStep).toBe("function");
-    expect(typeof store.start).toBe("function");
-  });
-
-  it("getStore throws before useStore", () => {
-    expect(() => getStore()).toThrow("Store not initialized. Call start() first.");
-  });
-
-  it("destroy resets storeInstance and handles null app", () => {
-    useStore(mockConfig);
-    destroy();
-    expect(() => getStore()).toThrow("Store not initialized. Call start() first.");
-  });
-
-  it("start updates status", async () => {
-    useStore(mockConfig);
-    const store = getStore();
-    await store.start();
-    expect(mockLifecycle.start).toHaveBeenCalled();
-  });
-
-  it("nextStep updates state", async () => {
-    useStore(mockConfig);
-    const store = getStore();
-    (mockActions.nextStep as jest.Mock).mockImplementation(async () => {
-      store.currentStepIndex.val = 1;
+  describe("useStore", () => {
+    it("initializes the store with merged and validated config", () => {
+      useStore(mockConfig);
+      expect(mergeStepflowConfig).toHaveBeenCalledWith(mockConfig);
+      expect(validateStepflowConfig).toHaveBeenCalledWith(mockConfig);
+      expect(useState).toHaveBeenCalledWith(mockConfig);
+      expect(useGetters).toHaveBeenCalledWith(mockState);
+      expect(useNavigation).toHaveBeenCalledWith(mockState, mockGetters);
+      expect(useHooks).toHaveBeenCalledWith(mockState, mockGetters, mockTourSteps);
+      expect(useWatch).toHaveBeenCalledWith(mockState, mockGetters);
     });
-    await store.nextStep();
-    expect(mockState.currentStepIndex.val).toBe(1);
+
+    it("returns early if store is already initialized", () => {
+      useStore(mockConfig); // First call
+      const initialCallCount = (useState as jest.Mock).mock.calls.length;
+      useStore(mockConfig); // Second call
+      expect((useState as jest.Mock).mock.calls.length).toBe(initialCallCount); // No additional calls
+    });
+
+    it("composes state, getters, tourSteps, and lifecycle", () => {
+      useStore(mockConfig);
+      const storeInstance = getStore();
+      expect(storeInstance).toHaveProperty("steps", mockConfig.steps);
+      expect(storeInstance).toHaveProperty("currentStep", mockGetters.currentStep);
+      expect(storeInstance).toHaveProperty("nextStep", mockTourSteps.nextStep);
+      expect(storeInstance).toHaveProperty("start", mockLifecycle.start);
+    });
   });
 
-  it("cancel updates status", async () => {
-    useStore(mockConfig);
-    const store = getStore();
-    await store.cancel();
-    expect(mockLifecycle.cancel).toHaveBeenCalled();
+  describe("getStore", () => {
+    it("returns the store instance if initialized", () => {
+      useStore(mockConfig);
+      const store = getStore();
+      expect(store).toBeDefined();
+      expect(store.steps).toEqual(mockConfig.steps);
+    });
+
+    it("throws if store is not initialized", () => {
+      expect(() => getStore()).toThrow("Store not initialized. Call start() first.");
+    });
+  });
+
+  describe("destroy", () => {
+    it("removes the app and resets storeInstance", () => {
+      useStore(mockConfig);
+      destroy();
+      expect(getUIHandler).toHaveBeenCalled();
+      expect(mockApp.remove).toHaveBeenCalled();
+      expect(() => getStore()).toThrow("Store not initialized. Call start() first.");
+    });
+
+    it("does nothing if app is not present", () => {
+      (getUIHandler as jest.Mock).mockReturnValueOnce({ app: null });
+      useStore(mockConfig);
+      expect(() => destroy()).not.toThrow();
+      expect(() => getStore()).toThrow("Store not initialized. Call start() first.");
+    });
   });
 });

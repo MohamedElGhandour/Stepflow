@@ -1,106 +1,125 @@
-import { useState } from "@stepflow/store/state";
+import { State, useState } from "@stepflow/store/state";
 import { StepflowConfig } from "@stepflow/types";
-import { state } from "../../src/lib/core";
 
-// Mock state from @stepflow/lib/dom
-jest.mock("../../src/lib/core", () => ({
-  state: jest.fn((initial) => initial), // Simple mock: returns initial value
+jest.mock("@stepflow/lib/core", () => ({
+  state: jest.fn((initial) => ({ val: initial })),
 }));
 
 describe("useState", () => {
+  let config: StepflowConfig;
+  let store: State;
+
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  it("initializes state with minimal config", () => {
-    const config: StepflowConfig = { steps: [] };
-    const result = useState(config);
-
-    expect(result).toEqual({
-      smoothScroll: false,
-      animationDuration: undefined,
-      overlayOpacity: undefined,
-      overlayCloseOnClick: false,
-      highlightBorderColor: undefined,
-      showOverlay: false,
-      prevLabel: undefined,
-      prevClassName: undefined,
-      prevAriaLabel: undefined,
-      cancelLabel: undefined,
-      cancelClassName: "",
-      cancelAriaLabel: "",
-      nextLabel: undefined,
-      nextClassName: "",
-      nextAriaLabel: "",
-      completeLabel: undefined,
-      completeClassName: undefined,
-      completeAriaLabel: undefined,
-      currentStepIndex: 0,
-      status: "idle",
-      error: null,
-      config,
-      steps: [],
-      stepsLength: 0,
-    });
-    expect(state).toHaveBeenCalledWith(0); // currentStepIndex
-    expect(state).toHaveBeenCalledWith("idle"); // status
-    expect(state).toHaveBeenCalledWith(null); // error
-  });
-
-  it("sets button configs when provided", () => {
-    const config: StepflowConfig = {
-      steps: [{ target: "#step1", content: {} }],
+    config = {
+      steps: [{ target: "#step1", content: { header: "Step 1", body: "Body 1" } }],
       buttons: {
-        prev: { label: "Back", className: "prev-btn", ariaLabel: "Previous" },
-        next: { label: "Forward", className: "next-btn", ariaLabel: "Next" },
-        cancel: { label: "Exit", className: "cancel-btn", ariaLabel: "Cancel" },
-        complete: { label: "Done", className: "done-btn", ariaLabel: "Complete" },
+        prev: { label: "Back", className: "prev-btn", ariaLabel: "Previous step" },
+        cancel: { label: "Cancel", className: "cancel-btn", ariaLabel: "Cancel tour" },
+        next: { label: "Next", className: "next-btn", ariaLabel: "Next step" },
+        complete: { label: "Finish", className: "complete-btn", ariaLabel: "Complete tour" },
       },
-    };
-    const result = useState(config);
-
-    expect(result.prevLabel).toBe("Back");
-    expect(result.prevClassName).toBe("prev-btn");
-    expect(result.prevAriaLabel).toBe("Previous");
-    expect(result.nextLabel).toBe("Forward");
-    expect(result.nextClassName).toBe("next-btn");
-    expect(result.nextAriaLabel).toBe("Next");
-    expect(result.cancelLabel).toBe("Exit");
-    expect(result.cancelClassName).toBe("cancel-btn");
-    expect(result.cancelAriaLabel).toBe("Cancel");
-    expect(result.completeLabel).toBe("Done");
-    expect(result.completeClassName).toBe("done-btn");
-    expect(result.completeAriaLabel).toBe("Complete");
-    expect(result.stepsLength).toBe(1);
-  });
-
-  it("enables overlay and transition options", () => {
-    const config: StepflowConfig = {
-      steps: [],
       options: {
         overlay: { enabled: true, opacity: 0.5, closeOnClick: true },
         highlightBorderColor: "#ff0000",
         transitions: { smoothScroll: true, animationDuration: 300 },
       },
     };
-    const result = useState(config);
-
-    expect(result.showOverlay).toBe(true);
-    expect(result.overlayOpacity).toBe(0.5);
-    expect(result.overlayCloseOnClick).toBe(true);
-    expect(result.highlightBorderColor).toBe("#ff0000");
-    expect(result.smoothScroll).toBe(true);
-    expect(result.animationDuration).toBe(300);
+    store = useState(config);
   });
 
-  it("handles missing options gracefully", () => {
-    const config: StepflowConfig = { steps: [{ target: "#step1", content: {} }] };
-    const result = useState(config);
+  describe("configuration and options", () => {
+    it("sets steps and stepsLength", () => {
+      expect(store.steps).toEqual(config.steps);
+      expect(store.stepsLength).toBe(1);
+    });
 
-    expect(result.showOverlay).toBe(false);
-    expect(result.overlayOpacity).toBeUndefined();
-    expect(result.overlayCloseOnClick).toBe(false);
-    expect(result.smoothScroll).toBe(false);
-    expect(result.animationDuration).toBeUndefined();
+    it("sets config", () => {
+      expect(store.config).toEqual(config);
+    });
+
+    it("sets overlay options", () => {
+      expect(store.showOverlay).toBe(true);
+      expect(store.overlayOpacity).toBe(0.5);
+      expect(store.overlayCloseOnClick).toBe(true);
+    });
+
+    it("sets highlight and transition options", () => {
+      expect(store.highlightBorderColor).toBe("#ff0000");
+      expect(store.smoothScroll).toBe(true);
+      expect(store.animationDuration).toBe(300);
+    });
+  });
+
+  describe("button configuration", () => {
+    it("sets prev button options", () => {
+      expect(store.prevLabel).toBe("Back");
+      expect(store.prevClassName).toBe("prev-btn");
+      expect(store.prevAriaLabel).toBe("Previous step");
+    });
+
+    it("sets cancel button options", () => {
+      expect(store.cancelLabel).toBe("Cancel");
+      expect(store.cancelClassName).toBe("cancel-btn");
+      expect(store.cancelAriaLabel).toBe("Cancel tour");
+    });
+
+    it("sets next button options", () => {
+      expect(store.nextLabel).toBe("Next");
+      expect(store.nextClassName).toBe("next-btn");
+      expect(store.nextAriaLabel).toBe("Next step");
+    });
+
+    it("sets complete button options", () => {
+      expect(store.completeLabel).toBe("Finish");
+      expect(store.completeClassName).toBe("complete-btn");
+      expect(store.completeAriaLabel).toBe("Complete tour");
+    });
+  });
+
+  describe("reactive state", () => {
+    it("initializes currentStepIndex", () => {
+      expect(store.currentStepIndex.val).toBe(0);
+    });
+
+    it("initializes status", () => {
+      expect(store.status.val).toBe("idle");
+    });
+
+    it("initializes directionState", () => {
+      expect(store.directionState.val).toBe("forward");
+    });
+
+    it("initializes error", () => {
+      expect(store.error.val).toBeNull();
+    });
+  });
+
+  describe("defaults and edge cases", () => {
+    it("handles missing button config", () => {
+      const minimalConfig: StepflowConfig = { steps: [{ target: "#step1", content: {} }] };
+      const minimalStore = useState(minimalConfig);
+      expect(minimalStore.prevLabel).toBeUndefined();
+      expect(minimalStore.cancelClassName).toBe("");
+      expect(minimalStore.nextAriaLabel).toBe("");
+      expect(minimalStore.completeClassName).toBeUndefined();
+    });
+
+    it("handles missing overlay and transition options", () => {
+      const minimalConfig: StepflowConfig = { steps: [{ target: "#step1", content: {} }] };
+      const minimalStore = useState(minimalConfig);
+      expect(minimalStore.showOverlay).toBe(false);
+      expect(minimalStore.overlayOpacity).toBeUndefined();
+      expect(minimalStore.overlayCloseOnClick).toBe(false);
+      expect(minimalStore.smoothScroll).toBe(false);
+      expect(minimalStore.animationDuration).toBeUndefined();
+    });
+
+    it("handles empty steps array", () => {
+      const emptyConfig: StepflowConfig = { steps: [] };
+      const emptyStore = useState(emptyConfig);
+      expect(emptyStore.steps).toEqual([]);
+      expect(emptyStore.stepsLength).toBe(0);
+    });
   });
 });
