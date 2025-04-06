@@ -1,8 +1,8 @@
-import scrollTo from "@stepflow/utils/dom/scrollTo";
+import { useScrollTo } from "@stepflow/utils";
 
 export function scrollToTarget(target: Element) {
   const { position } = window.getComputedStyle(target);
   if (position !== "fixed") {
-    scrollTo(30, target);
+    useScrollTo(30, target);
   }
 }

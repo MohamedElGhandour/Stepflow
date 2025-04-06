@@ -1,9 +1,10 @@
-import { tags } from "@stepflow/lib/dom";
+import { tags } from "@stepflow/lib/core";
 import { getStore } from "@stepflow/store";
-import { vIf, vIfElse } from "@stepflow/utils/helpers";
+import { vIf, vIfElse } from "@stepflow/view/conditionals";
+
+const { div, button } = tags;
 
 export function actionsUI() {
-  const { div, button } = tags;
   const { nextStep, prevStep, cancel, complete, showCancel, showPrev, isLastStep } = getStore();
 
   return div(

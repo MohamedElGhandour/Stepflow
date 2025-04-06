@@ -1,6 +1,6 @@
 import { State } from "@stepflow/store/state";
-import { derive } from "@stepflow/lib/dom";
-import { getElement } from "@stepflow/utils/helpers";
+import { derive } from "@stepflow/lib/core";
+import { getElement } from "@stepflow/utils";
 
 export type Getters = ReturnType<typeof useGetters>;
 

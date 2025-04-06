@@ -1,4 +1,4 @@
-import { add, tags } from "@stepflow/lib/dom";
+import { add, tags } from "@stepflow/lib/core";
 import { overlayUI } from "@stepflow/components/overlay";
 import { highlightUI } from "@stepflow/components/highlight";
 import { tooltipUI } from "@stepflow/components/tooltip";

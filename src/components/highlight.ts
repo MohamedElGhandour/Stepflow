@@ -1,12 +1,12 @@
-import { tags } from "@stepflow/lib/dom";
+import { tags } from "@stepflow/lib/core";
 import { getStore } from "@stepflow/store";
-import { classNames } from "@stepflow/utils/helpers";
+import { classes } from "@stepflow/utils";
 
 const { div } = tags;
 
 export function highlightUI() {
   const { showOverlay } = getStore();
-  const className = classNames("stepflow-highlight", !showOverlay && "stepflow-no-shadow");
+  const className = classes("stepflow-highlight", !showOverlay && "stepflow-no-shadow");
   return div({
     class: className,
   });
