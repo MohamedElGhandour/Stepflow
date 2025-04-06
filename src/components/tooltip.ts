@@ -1,6 +1,6 @@
 import { tags } from "@stepflow/lib/core";
-import { stepsUI } from "@stepflow/components/steps";
-import { actionsUI } from "@stepflow/components/actions";
+import { stepProgressUI } from "@stepflow/components/stepProgress";
+import { stepControlsUI } from "@stepflow/components/stepControls";
 
 const {
   div,
@@ -11,9 +11,9 @@ export function tooltipUI() {
   // const { header, description } = getStore();
   return div(
     { id: "stepflow-tooltip", class: "stepflow-tooltip" },
-    stepsUI(),
+    stepProgressUI(),
     // h3(header),
     // p(description),
-    actionsUI()
+    stepControlsUI()
   );
 }

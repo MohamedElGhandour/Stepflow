@@ -4,7 +4,7 @@ import { vIf, vIfElse } from "@stepflow/view/conditionals";
 
 const { div, button } = tags;
 
-export function actionsUI() {
+export function stepControlsUI() {
   const { nextStep, prevStep, cancel, complete, showCancel, showPrev, isLastStep } = getStore();
 
   return div(
