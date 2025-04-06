@@ -1,4 +1,4 @@
-import { tags } from "@stepflow/lib/dom";
+import { tags } from "@stepflow/lib/core";
 import { stepsUI } from "@stepflow/components/steps";
 import { actionsUI } from "@stepflow/components/actions";
 

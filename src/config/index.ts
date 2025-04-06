@@ -1,5 +1,5 @@
 import { StepflowConfig } from "@stepflow/types";
-import { merge } from "@stepflow/utils/merge";
+import { merge } from "@stepflow/utils";
 
 const defaultStepflowConfig: StepflowConfig = {
   steps: [],

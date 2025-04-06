@@ -1,5 +1,5 @@
-import { Status, StepflowConfig } from "@stepflow/types";
-import { state } from "@stepflow/lib/dom";
+import { Direction, Status, StepflowConfig } from "@stepflow/types";
+import { state } from "@stepflow/lib/core";
 
 export type State = ReturnType<typeof useState>;
 
@@ -35,6 +35,7 @@ export function useState(config: StepflowConfig) {
   // Reactive state variables for dynamic parts of the store.
   const currentStepIndex = state<number>(0);
   const status = state<Status>("idle");
+  const directionState = state<Direction>("forward");
   const error = state<Error | null>(null);
 
   return {
@@ -61,6 +62,7 @@ export function useState(config: StepflowConfig) {
     // Reactive state
     currentStepIndex,
     status,
+    directionState,
     error,
     // Raw configuration and steps.
     config,

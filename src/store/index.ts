@@ -1,22 +1,28 @@
 import { StepflowConfig } from "@stepflow/types";
 import { State, useState } from "@stepflow/store/state";
 import { Getters, useGetters } from "@stepflow/store/getters";
-import { useActions } from "@stepflow/store/actions";
 import { validateStepflowConfig } from "@stepflow/validation";
 import { mergeStepflowConfig } from "@stepflow/config";
-import { getUIHandler } from "@stepflow/utils/helpers";
+import { useNavigation } from "@stepflow/store/useNavigation";
+import { useHooks } from "@stepflow/store/useHooks";
+import { useWatch } from "@stepflow/store/useWatch";
+import { getUIHandler } from "@stepflow/helpers";
 
 let storeInstance: ReturnType<typeof store> | undefined;
 
 function store(config: StepflowConfig) {
   const state: State = useState(config);
   const getters: Getters = useGetters(state);
-  const actions = useActions(state, getters);
+  const tourSteps = useNavigation(state, getters);
+  const lifecycle = useHooks(state, getters, tourSteps);
+
+  useWatch(state, getters);
 
   return {
     ...state,
     ...getters,
-    ...actions,
+    ...tourSteps,
+    ...lifecycle,
   };
 }
 
@@ -28,7 +34,10 @@ export function useStore(prop: StepflowConfig) {
 }
 
 export function getStore() {
-  return storeInstance!;
+  if (!storeInstance) {
+    throw new Error("Store not initialized. Call start() first.");
+  }
+  return storeInstance;
 }
 
 export function destroy() {

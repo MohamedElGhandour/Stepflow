@@ -14,7 +14,7 @@ export function syncHighlightToTarget(target: Element, highlightEl: HTMLElement)
   highlightEl.style.borderRadius = borderRadius;
 }
 
-// Calculate the absolute position and dimensions of the target element.
+/** Calculate the absolute position and dimensions of the target element. */
 function getAbsoluteRect(target: Element) {
   const rect = target.getBoundingClientRect();
   return {

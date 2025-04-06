@@ -1,12 +1,10 @@
 import { State } from "@stepflow/store/state";
 import { Getters } from "@stepflow/store/getters";
-import { executeWithErrorHandling } from "@stepflow/utils/errorHandling";
-import { derive } from "@stepflow/lib/dom";
-import { updateUIPositions } from "@stepflow/utils/dom/positioning";
+import { useErrorHandler } from "@stepflow/store/useErrorHandler";
 
-export function useStepActions(state: State, getters: Getters) {
-  const { isLastStep, isFirstStep, currentStep, currentTargetElement } = getters;
-  const { currentStepIndex, config } = state;
+export function useNavigation(state: State, getters: Getters) {
+  const { isLastStep, isFirstStep, currentStep } = getters;
+  const { currentStepIndex, config, directionState } = state;
 
   /**
    * Helper function to change the current step based on direction.
@@ -20,16 +18,15 @@ export function useStepActions(state: State, getters: Getters) {
 
     const callbackName = direction === "next" ? "onNext" : "onPrev";
 
-    await executeWithErrorHandling(state, async () => {
-      // Run the local step callback if defined.
+    await useErrorHandler(state, async () => {
       await currentStep.val.callbacks?.[callbackName]?.(currentStep.val);
-      // Run the global callback if defined.
       await config.callbacks?.[callbackName]?.(currentStep.val);
 
-      // Update the step index based on direction.
       if (direction === "next") {
+        directionState.val = "forward";
         currentStepIndex.val++;
       } else {
+        directionState.val = "backward";
         currentStepIndex.val--;
       }
     });
@@ -48,11 +45,6 @@ export function useStepActions(state: State, getters: Getters) {
   async function prevStep() {
     await changeStep("prev");
   }
-
-  //
-  derive(() => {
-    updateUIPositions(currentTargetElement.val);
-  });
 
   return { nextStep, prevStep };
 }

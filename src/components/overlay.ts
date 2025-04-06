@@ -1,6 +1,7 @@
-import { tags } from "@stepflow/lib/dom";
-import { classNames, vIf } from "@stepflow/utils/helpers";
+import { tags } from "@stepflow/lib/core";
+import { vIf } from "@stepflow/view/conditionals";
 import { getStore } from "@stepflow/store";
+import { classes } from "@stepflow/utils";
 
 const { div } = tags;
 
@@ -9,10 +10,7 @@ export function overlayUI() {
   const onClickHandler = async () => {
     if (overlayCloseOnClick) await cancel();
   };
-  const className = classNames(
-    "stepflow-overlay",
-    overlayCloseOnClick && "stepflow-cursor-pointer"
-  );
+  const className = classes("stepflow-overlay", overlayCloseOnClick && "stepflow-cursor-pointer");
   return vIf(
     () => showOverlay,
     () => div({ className, onclick: onClickHandler })

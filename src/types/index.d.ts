@@ -125,6 +125,8 @@ export interface StepMetadata {
 
 export type Status = "active" | "completed" | "canceled" | "error" | "idle";
 
+export type Direction = "forward" | "backward";
+
 export type Placement = "top" | "bottom" | "left" | "right" | "auto";
 
 export type ProgressIndicatorTypes = "dots" | "counter" | "percentage" | "custom";

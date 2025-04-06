@@ -1,12 +1,12 @@
 import { overlayUI } from "../../src/components/overlay";
 import { getStore } from "@stepflow/store";
-import { tags } from "@stepflow/lib/dom";
+import { tags } from "../../src/lib/core";
 import { classNames, vIf } from "@stepflow/utils/helpers";
 
 jest.mock("@stepflow/store", () => ({
   getStore: jest.fn(),
 }));
-jest.mock("@stepflow/lib/dom", () => ({
+jest.mock("../../src/lib/core", () => ({
   tags: {
     div: jest.fn(),
   },
@@ -83,19 +83,5 @@ describe("overlayUI", () => {
     expect(tags.div).not.toHaveBeenCalled();
     expect(result).toBeInstanceOf(Text);
     expect(result.textContent).toBe("");
-  });
-
-  it("assumes store is always initialized by start", () => {
-    (getStore as jest.Mock).mockReturnValue({
-      showOverlay: false, // Minimum valid store
-      cancel: jest.fn(),
-      overlayCloseOnClick: false,
-    });
-
-    const resultFn = overlayUI();
-    const result = resultFn();
-
-    expect(getStore).toHaveBeenCalled();
-    expect(result).toBeInstanceOf(Text);
   });
 });
