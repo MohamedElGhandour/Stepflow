@@ -44,6 +44,27 @@ $transition-medium: 0.4s ease-out;
     background: #ffffff;
     box-shadow: 0 3px 30px rgba(33, 33, 33, .3);
 
+    .sf-btn {
+      background: black;
+      color: white;
+      padding: 6px 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .stepflow-tooltip-controls {
+      &.stepflow-normal {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .sf-tp-left {
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+
 
     &.visible {
       opacity: 1;

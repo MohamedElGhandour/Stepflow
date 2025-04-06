@@ -8,19 +8,24 @@ export function stepControlsUI() {
   const { nextStep, prevStep, cancel, complete, showCancel, showPrev, isLastStep } = getStore();
 
   return div(
-    { class: "stepflow-tooltip-actions" },
-    vIf(
-      () => showCancel.val,
-      () => button({ onclick: cancel }, "skip")
+    { class: "stepflow-tooltip-controls stepflow-normal" },
+    div(
+      { class: "sf-tp-left" },
+      vIf(
+        () => showCancel.val,
+        () => button({ class: "sf-btn", onclick: cancel }, "skip")
+      ),
+      vIf(
+        () => showPrev.val,
+        () => button({ class: "sf-btn", onclick: prevStep }, "back")
+      )
     ),
-    vIf(
-      () => showPrev.val,
-      () => button({ onclick: prevStep }, "back")
-    ),
-    vIfElse(
-      () => isLastStep.val,
-      () => button({ onclick: complete }, "done"),
-      () => button({ onclick: nextStep }, "next")
+    div(
+      vIfElse(
+        () => isLastStep.val,
+        () => button({ class: "sf-btn", onclick: complete }, "done"),
+        () => button({ class: "sf-btn", onclick: nextStep }, "next")
+      )
     )
   );
 }

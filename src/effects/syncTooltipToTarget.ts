@@ -1,10 +1,59 @@
+/**
+ * Synchronizes the tooltip's position to align it with the given target element.
+ *
+ * This function performs the following steps:
+ * 1. Retrieves the bounding rectangle of the target element.
+ * 2. If no-transition mode is enabled, it calculates and updates immediately.
+ * 3. Otherwise, it temporarily disables transitions and hides the tooltip,
+ *    forces a reflow so that the tooltip is fully hidden (opacity 0), then calculates
+ *    the tooltip's position once using the updated layout, applies the new position,
+ *    restores the original transition, and finally fades the tooltip in.
+ *
+ * @param target - The DOM element to which the tooltip should be aligned.
+ * @param tooltipEl - The tooltip element that needs to be positioned.
+ */
 export function syncTooltipToTarget(target: Element, tooltipEl: HTMLElement) {
   const targetRect = target.getBoundingClientRect();
-  const tooltipPosition = calculateTooltipPosition(targetRect, tooltipEl);
-  updateTooltipStyle(tooltipEl, tooltipPosition);
+
+  // If no-transition is enabled (e.g., during resize), calculate and update immediately.
+  if (tooltipEl.classList.contains("no-transition")) {
+    const position = calculateTooltipPosition(targetRect, tooltipEl);
+    applyTooltipPosition(tooltipEl, position);
+    tooltipEl.classList.add("visible");
+    return;
+  }
+
+  // Temporarily disable transitions and hide the tooltip.
+  const originalTransition = tooltipEl.style.transition;
+  tooltipEl.style.transition = "none";
+  tooltipEl.classList.remove("visible");
+
+  // Wait for the next animation frame to ensure the tooltip is fully hidden.
+  requestAnimationFrame(() => {
+    // Force reflow to ensure the tooltip's layout is updated (opacity 0).
+    void tooltipEl.offsetWidth;
+
+    // Now, calculate the tooltip's position only once.
+    const position = calculateTooltipPosition(targetRect, tooltipEl);
+    applyTooltipPosition(tooltipEl, position);
+
+    // Restore the original transition.
+    tooltipEl.style.transition = originalTransition;
+
+    // Fade the tooltip in by adding the "visible" class.
+    tooltipEl.classList.add("visible");
+  });
 }
 
-// Calculate the tooltip's position, arrow offset, and determine if it appears below or above.
+/**
+ * Calculates the tooltip's position, arrow offset, and determines if it appears below or above.
+ *
+ * @param targetRect - The bounding rectangle of the target element.
+ * @param tooltipEl - The tooltip element used to obtain its current dimensions.
+ * @param gap - The vertical gap between the target element and tooltip.
+ * @param sideMargin - The minimum horizontal margin from the viewport edges.
+ * @returns An object with the left and top positions, a flag indicating if the tooltip is below the target, and the arrow offset.
+ */
 function calculateTooltipPosition(
   targetRect: DOMRect,
   tooltipEl: HTMLElement,
@@ -55,37 +104,6 @@ function calculateTooltipPosition(
   arrowOffset = Math.max(10, Math.min(arrowOffset, tooltipWidth - 10));
 
   return { left, top, isBelow, arrowOffset };
-}
-
-function updateTooltipStyle(
-  tooltipEl: HTMLElement,
-  position: { left: number; top: number; isBelow: boolean; arrowOffset: number }
-) {
-  // If no-transition is enabled (e.g. during resize), update immediately.
-  if (tooltipEl.classList.contains("no-transition")) {
-    applyTooltipPosition(tooltipEl, position);
-    tooltipEl.classList.add("visible");
-    return;
-  }
-
-  // Temporarily disable the transition so hiding is immediate.
-  const originalTransition = tooltipEl.style.transition;
-  tooltipEl.style.transition = "none";
-  tooltipEl.classList.remove("visible");
-
-  // Force reflow to immediately apply the removal.
-  void tooltipEl.offsetWidth;
-
-  // Update the tooltip's position.
-  applyTooltipPosition(tooltipEl, position);
-
-  // Restore the transition property.
-  tooltipEl.style.transition = originalTransition;
-
-  // Use requestAnimationFrame to ensure styles are applied, then add the visible class to fade in.
-  requestAnimationFrame(() => {
-    tooltipEl.classList.add("visible");
-  });
 }
 
 function applyTooltipPosition(
