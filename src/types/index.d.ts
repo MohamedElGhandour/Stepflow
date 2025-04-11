@@ -13,10 +13,9 @@ export interface StepflowConfig {
  * Individual Step Definition
  */
 export interface Step {
-  target: string | HTMLElement;
   content: StepContent;
-  metadata?: StepMetadata;
   callbacks?: StepCallbacks;
+  target?: string | HTMLElement;
 }
 
 /**
@@ -74,9 +73,7 @@ export interface ButtonConfig {
 export interface StepContent {
   header?: string | HTMLElement;
   body?: string | HTMLElement;
-  footer?: string | HTMLElement;
   component?: (step: Step) => string | HTMLElement;
-  placement?: Placement;
 }
 
 /**
@@ -92,43 +89,55 @@ export interface StepflowOptions {
     closeOnClick?: boolean;
   };
   transitions?: {
-    smoothScroll?: boolean;
+    scrollBehavior?: ScrollBehavior;
     animationDuration?: number;
   };
-  //  @todo This feature is not implemented yet.
-  debug?: boolean;
+  // //  @todo This feature is not implemented yet.
+  // debug?: boolean;
 }
 
 /**
  * Progress Tracking (Vanilla JS version)
  */
-//  @todo This feature is not implemented yet.
-export interface ProgressIndicator {
-  type?: ProgressIndicatorTypes;
-  position?: ProgressIndicatorPosition;
-  component?: (current: number, total: number) => string | HTMLElement;
-}
-
-/**
- * Step Metadata
- */
-//  @todo This feature is not implemented yet.
-export interface StepMetadata {
-  id?: string;
-  required?: boolean;
-  tags?: string[];
-  analytics?: {
-    eventName?: string;
-    payload?: Record<string, unknown>;
-  };
-}
+export type ProgressIndicator =
+  | {
+      type: "custom";
+      position?: ProgressIndicatorPosition;
+      component: (current: number, total: number) => string | HTMLElement;
+    }
+  | {
+      type?: Exclude<ProgressIndicatorTypes, "custom">;
+      position?: ProgressIndicatorPosition;
+      component?: never;
+    };
 
 export type Status = "active" | "completed" | "canceled" | "error" | "idle";
 
 export type Direction = "forward" | "backward";
 
-export type Placement = "top" | "bottom" | "left" | "right" | "auto";
+export type ProgressIndicatorTypes = "counter" | "of" | "dots" | "percentage" | "custom";
 
-export type ProgressIndicatorTypes = "dots" | "counter" | "percentage" | "custom";
+export type ProgressIndicatorPosition = "header" | "body" | "inline";
 
-export type ProgressIndicatorPosition = "header" | "footer" | "inline";
+export interface StepflowResolvedConfig {
+  steps: Step[];
+  callbacks: Required<StepflowCallbacks>;
+  buttons: {
+    cancel: { visible: boolean; label: string; className: string; ariaLabel?: string };
+    prev: { visible: boolean; label: string; className: string; ariaLabel?: string };
+    next: { label: string; className: string; loading: boolean; ariaLabel?: string };
+    complete: { label: string; className: string; ariaLabel?: string };
+  };
+  options: {
+    keyboardControls: boolean;
+    escapeToCancel: boolean;
+    highlightBorderColor: string;
+    overlay: { enabled: boolean; opacity: number; closeOnClick: boolean };
+    transitions: { scrollBehavior: ScrollBehavior; animationDuration: number };
+  };
+  progress: {
+    type: ProgressIndicatorTypes;
+    position: ProgressIndicatorPosition;
+    component?: (current: number, total: number) => string | HTMLElement;
+  };
+}

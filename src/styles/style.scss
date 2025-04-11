@@ -1,11 +1,12 @@
-$zIndex: 99999;
+$zIndex: 100000000;
 $tooltip-width: 280px;
 $arrow-size: 10px;
 $transition-fast: 0.3s ease-in-out;
+$transition-ultra-fast: 0.1s ease-in-out;
 $transition-medium: 0.4s ease-out;
 
-.stepflow {
-  .stepflow-overlay {
+.sf-root {
+  .sf-overlay {
     position: fixed;
     inset: 0;
     z-index: $zIndex;
@@ -14,7 +15,7 @@ $transition-medium: 0.4s ease-out;
     transition: all $transition-medium;
   }
 
-  .stepflow-highlight {
+  .sf-highlight {
     position: absolute;
     z-index: $zIndex;
     pointer-events: none;
@@ -23,17 +24,16 @@ $transition-medium: 0.4s ease-out;
     --box-shadow: rgba(0, 0, 0, 0.8) 0 0 1px 2px, rgba(0, 0, 0, 0.3) 0 0 0 5000px;
     box-shadow: var(--box-shadow);
 
-    &.stepflow-no-shadow {
+    &.sf-no-shadow {
       box-shadow: rgba(0, 0, 0, 0.8) 0 0 1px 2px;
     }
   }
 
-  .stepflow-cursor-pointer {
+  .sf-pointer {
     cursor: pointer !important;
   }
 
-  .stepflow-tooltip {
-    padding: 14px;
+  .sf-tooltip {
     position: absolute;
     z-index: $zIndex;
     width: $tooltip-width;
@@ -41,43 +41,16 @@ $transition-medium: 0.4s ease-out;
     opacity: 0;
     transition: opacity $transition-fast;
     --arrow-offset: 50%;
-    background: #ffffff;
-    box-shadow: 0 3px 30px rgba(33, 33, 33, .3);
+    background: #fff;
+    box-shadow: 0 3px 30px rgba(33, 33, 33, 0.3);
 
-    .sf-btn {
-      background: black;
-      color: white;
-      padding: 6px 10px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .stepflow-tooltip-controls {
-      &.stepflow-normal {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .sf-tp-left {
-          display: flex;
-          gap: 8px;
-        }
-      }
-    }
-
-
-    &.visible {
+    &.sf-visible {
       opacity: 1;
     }
 
-    .card {
-      width: $tooltip-width;
-      border-radius: var(--ct-border-radius_3) !important;
-      box-shadow: 0 2px 6px #00000029 !important;
-    }
-
-    &.arrow-top::before,
-    &.arrow-bottom::before {
+    // Vertical arrow styles (for top/bottom placements)
+    &.sf-arrow-top::before,
+    &.sf-arrow-bottom::before {
       content: "";
       position: absolute;
       left: var(--arrow-offset, 50%);
@@ -86,22 +59,120 @@ $transition-medium: 0.4s ease-out;
       border-right: $arrow-size solid transparent;
     }
 
-    &.arrow-top::before {
+    &.sf-arrow-top::before {
       top: -$arrow-size;
-      border-bottom: $arrow-size solid #ffffff;
+      border-bottom: $arrow-size solid #fff;
     }
 
-    &.arrow-bottom::before {
+    &.sf-arrow-bottom::before {
       bottom: -$arrow-size;
-      border-top: $arrow-size solid #ffffff;
+      border-top: $arrow-size solid #fff;
+    }
+
+    // Horizontal arrow styles (for left/right placements)
+    &.sf-arrow-left::before,
+    &.sf-arrow-right::before {
+      content: "";
+      position: absolute;
+      top: var(--arrow-offset, 50%);
+      transform: translateY(-50%);
+      border-top: $arrow-size solid transparent;
+      border-bottom: $arrow-size solid transparent;
+    }
+
+    &.sf-arrow-left::before {
+      left: -$arrow-size;
+      border-right: $arrow-size solid #fff;
+    }
+
+    &.sf-arrow-right::before {
+      right: -$arrow-size;
+      border-left: $arrow-size solid #fff;
+    }
+  }
+
+
+  .sf-btn {
+    background: black;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .sf-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    list-style: none;
+
+    .sf-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #ccc;
+      transition: all $transition-ultra-fast;
+
+      &:not(.sf-active) {
+        cursor: pointer;
+      }
+
+      &.sf-active, &:hover {
+        background: #000;
+        width: 12px;
+      }
+    }
+  }
+
+  .sf-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-inline {
+      gap: 6px;
+    }
+
+    .sf-left {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .sf-progress-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sf-card {
+    width: $tooltip-width;
+    border-radius: var(--ct-border-radius_3) !important;
+    box-shadow: 0 2px 6px #00000029 !important;
+
+    .sf-card-header {
+      padding: 15px 10px 10px 10px;
+    }
+
+    &.no-body .sf-card-header {
+      padding: 10px 10px 0px;
+    }
+
+    .sf-card-body {
+      padding: 0 10px;
+    }
+
+    .sf-card-footer {
+      padding: 10px;
     }
   }
 }
 
-.stepflow-no-transition {
+
+.sf-no-transition {
   transition: none !important;
 }
 
-.stepflow-overflow-hidden {
+.sf-overflow-hidden {
   overflow: hidden !important;
 }

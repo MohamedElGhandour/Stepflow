@@ -1,11 +1,10 @@
 import { add, tags } from "@stepflow/lib/core";
-import { overlayUI } from "@stepflow/components/overlay";
-import { highlightUI } from "@stepflow/components/highlight";
-import { tooltipUI } from "@stepflow/components/tooltip";
+import { overlayUI } from "@stepflow/components/overlayUI";
+import { highlightUI } from "@stepflow/components/highlightUI";
+import { tooltipUI } from "@stepflow/components/tooltipUI";
 
 const { div } = tags;
 
 export function render() {
-  const app = div({ class: "stepflow" }, overlayUI(), highlightUI(), tooltipUI());
-  add(document.body, app);
+  add(document.body, div({ class: "sf-root" }, overlayUI(), highlightUI(), tooltipUI()));
 }
