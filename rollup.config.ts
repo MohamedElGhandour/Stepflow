@@ -1,26 +1,61 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel";
-import terser from "@rollup/plugin-terser";
-import typescript from "@rollup/plugin-typescript";
-import { visualizer } from "rollup-plugin-visualizer";
 import alias from "@rollup/plugin-alias";
-import path from "path";
-import { fileURLToPath } from "url";
-import postcss from "rollup-plugin-postcss";
+import babel from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
+import resolve from "@rollup/plugin-node-resolve";
+import typescript from "@rollup/plugin-typescript";
+import autoprefixer from "autoprefixer";
+import path from "path";
+import normalize from "postcss-normalize";
+import filesize from "rollup-plugin-filesize";
+import postcss from "rollup-plugin-postcss";
+import progress from "rollup-plugin-progress";
+import { visualizer } from "rollup-plugin-visualizer";
+import { fileURLToPath } from "url";
+import terser from "@rollup/plugin-terser";
+import { createRequire } from "node:module";
+
+const _require = createRequire(import.meta.url);
+const pkg = _require("./package.json");
+
+const inputPath = "./src";
+const outputPath = "./dist";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const now = new Date();
+
+export const banner = `/*!
+ * Stepflow v${pkg.version}
+ * Repository: https://github.com/MohamedElGhandour/Stepflow
+ *
+ * Built by Mohamed Elghandour
+ * © 2025-${now.getFullYear()} All rights reserved.
+ *
+ * Build Date: ${now.toUTCString()}
+ *
+ * Enjoy building with Stepflow!
+ */
+`;
+
+const extensions = [".ts", ".js", ".scss"];
+
+const postCSSPlugins = [autoprefixer, normalize];
+
 // Shared plugins for consistency across builds
 const commonPlugins = [
   json(),
-  resolve(), // Resolve node_modules imports
+  progress(),
+  filesize({
+    showGzippedSize: true,
+  }),
+  resolve({ extensions }), // Resolve node_modules imports
   commonjs(), // Convert CommonJS to ESM
   typescript({ tsconfig: "./tsconfig.json" }), // TypeScript support
   babel({
     babelHelpers: "bundled",
+    extensions,
     presets: [["@babel/preset-env", { targets: "> 0.25%, not dead" }]], // Modern browser support
   }),
   alias({
@@ -30,81 +65,148 @@ const commonPlugins = [
 ];
 
 export default [
-  // Modern builds with code-splitting for Node.js and bundlers
+  // Configuration for regular (non-minified) CSS
   {
-    input: "./src/index.ts",
-    output: [
-      {
-        dir: "dist",
-        format: "cjs",
-        entryFileNames: "stepflow.cjs.js", // Consistent naming
-        chunkFileNames: "[name]-[hash].cjs.js",
-        sourcemap: true,
-      },
-      {
-        dir: "dist",
-        format: "esm",
-        entryFileNames: "stepflow.esm.js",
-        chunkFileNames: "[name]-[hash].esm.js",
-        sourcemap: true,
-      },
-      {
-        dir: "dist",
-        format: "cjs",
-        entryFileNames: "stepflow.cjs.min.js",
-        chunkFileNames: "[name]-[hash].cjs.min.js",
-        sourcemap: true,
-        plugins: [terser()], // Minified variant
-      },
-      {
-        dir: "dist",
-        format: "esm",
-        entryFileNames: "stepflow.esm.min.js",
-        chunkFileNames: "[name]-[hash].esm.min.js",
-        sourcemap: true,
-        plugins: [terser()], // Minified variant
-      },
-    ],
+    input: `${inputPath}/styles/stepflow.scss`,
+    output: {
+      file: path.resolve(`${outputPath}/styles/stepflow.css`),
+      format: "es",
+    },
     plugins: [
-      ...commonPlugins,
       postcss({
-        extract: "stepflow.min.css",
-        minimize: true,
+        extract: path.resolve(`${outputPath}/styles/stepflow.css`), // explicitly extract to this file
         sourceMap: true,
-        modules: false,
-        use: ["sass"],
+        use: {
+          sass: { silenceDeprecations: ["legacy-js-api"] },
+          stylus: {},
+          less: {},
+        },
+        plugins: postCSSPlugins,
       }),
     ],
   },
-  // Legacy browser build (single file)
+  // Configuration for minified CSS
   {
-    input: "./src/index.ts",
-    output: [
-      {
-        file: "dist/stepflow.iife.js",
-        format: "iife",
-        name: "Stepflow", // Global variable for browser
-        sourcemap: true,
-        inlineDynamicImports: true,
-      },
-      {
-        file: "dist/stepflow.iife.min.js",
-        format: "iife",
-        name: "Stepflow",
-        sourcemap: true,
-        inlineDynamicImports: true,
-        plugins: [terser()], // Minified variant
-      },
-    ],
+    input: `${inputPath}/styles/stepflow.scss`,
+    output: {
+      file: path.resolve(`${outputPath}/styles/stepflow.min.css`),
+      format: "es",
+    },
     plugins: [
-      ...commonPlugins,
       postcss({
-        extract: "stepflow.css",
-        minimize: false,
+        extensions: [".css", ".scss"],
+        extract: path.resolve(`${outputPath}/styles/stepflow.min.css`),
         sourceMap: true,
-        modules: false,
-        use: ["sass"],
+        minimize: true,
+        use: {
+          sass: { silenceDeprecations: ["legacy-js-api"] },
+          stylus: {},
+          less: {},
+        },
+        plugins: postCSSPlugins,
       }),
     ],
+  },
+  // Configuration for CJS build
+  {
+    input: `${inputPath}/index.ts`,
+    output: [
+      {
+        dir: "dist",
+        entryFileNames: `cjs/${pkg.main}`,
+        format: "cjs",
+        banner,
+        sourcemap: true,
+        name: "Stepflow",
+        inlineDynamicImports: true,
+      },
+      {
+        dir: "dist",
+        entryFileNames: `cjs/${pkg.main.replace(/\.js$/, ".min.js")}`,
+        format: "cjs",
+        sourcemap: true,
+        banner,
+        plugins: [terser()],
+        name: "Stepflow",
+        inlineDynamicImports: true,
+      },
+    ],
+    plugins: commonPlugins,
+  },
+  // Configuration for ESM build
+  {
+    input: `${inputPath}/index.ts`,
+    output: [
+      {
+        dir: "dist",
+        entryFileNames: `esm/${pkg.module}`,
+        format: "esm",
+        banner,
+        sourcemap: true,
+        inlineDynamicImports: true,
+      },
+      {
+        dir: "dist",
+        entryFileNames: `esm/${pkg.module.replace(/\.js$/, ".min.js")}`,
+        format: "esm",
+        banner,
+        sourcemap: true,
+        plugins: [terser()],
+        inlineDynamicImports: true,
+      },
+    ],
+    plugins: commonPlugins,
+  },
+  //  IIFE build (browser)
+  {
+    input: `${inputPath}/index.ts`,
+    output: [
+      {
+        dir: "dist",
+        entryFileNames: `iife/${pkg.browser}`,
+        format: "iife",
+        name: "Stepflow",
+        banner,
+        sourcemap: true,
+        inlineDynamicImports: true,
+      },
+      {
+        dir: "dist",
+        entryFileNames: `iife/${pkg.browser.replace(/\.js$/, ".min.js")}`,
+        format: "iife",
+        name: "Stepflow",
+        banner,
+        sourcemap: true,
+        plugins: [terser()],
+        inlineDynamicImports: true,
+      },
+    ],
+    plugins: commonPlugins,
+  },
+  //  UMD build
+  {
+    input: `${inputPath}/index.ts`,
+    output: [
+      {
+        dir: "dist",
+        entryFileNames: `umd/${pkg.unpkg}`,
+        format: "umd",
+        banner,
+        sourcemap: true,
+        inlineDynamicImports: true,
+        name: "Stepflow", // Added name property
+      },
+      {
+        dir: "dist",
+        entryFileNames: `umd/${pkg.unpkg.replace(/\.js$/, ".min.js")}`,
+        format: "umd",
+        banner,
+        sourcemap: true,
+        plugins: [terser()],
+        inlineDynamicImports: true,
+        name: "Stepflow", // Added name property
+      },
+    ],
+    plugins: commonPlugins,
   },
 ];
