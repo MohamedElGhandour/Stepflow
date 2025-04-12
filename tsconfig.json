@@ -6,8 +6,7 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationDir": "dist/types",
-    "rootDir": "./src", // Keep this for source files
-    "outDir": "dist",
+    "rootDir": "./src",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
@@ -17,14 +16,12 @@
     "removeComments": true,
     "skipLibCheck": true,
     "importHelpers": true,
-    "baseUrl": ".", // Changed to project root for Jest compatibility
+    "baseUrl": ".",
     "paths": {
-      "@stepflow/*": ["src/*"] // Adjusted to map from root to src/
+      "@stepflow/*": ["src/*"]
     }
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": [
     "node_modules",
     "dist",
