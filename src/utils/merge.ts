@@ -18,7 +18,6 @@ export function merge<T extends object>(target: T, ...sources: Partial<T>[]): T 
     for (const key in source) {
       if (Object.prototype.hasOwnProperty.call(source, key)) {
         const sourceValue = source[key];
-        // Skip undefined values to preserve the target's value.
         if (sourceValue === undefined) continue;
 
         const targetValue = target[key];

@@ -6,14 +6,14 @@ let resizeTimeout: ReturnType<typeof setTimeout>;
 export function handleResize(target: HTMLElement | null) {
   const { highlight, tooltip } = getUIHandler();
 
-  highlight?.classList.add("stepflow-no-transition");
-  tooltip?.classList.add("stepflow-no-transition");
+  highlight?.classList.add("sf-no-transition");
+  tooltip?.classList.add("sf-no-transition");
 
   syncUI(target);
 
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    highlight?.classList.remove("stepflow-no-transition");
-    tooltip?.classList.remove("stepflow-no-transition");
+    highlight?.classList.remove("sf-no-transition");
+    tooltip?.classList.remove("sf-no-transition");
   }, 100);
 }

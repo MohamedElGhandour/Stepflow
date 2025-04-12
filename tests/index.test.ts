@@ -2,7 +2,7 @@ import { start } from "@stepflow/index";
 import { getStore, useStore } from "@stepflow/store";
 import { StepflowConfig } from "@stepflow/types";
 
-jest.mock("@stepflow/styles/style.scss", () => ({}));
+jest.mock("../src/styles/stepflow.scss", () => ({}));
 jest.mock("@stepflow/store", () => ({
   useStore: jest.fn(),
   getStore: jest.fn(),

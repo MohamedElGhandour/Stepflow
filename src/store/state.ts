@@ -1,9 +1,9 @@
-import { Direction, Status, StepflowConfig } from "@stepflow/types";
+import { Direction, Status, StepflowResolvedConfig } from "@stepflow/types";
 import { state } from "@stepflow/lib/core";
 
 export type State = ReturnType<typeof useState>;
 
-export function useState(config: StepflowConfig) {
+export function useState(config: StepflowResolvedConfig) {
   const { steps } = config;
   const stepsLength = steps.length;
 
@@ -13,12 +13,12 @@ export function useState(config: StepflowConfig) {
   const prevAriaLabel = config.buttons?.prev?.ariaLabel;
 
   const cancelLabel = config.buttons?.cancel?.label;
-  const cancelClassName = config.buttons?.cancel?.className ?? "";
-  const cancelAriaLabel = config.buttons?.cancel?.ariaLabel ?? "";
+  const cancelClassName = config.buttons?.cancel?.className;
+  const cancelAriaLabel = config.buttons?.cancel?.ariaLabel;
 
   const nextLabel = config.buttons?.next?.label;
-  const nextClassName = config.buttons?.next?.className ?? "";
-  const nextAriaLabel = config.buttons?.next?.ariaLabel ?? "";
+  const nextClassName = config.buttons?.next?.className;
+  const nextAriaLabel = config.buttons?.next?.ariaLabel;
 
   const completeLabel = config.buttons?.complete?.label;
   const completeClassName = config.buttons?.complete?.className;
@@ -29,7 +29,7 @@ export function useState(config: StepflowConfig) {
   const overlayOpacity = config.options?.overlay?.opacity;
   const overlayCloseOnClick = !!config.options?.overlay?.closeOnClick;
   const highlightBorderColor = config.options?.highlightBorderColor;
-  const smoothScroll = !!config.options?.transitions?.smoothScroll;
+  const scrollBehavior = !!config.options?.transitions?.scrollBehavior;
   const animationDuration = config.options?.transitions?.animationDuration;
 
   // Reactive state variables for dynamic parts of the store.
@@ -40,7 +40,7 @@ export function useState(config: StepflowConfig) {
 
   return {
     // Options and configuration values.
-    smoothScroll,
+    scrollBehavior,
     animationDuration,
     overlayOpacity,
     overlayCloseOnClick,

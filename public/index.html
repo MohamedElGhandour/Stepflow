@@ -83,10 +83,10 @@
             Stepflow.start({
                 steps: [
                     {
-                        target: "[data-stepflow='step-1']",
+                        // target: document.querySelector('[data-stepflow=\'step-1\']'),
                         content: {
-                            header: "Edit the structure",
-                            body: "Re-order the website sections and choose which ones you want to display",
+                            header: `Welcome to <em class='primary-color'>Stepflow</em>!`,
+                            body: "Let's get started by exploring how you can organize and customize your website sections.",
                         },
                     },
                     {
@@ -99,22 +99,28 @@
                     {
                         target: "[data-stepflow='step-3']",
                         content: {
-                            header: "Publish when ready",
-                            body: "When you are ready for your visitors to see the final configuration, press publish!",
+                            header: "Preview and Finalize",
+                            body: "Take a moment to review your setup. If everything looks good, you're ready to move forward.",
                         },
+
                     },
                     {
                         target: "[data-stepflow='step-4']",
                         content: {
-                            header: "Another Step",
-                            body: "Show a step with different text or highlight another element in your UI.",
+                            header: "Add More Steps",
+                            body: "You can create as many steps as you like to guide users through your app.",
                         },
                     },
                     {
                         target: "[data-stepflow='step-5']",
                         content: {
-                            header: "Finish Up",
-                            body: "Add or remove steps as needed to guide users around your application.",
+                            header: "All Set!",
+                            body: "You're ready to launch. Hit complete to finish the tour and start exploring on your own!",
+                        },
+                    },
+                    {
+                        content: {
+                            component: () => `<img width='260' src='https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeThvNXgwY2Z5M2Q2OW5mNTgyejEwOG5wM3NlMWNkeGF3YTBpNGE0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b8RfbQFaOs1rO10ren/giphy.gif' alt='fun step gif' />`,
                         },
                     },
                 ],

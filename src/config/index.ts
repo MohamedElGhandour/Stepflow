@@ -1,4 +1,4 @@
-import { StepflowConfig } from "@stepflow/types";
+import { StepflowConfig, StepflowResolvedConfig } from "@stepflow/types";
 import { merge } from "@stepflow/utils";
 
 const defaultStepflowConfig: StepflowConfig = {
@@ -10,26 +10,26 @@ const defaultStepflowConfig: StepflowConfig = {
     overlay: {
       enabled: true,
       opacity: 0.3,
-      closeOnClick: false,
+      closeOnClick: true,
     },
     transitions: {
-      smoothScroll: true,
+      scrollBehavior: "smooth",
       animationDuration: 300,
     },
   },
   buttons: {
-    cancel: { visible: true, label: "Skip" },
-    prev: { visible: true, label: "Back" },
-    next: { label: "Next" },
-    complete: { label: "Done" },
+    cancel: { visible: true, label: "Skip", className: "" },
+    prev: { visible: true, label: "Back", className: "" },
+    next: { label: "Next", className: "" },
+    complete: { label: "Done", className: "" },
   },
   progress: {
-    type: "counter",
-    position: "header",
+    type: "dots",
+    position: "body",
   },
 };
 
-export function mergeStepflowConfig(userConfig: Partial<StepflowConfig>): StepflowConfig {
+export function mergeStepflowConfig(userConfig: Partial<StepflowConfig>): StepflowResolvedConfig {
   const config = merge(defaultStepflowConfig, userConfig);
-  return config;
+  return config as StepflowResolvedConfig;
 }

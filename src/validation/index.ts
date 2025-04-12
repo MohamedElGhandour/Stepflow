@@ -1,4 +1,4 @@
-import {StepflowConfig} from "@stepflow/types";
+import {StepflowResolvedConfig} from "@stepflow/types";
 
 /**
  * Validates the configuration for Stepflow.
@@ -6,10 +6,10 @@ import {StepflowConfig} from "@stepflow/types";
  * Ensures that the configuration includes at least one step and that
  * any overlay opacity provided is within the range [0, 1].
  *
- * @param {StepflowConfig} config - The configuration object for Stepflow.
+ * @param {StepflowResolvedConfig} config - The configuration object for Stepflow.
  * @throws {Error} If the configuration is invalid.
  */
-export function validateStepflowConfig(config: StepflowConfig) {
+export function validateStepflowConfig(config: StepflowResolvedConfig) {
   const opacity = config.options?.overlay?.opacity;
 
   if (!config.steps?.length) {

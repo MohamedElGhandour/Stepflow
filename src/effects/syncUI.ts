@@ -5,7 +5,7 @@ import { getUIHandler } from "@stepflow/helpers";
 
 export function syncUI(target: HTMLElement | null) {
   const { highlight, tooltip } = getUIHandler();
-  if (!target || !highlight || !tooltip) return;
+  if (!highlight || !tooltip) return;
 
   scrollToTarget(target);
 

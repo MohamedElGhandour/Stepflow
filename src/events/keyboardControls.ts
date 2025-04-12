@@ -1,4 +1,4 @@
-import {StepflowConfig} from "@stepflow/types";
+import {StepflowResolvedConfig} from "@stepflow/types";
 
 /**
  * Handles keyboard controls for step navigation.
@@ -6,7 +6,7 @@ import {StepflowConfig} from "@stepflow/types";
  */
 export function keyboardControls(
   event: KeyboardEvent,
-  config: StepflowConfig,
+  config: StepflowResolvedConfig,
   cb: { prevStep: () => void; nextStep: () => void; cancel: () => void }
 ) {
   const { prevStep, nextStep, cancel } = cb;

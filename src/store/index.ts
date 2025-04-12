@@ -1,4 +1,4 @@
-import { StepflowConfig } from "@stepflow/types";
+import { StepflowConfig, StepflowResolvedConfig } from "@stepflow/types";
 import { State, useState } from "@stepflow/store/state";
 import { Getters, useGetters } from "@stepflow/store/getters";
 import { validateStepflowConfig } from "@stepflow/validation";
@@ -10,19 +10,19 @@ import { getUIHandler } from "@stepflow/helpers";
 
 let storeInstance: ReturnType<typeof store> | undefined;
 
-function store(config: StepflowConfig) {
+function store(config: StepflowResolvedConfig) {
   const state: State = useState(config);
   const getters: Getters = useGetters(state);
-  const tourSteps = useNavigation(state, getters);
-  const lifecycle = useHooks(state, getters, tourSteps);
+  const navigation = useNavigation(state, getters);
+  const hooks = useHooks(state, getters, navigation);
 
   useWatch(state, getters);
 
   return {
     ...state,
     ...getters,
-    ...tourSteps,
-    ...lifecycle,
+    ...navigation,
+    ...hooks,
   };
 }
 
