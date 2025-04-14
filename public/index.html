@@ -1,140 +1,141 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
-    <link href="../dist/stepflow.min.css" rel="stylesheet">
-    <link href="./style/style.css" rel="stylesheet">
-    <link href="./asset/favicon.svg" rel="icon"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <link href="../dist/stepflow.min.css" rel="stylesheet" />
+    <link href="./style/style.css" rel="stylesheet" />
+    <link href="./asset/favicon.svg" rel="icon" />
     <title>Stepflow - Guided Tours Made Easy</title>
-</head>
-<body>
-<div id="app">
-    <!-- Header -->
-    <header>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header>
         <nav>
-            <a href="#">Stepflow</a>
-            <button data-stepflow='step-5'>Mohamed Elghandour</button>
+          <a href="#">Stepflow</a>
+          <button data-stepflow="step-5">Mohamed Elghandour</button>
         </nav>
-    </header>
+      </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 data-stepflow='step-1'>Welcome to Stepflow</h1>
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1 data-stepflow="step-1">Welcome to Stepflow</h1>
         <p>Your lightweight, simple, and customizable guided tour solution.</p>
         <div>
-            <button class="cta">Get Started</button>
-            <button class="cta" onclick="start()">Demo</button>
+          <button class="cta">Get Started</button>
+          <button class="cta" onclick="start()">Demo</button>
         </div>
-    </section>
+      </section>
 
-    <!-- Introduction Section -->
-    <section class="introduction">
+      <!-- Introduction Section -->
+      <section class="introduction">
         <h2 class="section-title">Introduction</h2>
-        <p data-stepflow='step-2'>
-            Stepflow makes it easy to create guided tours for your web applications. With an emphasis
-            on simplicity and customization, you can onboard your users quickly and efficiently.
+        <p data-stepflow="step-2">
+          Stepflow makes it easy to create guided tours for your web applications. With an emphasis
+          on simplicity and customization, you can onboard your users quickly and efficiently.
         </p>
-    </section>
+      </section>
 
-    <!-- Features Section -->
-    <section class="features">
+      <!-- Features Section -->
+      <section class="features">
         <h2 class="section-title">Features</h2>
         <div class="features-container">
-            <div class="feature">
-                <h3>Lightweight</h3>
-                <p>Minimal code and fast performance for a seamless user experience.</p>
-            </div>
-            <div class="feature" data-stepflow='step-3'>
-                <h3>Simple</h3>
-                <p>Integrate Stepflow with a straightforward API and minimal effort.</p>
-            </div>
-            <div class="feature">
-                <h3>Customizable</h3>
-                <p>Tailor every element to match your brand and design preferences.</p>
-            </div>
+          <div class="feature">
+            <h3>Lightweight</h3>
+            <p>Minimal code and fast performance for a seamless user experience.</p>
+          </div>
+          <div class="feature" data-stepflow="step-3">
+            <h3>Simple</h3>
+            <p>Integrate Stepflow with a straightforward API and minimal effort.</p>
+          </div>
+          <div class="feature">
+            <h3>Customizable</h3>
+            <p>Tailor every element to match your brand and design preferences.</p>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Installation Section -->
-    <section class="installation" data-stepflow='step-4'>
+      <!-- Installation Section -->
+      <section class="installation" data-stepflow="step-4">
         <h2 class="section-title">Installation</h2>
         <p>You can install Stepflow via NPM or include it directly via CDN.</p>
         <div style="max-width: 600px; margin: 2rem auto; text-align: left">
-            <h3>Via NPM</h3>
-            <pre><code>npm install stepflow</code></pre>
-            <h3>Via CDN</h3>
-            <pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/stepflow/dist/stepflow.css"&gt;
+          <h3>Via NPM</h3>
+          <pre><code>npm install stepflow</code></pre>
+          <h3>Via CDN</h3>
+          <pre><code>&lt;link rel="stylesheet" href="https://unpkg.com/stepflow/dist/stepflow.css"&gt;
 &lt;script src="https://unpkg.com/stepflow/dist/stepflow.js"&gt;&lt;/script&gt;</code></pre>
         </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
-    <footer>
+      <!-- Footer -->
+      <footer>
         <p>
-            &copy; 2025 Stepflow. Built by
-            <a href="https://mohamedelghandour.com" target="_blank">Mohamed Elghandour</a>.
+          &copy; 2025 Stepflow. Built by
+          <a href="https://mohamedelghandour.com" target="_blank">Mohamed Elghandour</a>.
         </p>
-    </footer>
-    <script src="../dist/stepflow.iife.min.js" type="text/javascript"></script>
-    <script>
+      </footer>
+      <script src="../dist/stepflow.iife.min.js" type="text/javascript"></script>
+      <script>
         function start() {
-            Stepflow.start({
-                steps: [
-                    {
-                        // target: document.querySelector('[data-stepflow=\'step-1\']'),
-                        content: {
-                            header: `Welcome to <em class='primary-color'>Stepflow</em>!`,
-                            body: "Let's get started by exploring how you can organize and customize your website sections.",
-                        },
-                    },
-                    {
-                        target: "[data-stepflow='step-2']",
-                        content: {
-                            header: "Preview the changes",
-                            body: "See the changes you made before they go live to visitors",
-                        },
-                    },
-                    {
-                        target: "[data-stepflow='step-3']",
-                        content: {
-                            header: "Preview and Finalize",
-                            body: "Take a moment to review your setup. If everything looks good, you're ready to move forward.",
-                        },
-
-                    },
-                    {
-                        target: "[data-stepflow='step-4']",
-                        content: {
-                            header: "Add More Steps",
-                            body: "You can create as many steps as you like to guide users through your app.",
-                        },
-                    },
-                    {
-                        target: "[data-stepflow='step-5']",
-                        content: {
-                            header: "All Set!",
-                            body: "You're ready to launch. Hit complete to finish the tour and start exploring on your own!",
-                        },
-                    },
-                    {
-                        content: {
-                            component: () => `<img width='260' src='https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeThvNXgwY2Z5M2Q2OW5mNTgyejEwOG5wM3NlMWNkeGF3YTBpNGE0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b8RfbQFaOs1rO10ren/giphy.gif' alt='fun step gif' />`,
-                        },
-                    },
-                ],
-                buttons: {
-                    prev: {visible: true},
-                    cancel: {visible: true},
+          Stepflow.start({
+            steps: [
+              {
+                // target: document.querySelector('[data-stepflow=\'step-1\']'),
+                content: {
+                  header: `Welcome to <em class='primary-color'>Stepflow</em>!`,
+                  body: "Let's get started by exploring how you can organize and customize your website sections.",
                 },
-                options: {
-                    keyboardControls: true,
-                    escapeToCancel: true,
-                }
-            });
+              },
+              {
+                target: "[data-stepflow='step-2']",
+                content: {
+                  header: "Preview the changes",
+                  body: "See the changes you made before they go live to visitors",
+                  body: "See the changes you made before they go live to visitors",
+                },
+              },
+              {
+                target: "[data-stepflow='step-3']",
+                content: {
+                  header: "Preview and Finalize",
+                  body: "Take a moment to review your setup. If everything looks good, you're ready to move forward.",
+                },
+              },
+              {
+                target: "[data-stepflow='step-4']",
+                content: {
+                  header: "Add More Steps",
+                  body: "You can create as many steps as you like to guide users through your app.",
+                },
+              },
+              {
+                target: "[data-stepflow='step-5']",
+                content: {
+                  header: "All Set!",
+                  body: "You're ready to launch. Hit complete to finish the tour and start exploring on your own!",
+                },
+              },
+              {
+                content: {
+                  component: () =>
+                    `<img width='260' src='https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeThvNXgwY2Z5M2Q2OW5mNTgyejEwOG5wM3NlMWNkeGF3YTBpNGE0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/b8RfbQFaOs1rO10ren/giphy.gif' alt='fun step gif' />`,
+                },
+              },
+            ],
+            buttons: {
+              prev: { visible: true },
+              cancel: { visible: true },
+            },
+            options: {
+              keyboardControls: true,
+              escapeToCancel: true,
+            },
+          });
         }
-    </script>
-</div>
-</body>
+      </script>
+    </div>
+  </body>
 </html>
