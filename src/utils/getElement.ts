@@ -4,6 +4,7 @@
  * @param target - A CSS selector string or an HTMLElement reference.
  * @returns The matched HTMLElement or null if not found.
  */
-export function getElement(target: string | HTMLElement): HTMLElement | null {
+export function getElement(target?: string | HTMLElement): HTMLElement | null {
+  if (!target) return null;
   return typeof target === "string" ? document.querySelector(target) : target;
 }

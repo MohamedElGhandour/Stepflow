@@ -12,21 +12,27 @@
  * @param target - The DOM element to which the tooltip should be aligned.
  * @param tooltipEl - The tooltip element that needs to be positioned.
  */
-export function syncTooltipToTarget(target: Element, tooltipEl: HTMLElement) {
+export function syncTooltipToTarget(target: Element | null, tooltipEl: HTMLElement) {
+  // Fallback when the target element does not exist:
+  if (!target) {
+    fallback(tooltipEl);
+    return;
+  }
+
   const targetRect = target.getBoundingClientRect();
 
   // If no-transition is enabled (e.g., during resize), calculate and update immediately.
   if (tooltipEl.classList.contains("no-transition")) {
     const position = calculateTooltipPosition(targetRect, tooltipEl);
     applyTooltipPosition(tooltipEl, position);
-    tooltipEl.classList.add("visible");
+    tooltipEl.classList.add("sf-visible");
     return;
   }
 
   // Temporarily disable transitions and hide the tooltip.
   const originalTransition = tooltipEl.style.transition;
   tooltipEl.style.transition = "none";
-  tooltipEl.classList.remove("visible");
+  tooltipEl.classList.remove("sf-visible");
 
   // Wait for the next animation frame to ensure the tooltip is fully hidden.
   requestAnimationFrame(() => {
@@ -41,7 +47,7 @@ export function syncTooltipToTarget(target: Element, tooltipEl: HTMLElement) {
     tooltipEl.style.transition = originalTransition;
 
     // Fade the tooltip in by adding the "visible" class.
-    tooltipEl.classList.add("visible");
+    tooltipEl.classList.add("sf-visible");
   });
 }
 
@@ -116,10 +122,57 @@ function applyTooltipPosition(
   dropdownEl.style.setProperty("--arrow-offset", `${position.arrowOffset}px`);
 
   if (position.isBelow) {
-    dropdownEl.classList.add("arrow-top");
-    dropdownEl.classList.remove("arrow-bottom");
+    dropdownEl.classList.add("sf-arrow-top");
+    dropdownEl.classList.remove("sf-arrow-bottom");
   } else {
-    dropdownEl.classList.add("arrow-bottom");
-    dropdownEl.classList.remove("arrow-top");
+    dropdownEl.classList.add("sf-arrow-bottom");
+    dropdownEl.classList.remove("sf-arrow-top");
   }
+}
+
+function fallback(tooltipEl: HTMLElement) {
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  const tooltipWidth = tooltipEl.offsetWidth;
+  const tooltipHeight = tooltipEl.offsetHeight;
+
+  // Calculate center positions
+  const left = scrollX + (viewportWidth - tooltipWidth) / 2;
+  const top = scrollY + (viewportHeight - tooltipHeight) / 2;
+
+  // Optionally remove arrow classes since there's no target.
+  tooltipEl.classList.remove("sf-arrow-top", "sf-arrow-bottom");
+  // Reset any arrow offset if you're using a CSS variable.
+  tooltipEl.style.setProperty("--arrow-offset", "0px");
+
+  // Apply positioning immediately if in no-transition mode.
+  if (tooltipEl.classList.contains("no-transition")) {
+    tooltipEl.style.left = `${left}px`;
+    tooltipEl.style.top = `${top}px`;
+    tooltipEl.classList.add("sf-visible");
+    return;
+  }
+
+  // Temporarily disable transitions and hide the tooltip.
+  const originalTransition = tooltipEl.style.transition;
+  tooltipEl.style.transition = "none";
+  tooltipEl.classList.remove("sf-visible");
+
+  // Wait for the next animation frame to ensure styles are applied.
+  requestAnimationFrame(() => {
+    // Force reflow to ensure the layout is updated.
+    void tooltipEl.offsetWidth;
+
+    // Apply the new center position.
+    tooltipEl.style.left = `${left}px`;
+    tooltipEl.style.top = `${top}px`;
+
+    // Restore the original transition.
+    tooltipEl.style.transition = originalTransition;
+
+    // Fade the tooltip in by adding the visible class.
+    tooltipEl.classList.add("sf-visible");
+  });
 }

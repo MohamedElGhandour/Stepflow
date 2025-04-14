@@ -6,7 +6,7 @@ const { div } = tags;
 
 export function highlightUI() {
   const { showOverlay } = getStore();
-  const className = classes("stepflow-highlight", !showOverlay && "stepflow-no-shadow");
+  const className = classes("sf-highlight", !showOverlay && "sf-no-shadow");
   return div({
     class: className,
   });

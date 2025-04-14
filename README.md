@@ -6,20 +6,19 @@
 > Will publish to npm once complete and tested 🔜 (read: when tests exist 🧪)
 
 <div align="center">
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGt6eW43d2p3MDE4M2ZsMTc4aXpoZzI1aXN4cDA1YzN3anpvanJ6NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G2cpDFcKzAPMScb0MC/giphy.gif" alt="Developer vibing with code" width="400" />
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW53bG5uOHZjbDlnaGo3dmxpZ2Y4ZHpic3lycnVwcmYyM3ZnazY5cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yWTrzwWVS9x1zHPIwT/giphy.gif" alt="Developer testing code" width="400" />
   <br>
-  <em>"The first 90% of the code takes 10% of the time ⏳<br>
-  The remaining 10% takes 90% ⏳⏳⏳⏳⏳⏳⏳⏳⏳<br>
-  (PS: Hand-crafted artisanal code 🧑🍳 - no AI soup 🚫🤖)"</em>
+  <em>"Writing tests is like eating vegetables 🥦<br>
+  You know you should do it, but the pizza of progress is so tempting 🍕"</em>
 </div>
 
 ---
 
 [![npm](https://img.shields.io/npm/v/stepflow?color=red&label=Status:%20Pre-release)](https://github.com/MohamedElGhandour/Stepflow)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Open Issues](https://img.shields.io/github/issues-raw/MohamedElGhandour/Stepflow?color=orange&label=Known%20Issues%20%F0%9F%91%BE)](https://github.com/MohamedElGhandour/Stepflow/issues)
+[![Test Coverage](https://img.shields.io/badge/coverage-72%25-yellowgreen)](https://github.com/MohamedElGhandour/Stepflow/actions)
 
-A lightweight onboarding library for modern web apps 🎈  
+The onboarding library that's 90% caffeine ☕ and 30% type safety 🔒  
 **Current phase**: "It works on my machine" stage 🖥️ ✅
 
 ---
@@ -27,55 +26,57 @@ A lightweight onboarding library for modern web apps 🎈
 ## Features ✨
 
 - 🪶 Featherweight (weighs less than a single React component ⚛️)
-- 🧩 IKEA-style API (some assembly required 🔧)
-- 🎮 Custom navigation (you're the boss baby 👶🕶️)
-- 🌐 Modern browsers only (RIP IE 🦖⚰️)
-- 💯 Organic free-range code (no AI additives 🚫🤖)
+- 🧩 Modular API (IKEA meets TypeScript 📦)
+- 🎮 Custom navigation (your UX, your rules 👑)
+- 🦄 Modern browser magic (Chromium gang represent! 🎨)
+- 💯 Artisanal code (hand-crafted, small-batch, organic 🧑🍳)
 
 ---
 
 ## Current State 🏗️
 
 <div align="center">
-  <img src="https://media.giphy.com/media/ukMiDlCmdv2og/giphy.gif" alt="Monkey coding" width="300">
+  <img src="https://media.tenor.com/yB5HilbRdEYAAAAC/out-of-shape-running.gif" alt="Testing progress" width="300">
   <br>
-  <em>Writing test coverage like...</em>
+  <em>Our test runner these days</em>
 </div>
 
-### ✅ **Completed & Merged**
+### ✅ **Completed**
 
-- Vanilla JS implementation 🍦  
+- ✅ Vanilla JS implementation 🍦  
   (No frameworks harmed in the making 🚫⚛️)
 
-- Core navigation engine ⚙️ (vroom vroom! 🏎️)
-- Basic DOM positioning 📐 (good enough for gov't work 🏛️)
-- Step callback system 🔄 (onEnter/onExit dance party 💃)
-- Vanilla JS implementation 🍨
+- ✅ Core navigation engine ⚙️ (vroom vroom! 🏎️)
+- ✅ DOM positioning & highlight tracking 📐
+- ✅ Step callback system 🔄 (onNext/onPrev/onCancel/onComplete 💃)
+- ✅ TypeScript support with strict types 🧠
+- ✅ Config merging, validation, and default setup 🧩
+- ✅ Customizable buttons, overlays, and keyboard handling 🎮
+- ✅ CSS animations 🎥 (smooth transitions, finally 🧈)
 
-### 🚧 **Active Development**
+### 🧪 **In Progress**
 
-- **TypeScript types** (`feature/types`) 📝  
-  `any` → `unknown` → actual types 🦾 (progress: 99% 🟢🟡)
+- **Testing coverage** (`testing/`) 🧪  
+  Code is stable — tests are catching up (coverage: partial 📉)
 
-- **Store testing** (`testing/store`) 🧪  
-  "Works" ≠ "Tested" (current coverage: 12% 😬)
+- **Minor UI polish** (`enhancement/ui`) 🎨  
+  Tiny refactors, smoother interactions, more 🍦 less 🪵
 
-- **UI Enhancements** (`enhancement/ui`) 🎨  
-  Making buttons less "1995 Geocities" 🖼️
+- **CI setup & test workflow** 🔁  
+  Auto-run tests on commits & PRs (soon™)
 
-### ⚠️ **Not Started**
+### ⚠️ **Planned / Not Started**
 
-- CSS animations 🎥 (currently more flipbook than Disney)
-- Accessibility ♿ (screen reader? never met her)
-- Cross-browser testing 🌐 (Chrome is people too!)
-- Real test coverage 🧪 (we don't talk about this)
+- Accessibility ♿ (coming soon for screen reader support)
+- Cross-browser testing 🌐 (Chrome: ✅ — the rest: pending)
+- Visual testing & a11y auditing 🔬
 
 ### 🔮 **Future Magic**
 
 <div align="center">
-  <img src="https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif" alt="Magic" width="300">
+  <img src="https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif" alt="Magic" width="300">
   <br>
-  <em>How we imagine plugin development will go</em>
+  <em>Our roadmap vs reality</em>
 </div>
 
 - AI suggestions 🤖 (ChatGPT integration? Maybe 👀)
@@ -87,9 +88,9 @@ A lightweight onboarding library for modern web apps 🎈
 ## Installation 🧙
 
 <div align="center">
-  <img src="https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif" alt="waiting" width="300">
+  <img src="https://media.giphy.com/media/3o7TKUM3IgJBX2as9O/giphy.gif" alt="waiting" width="300">
   <br>
-  <em>Our release timeline vs community expectations</em>
+  <em>Our release process</em>
 </div>
 
 ⚠️ **Not yet on npm** - but here's your future install:

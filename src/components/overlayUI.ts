@@ -10,7 +10,7 @@ export function overlayUI() {
   const onClickHandler = async () => {
     if (overlayCloseOnClick) await cancel();
   };
-  const className = classes("stepflow-overlay", overlayCloseOnClick && "stepflow-cursor-pointer");
+  const className = classes("sf-overlay", overlayCloseOnClick && "sf-pointer");
   return vIf(
     () => showOverlay,
     () => div({ className, onclick: onClickHandler })
