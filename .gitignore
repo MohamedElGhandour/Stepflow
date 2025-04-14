@@ -3,7 +3,11 @@ node_modules/
 
 # Build output
 dist/
+
 .rollup.cache
+
+analyze/
+
 # IDE settings
 .idea/
 
