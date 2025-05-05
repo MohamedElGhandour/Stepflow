@@ -337,14 +337,14 @@ stepflow.start({
     {
       target: '#dashboard',
       content: {
-            title: 'Welcome to the Dashboard',
+            header: 'Welcome to the Dashboard',
             body: 'This is where you can see all your important metrics at a glance.'
       }
     },
     {
       target: '.user-profile',
       content: {
-            title: 'Your Profile',
+            header: 'Your Profile',
             body: 'Click here to access your profile settings and preferences.'
       }
     }
@@ -365,14 +365,14 @@ stepflow.start({
                         &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target: <span class="string">'#dashboard'</span>,<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: <span class="string">'Welcome to the Dashboard'</span>,<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header: <span class="string">'Welcome to the Dashboard'</span>,<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: <span class="string">'This is where you can see all your important metrics at a glance.'</span><br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target: <span class="string">'.user-profile'</span>,<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: <span
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header: <span
                             class="string">'Your Profile'</span>,<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: <span class="string">'Click here to access your profile settings and preferences.'</span><br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -606,6 +606,10 @@ stepflow.start({
                         header: `Welcome to <b class='primary-color'>Stepflow</b>!`,
                         body: "This short guide will walk you through how to build an engaging onboarding experience using Stepflow in your own app.",
                     },
+                    callbacks: {
+                        onNext: () => console.log('Next step'),
+                        onPrev: () => console.log('Prev step'),
+                    }
                 },
                 {
                     target: "[data-stepflow='step-1-1']",
@@ -659,6 +663,10 @@ stepflow.start({
                     },
                 },
             ],
+            callbacks: {
+                onNext: () => console.log('Next global step'),
+                onPrev: () => console.log('Prev global step'),
+            },
             buttons: {
                 prev: {visible: true},
                 cancel: {visible: true},

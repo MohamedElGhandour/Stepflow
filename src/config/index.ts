@@ -1,7 +1,7 @@
 import { StepflowConfig, StepflowResolvedConfig } from "@stepflow/types";
 import { merge } from "@stepflow/utils";
 
-const defaultStepflowConfig: StepflowConfig = {
+const defaultStepflowConfig: StepflowResolvedConfig = {
   steps: [],
   options: {
     keyboardControls: true,
@@ -29,7 +29,7 @@ const defaultStepflowConfig: StepflowConfig = {
   },
 };
 
-export function mergeStepflowConfig(userConfig: Partial<StepflowConfig>): StepflowResolvedConfig {
-  const config = merge(defaultStepflowConfig, userConfig);
-  return config as StepflowResolvedConfig;
+export function mergeStepflowConfig(userConfig: Partial<StepflowConfig>) {
+  const config = merge(defaultStepflowConfig, userConfig as StepflowResolvedConfig);
+  return config;
 }

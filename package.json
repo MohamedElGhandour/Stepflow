@@ -23,7 +23,7 @@
   "scripts": {
     "rollup:ts": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
     "build": "rm -rf dist && npm run rollup:ts",
-    "dev": "npm run rollup:ts -w",
+    "dev": "npm run rollup:ts -- --watch",
     "prepublishOnly": "npm run build",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.ts,.tsx",

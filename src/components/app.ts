@@ -1,7 +1,7 @@
 import { add, tags } from "@stepflow/lib/core";
 import { overlayUI } from "@stepflow/components/overlayUI";
 import { highlightUI } from "@stepflow/components/highlightUI";
-import { tooltipUI } from "@stepflow/components/tooltipUI";
+import { tooltipUI } from "@stepflow/components/tooltip/tooltipUI";
 
 const { div } = tags;
 

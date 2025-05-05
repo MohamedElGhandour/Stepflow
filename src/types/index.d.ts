@@ -121,11 +121,11 @@ export type ProgressIndicatorPosition = "header" | "body" | "inline";
 
 export interface StepflowResolvedConfig {
   steps: Step[];
-  callbacks: Required<StepflowCallbacks>;
+  callbacks?: StepflowCallbacks;
   buttons: {
     cancel: { visible: boolean; label: string; className: string; ariaLabel?: string };
     prev: { visible: boolean; label: string; className: string; ariaLabel?: string };
-    next: { label: string; className: string; loading: boolean; ariaLabel?: string };
+    next: { label: string; className: string; loading?: boolean; ariaLabel?: string };
     complete: { label: string; className: string; ariaLabel?: string };
   };
   options: {
