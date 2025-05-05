@@ -1,6 +1,6 @@
 import { tags } from "@stepflow/lib/core";
-import { stepProgressUI } from "@stepflow/components/stepProgressUI";
-import { stepControlsUI } from "@stepflow/components/stepControlsUI";
+import { stepProgressUI } from "@stepflow/components/step/stepProgressUI";
+import { stepControlsUI } from "@stepflow/components/step/stepControlsUI";
 
 const { div } = tags;
 

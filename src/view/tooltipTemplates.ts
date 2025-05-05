@@ -1,9 +1,9 @@
 import { ProgressIndicatorPosition } from "@stepflow/types";
-import { contentUI } from "@stepflow/components/contentUI";
-import { stepProgressUI } from "@stepflow/components/stepProgressUI";
-import { stepControlsUI } from "@stepflow/components/stepControlsUI";
+import { contentUI } from "@stepflow/components/tooltip/contentUI";
+import { stepProgressUI } from "@stepflow/components/step/stepProgressUI";
+import { stepControlsUI } from "@stepflow/components/step/stepControlsUI";
 import { card } from "@stepflow/view/card";
-import { stepProgressControls } from "@stepflow/components/stepProgressControls";
+import { stepProgressControls } from "@stepflow/components/step/stepProgressControls";
 
 export function tooltipTemplate(position: ProgressIndicatorPosition) {
   if (position === "header")
