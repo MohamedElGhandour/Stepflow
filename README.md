@@ -1,13 +1,23 @@
-# stepflow
+<h1>
+  <img src="./public/asset/favicon.svg" alt="Stepflow" width="28" height="28" style="vertical-align: middle;" />
+  Stepflow
+</h1>
 
 A lightweight onboarding and user tour library for modern web apps.
 
-## Badges
+[![npm version](https://img.shields.io/npm/v/@mohamedelghandour/stepflow.svg)](https://www.npmjs.com/package/@mohamedelghandour/stepflow)
+[![npm downloads](https://img.shields.io/npm/dm/@mohamedelghandour/stepflow.svg)](https://www.npmjs.com/package/@mohamedelghandour/stepflow)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./licence)
+[![Demo](https://img.shields.io/badge/demo-live-blue.svg)](https://mohamedelghandour.github.io/Stepflow/public/)
 
-Add npm and CI badges here if desired.
+## Demo
+
+Live demo: https://mohamedelghandour.github.io/Stepflow/public/
 
 ## Installation
+
 Install via package manager:
+
 ```bash
 npm i @mohamedelghandour/stepflow
 ```
