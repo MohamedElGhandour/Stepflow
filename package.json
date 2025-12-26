@@ -6,7 +6,7 @@
   "module": "stepflow.esm.js",
   "browser": "stepflow.iife.js",
   "unpkg": "stepflow.umd.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts"
   "exports": {
     "import": "./dist/stepflow.esm.js",
     "import:min": "./dist/stepflow.esm.min.js",
