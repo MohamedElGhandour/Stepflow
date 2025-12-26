@@ -102,4 +102,8 @@ options: {
   - Keyup listeners are only attached when at least one of these options is enabled.
 
 ---
-← Prev: [Navigation: Overview](overview.md) | Next →: [Navigation: API](api.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="overview.md">Navigation: Overview</a></div>
+  <div>Next: <a href="api.md">Navigation: API</a></div>
+</div>

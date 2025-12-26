@@ -58,4 +58,8 @@ Notes:
 - `options.transitions` exist in config but are not used by the runtime logic in the current code.
 
 ---
-← Prev: [Positioning and Overlay](../core-concepts/positioning-and-overlay.md) | Next →: [Styling and Theming](styling-and-theming.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../core-concepts/positioning-and-overlay.md">Positioning and Overlay</a></div>
+  <div>Next: <a href="styling-and-theming.md">Styling and Theming</a></div>
+</div>

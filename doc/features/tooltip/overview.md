@@ -16,4 +16,8 @@ TODO: Replace with a screenshot of the tooltip UI.
 - Navigation buttons
 
 ---
-← Prev: [Steps: Examples](../steps/examples.md) | Next →: [Tooltip: Options](options.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../steps/examples.md">Steps: Examples</a></div>
+  <div>Next: <a href="options.md">Tooltip: Options</a></div>
+</div>

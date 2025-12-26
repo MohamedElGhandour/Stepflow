@@ -39,4 +39,8 @@ Notes:
 - TODO: Confirm behavior in code when an `HTMLElement` is provided (it is assigned to `innerHTML`).
 
 ---
-← Prev: [Mental Model](mental-model.md) | Next →: [Positioning and Overlay](positioning-and-overlay.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="mental-model.md">Mental Model</a></div>
+  <div>Next: <a href="positioning-and-overlay.md">Positioning and Overlay</a></div>
+</div>

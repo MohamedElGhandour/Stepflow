@@ -23,4 +23,8 @@ TODO: Replace with a screenshot showing the available progress styles.
 - `inline` (combined layout)
 
 ---
-← Prev: [Navigation: Examples](../navigation/examples.md) | Next →: [Progress Indicator: Options](options.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../navigation/examples.md">Navigation: Examples</a></div>
+  <div>Next: <a href="options.md">Progress Indicator: Options</a></div>
+</div>

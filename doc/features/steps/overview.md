@@ -19,4 +19,8 @@ TODO: Replace with a screenshot of a multi-step tour.
 If `target` is omitted or cannot be resolved, Stepflow centers the tooltip and highlight in the viewport.
 
 ---
-← Prev: [Accessibility](../../guides/accessibility.md) | Next →: [Steps: Options](options.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../../guides/accessibility.md">Accessibility</a></div>
+  <div>Next: <a href="options.md">Steps: Options</a></div>
+</div>

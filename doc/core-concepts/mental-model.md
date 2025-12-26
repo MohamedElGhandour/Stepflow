@@ -24,4 +24,8 @@ TODO: Replace with a diagram showing steps → store → UI.
 - Progress indicator updates based on step index.
 
 ---
-← Prev: [Quick Start](../getting-started/quick-start.md) | Next →: [Steps and Targets](steps-and-targets.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../getting-started/quick-start.md">Quick Start</a></div>
+  <div>Next: <a href="steps-and-targets.md">Steps and Targets</a></div>
+</div>

@@ -35,4 +35,8 @@ await start({
 ```
 
 ---
-← Prev: [Overlay and Highlight: API](api.md) | Next →: [Navigation: Overview](../navigation/overview.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="api.md">Overlay and Highlight: API</a></div>
+  <div>Next: <a href="../navigation/overview.md">Navigation: Overview</a></div>
+</div>

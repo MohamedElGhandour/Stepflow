@@ -8,4 +8,7 @@ These images are temporary placeholders used by the documentation.
 - Replace each file with a real screenshot or diagram when ready.
 
 ---
-← Prev: [Architecture](../../developers/architecture.md)
+
+<div style="display:flex; justify-content:flex-start;">
+  <div>Prev: <a href="../../developers/architecture.md">Architecture</a></div>
+</div>

@@ -42,4 +42,8 @@ await start({
 ```
 
 ---
-← Prev: [Progress Indicator: API](api.md) | Next →: [API Index](../../api/index.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="api.md">Progress Indicator: API</a></div>
+  <div>Next: <a href="../../api/index.md">API Index</a></div>
+</div>

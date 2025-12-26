@@ -23,4 +23,8 @@ callbacks: {
   - Callback execution is wrapped with error handling.
 
 ---
-← Prev: [Navigation: Options](options.md) | Next →: [Navigation: Examples](examples.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="options.md">Navigation: Options</a></div>
+  <div>Next: <a href="examples.md">Navigation: Examples</a></div>
+</div>
