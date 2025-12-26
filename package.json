@@ -1,6 +1,6 @@
 {
   "name": "@mohamedelghandour/stepflow",
-  "version": "1.0.4",
+  "version": "1.0.2",
   "description": "A lightweight onboarding and user tour library for modern web apps",
   "main": "stepflow.js",
   "module": "stepflow.esm.js",
