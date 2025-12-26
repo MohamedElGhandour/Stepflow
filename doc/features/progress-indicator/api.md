@@ -26,4 +26,8 @@ progress: {
   - TODO: Confirm behavior in code when the custom component returns an `HTMLElement`.
 
 ---
-← Prev: [Progress Indicator: Options](options.md) | Next →: [Progress Indicator: Examples](examples.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="options.md">Progress Indicator: Options</a></div>
+  <div>Next: <a href="examples.md">Progress Indicator: Examples</a></div>
+</div>

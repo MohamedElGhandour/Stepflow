@@ -23,4 +23,8 @@ The tooltip is rendered by internal components. There are no public methods for 
   - Tooltip placement toggles `.sf-arrow-top` and `.sf-arrow-bottom`.
 
 ---
-← Prev: [Tooltip: Options](options.md) | Next →: [Tooltip: Examples](examples.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="options.md">Tooltip: Options</a></div>
+  <div>Next: <a href="examples.md">Tooltip: Examples</a></div>
+</div>

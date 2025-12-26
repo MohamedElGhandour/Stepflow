@@ -40,4 +40,8 @@ await start({
 - Stepflow uses a singleton store; repeated `start()` calls do not re-initialize the tour unless it has been cleaned up internally.
 
 ---
-← Prev: [API Index](index.md) | Next →: [Hello World](../examples/hello-world.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="index.md">API Index</a></div>
+  <div>Next: <a href="../examples/hello-world.md">Hello World</a></div>
+</div>

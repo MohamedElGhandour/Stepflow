@@ -24,4 +24,8 @@ Notes:
 - Please open an issue or discussion for significant changes.
 
 ---
-← Prev: [Advanced Recipes](../examples/advanced-recipes.md) | Next →: [Building](building.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../examples/advanced-recipes.md">Advanced Recipes</a></div>
+  <div>Next: <a href="building.md">Building</a></div>
+</div>

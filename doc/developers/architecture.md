@@ -26,4 +26,8 @@ TODO: Replace with an architecture diagram showing the main modules.
 5) `complete()` or `cancel()` cleans up listeners and removes the UI root.
 
 ---
-← Prev: [Building](building.md) | Next →: [Assets: Placeholders](../assets/placeholders/README.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="building.md">Building</a></div>
+  <div>Next: <a href="../assets/placeholders/README.md">Assets: Placeholders</a></div>
+</div>

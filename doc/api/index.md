@@ -11,4 +11,8 @@ See the full reference here:
 - [`start`](./start.md)
 
 ---
-← Prev: [Progress Indicator: Examples](../features/progress-indicator/examples.md) | Next →: [API: start](start.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../features/progress-indicator/examples.md">Progress Indicator: Examples</a></div>
+  <div>Next: <a href="start.md">API: start</a></div>
+</div>

@@ -26,4 +26,8 @@ TODO: Replace with a diagram showing tooltip placement above/below the target.
 - `options.transitions` are stored but not used to change scrolling behavior in the current code.
 
 ---
-← Prev: [Steps and Targets](steps-and-targets.md) | Next →: [Configuration](../guides/configuration.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="steps-and-targets.md">Steps and Targets</a></div>
+  <div>Next: <a href="../guides/configuration.md">Configuration</a></div>
+</div>

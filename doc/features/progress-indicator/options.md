@@ -44,4 +44,8 @@ progress: {
   - When `position: "inline"` and `type: "dots"`, Stepflow falls back to the counter style.
 
 ---
-← Prev: [Progress Indicator: Overview](overview.md) | Next →: [Progress Indicator: API](api.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="overview.md">Progress Indicator: Overview</a></div>
+  <div>Next: <a href="api.md">Progress Indicator: API</a></div>
+</div>

@@ -89,4 +89,8 @@ callbacks: {
   - Step-level callbacks run before global callbacks.
 
 ---
-← Prev: [Steps: Overview](overview.md) | Next →: [Steps: API](api.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="overview.md">Steps: Overview</a></div>
+  <div>Next: <a href="api.md">Steps: API</a></div>
+</div>

@@ -38,4 +38,8 @@ interface Step {
   - Missing targets fall back to centered UI.
 
 ---
-← Prev: [Steps: Options](options.md) | Next →: [Steps: Examples](examples.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="options.md">Steps: Options</a></div>
+  <div>Next: <a href="examples.md">Steps: Examples</a></div>
+</div>

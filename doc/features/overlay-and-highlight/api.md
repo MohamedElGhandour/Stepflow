@@ -25,4 +25,8 @@ options: {
   - Overlay is rendered only when `enabled` is true (default is true).
 
 ---
-← Prev: [Overlay and Highlight: Options](options.md) | Next →: [Overlay and Highlight: Examples](examples.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="options.md">Overlay and Highlight: Options</a></div>
+  <div>Next: <a href="examples.md">Overlay and Highlight: Examples</a></div>
+</div>

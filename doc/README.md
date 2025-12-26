@@ -49,4 +49,7 @@ TODO: Replace with a hero screenshot of a running Stepflow tour.
 - [Assets: Placeholders](./assets/placeholders/README.md)
 
 ---
-Next →: [Installation](getting-started/installation.md)
+
+<div style="display:flex; justify-content:flex-end;">
+  <div>Next: <a href="getting-started/installation.md">Installation</a></div>
+</div>

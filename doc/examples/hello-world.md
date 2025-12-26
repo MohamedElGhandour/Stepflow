@@ -22,4 +22,8 @@ await start({
 ```
 
 ---
-← Prev: [API: start](../api/start.md) | Next →: [Common Recipes](common-recipes.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../api/start.md">API: start</a></div>
+  <div>Next: <a href="common-recipes.md">Common Recipes</a></div>
+</div>

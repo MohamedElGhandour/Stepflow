@@ -20,4 +20,8 @@ TODO: Replace with a screenshot showing overlay and highlight.
 - Can cancel the tour if `overlay.closeOnClick` is true
 
 ---
-← Prev: [Tooltip: Examples](../tooltip/examples.md) | Next →: [Overlay and Highlight: Options](options.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../tooltip/examples.md">Tooltip: Examples</a></div>
+  <div>Next: <a href="options.md">Overlay and Highlight: Options</a></div>
+</div>

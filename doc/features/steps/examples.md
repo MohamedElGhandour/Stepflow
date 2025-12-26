@@ -33,4 +33,8 @@ await start({
 ```
 
 ---
-← Prev: [Steps: API](api.md) | Next →: [Tooltip: Overview](../tooltip/overview.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="api.md">Steps: API</a></div>
+  <div>Next: <a href="../tooltip/overview.md">Tooltip: Overview</a></div>
+</div>

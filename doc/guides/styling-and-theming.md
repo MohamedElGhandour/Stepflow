@@ -52,4 +52,8 @@ Buttons include a base class and feature-specific classes. Use `buttons.*.classN
 ```
 
 ---
-← Prev: [Configuration](configuration.md) | Next →: [Accessibility](accessibility.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="configuration.md">Configuration</a></div>
+  <div>Next: <a href="accessibility.md">Accessibility</a></div>
+</div>

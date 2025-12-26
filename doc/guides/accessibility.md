@@ -24,4 +24,8 @@ Notes:
 - Keyboard navigation is available via ArrowLeft/ArrowRight and Escape (when enabled).
 
 ---
-← Prev: [Styling and Theming](styling-and-theming.md) | Next →: [Steps: Overview](../features/steps/overview.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="styling-and-theming.md">Styling and Theming</a></div>
+  <div>Next: <a href="../features/steps/overview.md">Steps: Overview</a></div>
+</div>

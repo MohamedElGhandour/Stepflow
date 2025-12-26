@@ -46,4 +46,8 @@ Notes:
 - Step content strings are assigned via `innerHTML`. Sanitize user-provided content.
 
 ---
-← Prev: [Installation](installation.md) | Next →: [Mental Model](../core-concepts/mental-model.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="installation.md">Installation</a></div>
+  <div>Next: <a href="../core-concepts/mental-model.md">Mental Model</a></div>
+</div>
