@@ -15,8 +15,6 @@ function store(config: StepflowResolvedConfig) {
   const getters: Getters = useGetters(state);
   const navigation = useNavigation(state, getters);
   const hooks = useHooks(state, getters, navigation);
-  console.log(config);
-  console.log(state);
   useWatch(state, getters);
 
   return {
