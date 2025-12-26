@@ -18,7 +18,8 @@
     "umd:min": "./dist/stepflow.umd.min.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "rollup:ts": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
