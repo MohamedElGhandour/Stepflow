@@ -4,9 +4,7 @@
 
 Stepflow keeps the tooltip and highlight aligned with the current step’s target element.
 
-![Tooltip positioning above/below targets (replace this image)](../assets/placeholders/placeholder-diagram.png)
-
-TODO: Replace with a diagram showing tooltip placement above/below the target.
+<!-- TODO: Replace with a diagram showing tooltip placement above/below the target. -->
 
 ## Highlight positioning
 

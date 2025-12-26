@@ -4,9 +4,7 @@
 
 Stepflow is a lightweight onboarding and user tour library for modern web apps. This documentation is generated from the repository source and TypeScript types.
 
-![High-level Stepflow tour UI (replace this image)](./assets/placeholders/placeholder-hero.png)
-
-TODO: Replace with a hero screenshot of a running Stepflow tour.
+![](./assets/hero.png)
 
 ## Table of contents
 

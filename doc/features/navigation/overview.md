@@ -4,9 +4,7 @@
 
 Navigation controls move between steps and trigger callbacks.
 
-![Navigation buttons (replace this image)](../../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot of the navigation buttons.
+<!-- TODO: Replace with a screenshot of the navigation buttons. -->
 
 ## Built-in controls
 

@@ -4,9 +4,7 @@
 
 Stepflow includes basic accessibility hooks and expects you to supply content and labels that make sense for your users.
 
-![Accessible tooltip example (replace this image)](../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot showing accessible tooltip content and labels.
+<!-- TODO: Replace with a screenshot showing accessible tooltip content and labels. -->
 
 ## Built-in attributes
 

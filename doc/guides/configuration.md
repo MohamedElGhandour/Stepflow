@@ -4,9 +4,7 @@
 
 All configuration is passed to `start(config)` and described by `StepflowConfig` in `src/types/index.d.ts`.
 
-![Configuration overview (replace this image)](../assets/placeholders/placeholder-diagram.png)
-
-TODO: Replace with a diagram showing the config object structure.
+<!-- TODO: Replace with a diagram showing the config object structure. -->
 
 ## StepflowConfig
 
