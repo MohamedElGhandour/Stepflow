@@ -4,9 +4,7 @@
 
 Steps define the tour sequence: what to say and where to point.
 
-![Step list overview (replace this image)](../../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot of a multi-step tour.
+<!-- TODO: Replace with a screenshot of a multi-step tour. -->
 
 ## What a step includes
 

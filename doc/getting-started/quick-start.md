@@ -4,9 +4,7 @@
 
 This is the minimal setup to start a Stepflow tour.
 
-![A simple Stepflow tooltip and highlight (replace this image)](../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot of a minimal two-step tour.
+<!-- TODO: Replace with a screenshot of a minimal two-step tour. -->
 
 ## 1) Add targets to your UI
 

@@ -4,9 +4,7 @@
 
 Stepflow ships with a stylesheet built from `src/styles/stepflow.scss`.
 
-![Custom Stepflow theme (replace this image)](../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot of a customized Stepflow theme.
+<!-- TODO: Replace with a screenshot of a customized Stepflow theme. -->
 
 ## Include the stylesheet
 

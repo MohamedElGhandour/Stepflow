@@ -4,9 +4,7 @@
 
 The progress indicator shows how far the user is in the tour.
 
-![Progress indicator variants (replace this image)](../../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot showing the available progress styles.
+<!-- TODO: Replace with a screenshot showing the available progress styles. -->
 
 ## Supported types
 

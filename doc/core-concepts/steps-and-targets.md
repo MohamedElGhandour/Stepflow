@@ -2,11 +2,9 @@
 
 [Home](../README.md) → [Core Concepts](mental-model.md) → Steps and Targets
 
-Steps are the core input to Stepflow. Each step describes *what* to show and *where* to anchor it.
+Steps are the core input to Stepflow. Each step describes _what_ to show and _where_ to anchor it.
 
-![Step target geometry (replace this image)](../assets/placeholders/placeholder-diagram.png)
-
-TODO: Replace with a diagram showing a target element and tooltip/highlight alignment.
+<!-- TODO: Replace with a diagram showing a target element and tooltip/highlight alignment. -->
 
 ## Step structure
 

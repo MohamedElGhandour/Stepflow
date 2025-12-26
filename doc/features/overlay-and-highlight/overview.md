@@ -4,9 +4,7 @@
 
 The highlight outlines the current target element. The overlay is an optional layer that can capture clicks to cancel.
 
-![Overlay and highlight (replace this image)](../../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot showing overlay and highlight.
+<!-- TODO: Replace with a screenshot showing overlay and highlight. -->
 
 ## What the highlight does
 

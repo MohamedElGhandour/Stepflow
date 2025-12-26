@@ -4,9 +4,7 @@
 
 The tooltip is the main content container for each step. It renders headers, body text, and optional custom components.
 
-![Tooltip overview (replace this image)](../../assets/placeholders/placeholder-example.png)
-
-TODO: Replace with a screenshot of the tooltip UI.
+<!-- TODO: Replace with a screenshot of the tooltip UI. -->
 
 ## What the tooltip renders
 
