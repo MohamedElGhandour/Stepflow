@@ -1,336 +1,328 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Stepflow - Modern Tour and Onboarding Solution</title>
     <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
     />
-    <link href="./asset/favicon.svg" rel="icon"/>
-    <link href="./style/style.css" rel="stylesheet"/>
-    <link href="../dist/styles/stepflow.css" rel="stylesheet"/>
+    <link href="./asset/favicon.svg" rel="icon" />
+    <link href="./style/style.css" rel="stylesheet" />
+    <link href="../dist/styles/stepflow.css" rel="stylesheet" />
     <style>
-        .sf-card.sf-tooltip {
-            border-radius: 8px !important;
-            width: 320px;
-        }
+      .sf-card.sf-tooltip {
+        border-radius: 8px !important;
+        width: 320px;
+      }
 
-        .sf-btn {
-            background: linear-gradient(
-                    to right,
-                    var(--gradient-start),
-                    var(--gradient-end)
-            ) !important;
-            padding: 8px 18px !important;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.15s ease,
-            box-shadow 0.15s ease,
-            filter 0.15s ease;
-        }
+      .sf-btn {
+        background: linear-gradient(
+          to right,
+          var(--gradient-start),
+          var(--gradient-end)
+        ) !important;
+        padding: 8px 18px !important;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease,
+          filter 0.15s ease;
+      }
 
-        /* Hover: slight glow & lift illusion via shadow */
-        .sf-btn:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            /* optional: uncomment to add a tiny scale-up
-            transform: scale(1.02);
-            */
-        }
+      /* Hover: slight glow & lift illusion via shadow */
+      .sf-btn:hover {
+        filter: brightness(1.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        /* optional: uncomment to add a tiny scale-up
+        transform: scale(1.02);
+        */
+      }
 
-        /* Active (click-and-hold): inset shadow & darken */
-        .sf-btn:active {
-            filter: brightness(0.9);
-            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
-            /* optional: uncomment for a tiny “press-down” shrink
-            transform: scale(0.98);
-            */
-        }
+      /* Active (click-and-hold): inset shadow & darken */
+      .sf-btn:active {
+        filter: brightness(0.9);
+        box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* optional: uncomment for a tiny “press-down” shrink
+        transform: scale(0.98);
+        */
+      }
 
-        .sf-btn.sf-btn-skip {
-            background: transparent !important;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            font-weight: 600;
-            transition: background-color 0.3s,
-            color 0.3s;
-            text-decoration: none;
-        }
+      .sf-btn.sf-btn-skip {
+        background: transparent !important;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s;
+        text-decoration: none;
+      }
 
-        .sf-btn.sf-btn-skip:hover {
-            background: var(--primary) !important;
-            color: white;
-        }
+      .sf-btn.sf-btn-skip:hover {
+        background: var(--primary) !important;
+        color: white;
+      }
 
-        .sf-root .sf-dots .sf-dot.sf-active,
-        .sf-root .sf-dots .sf-dot:hover {
-            background: linear-gradient(
-                    to right,
-                    var(--gradient-start),
-                    var(--gradient-end)
-            ) !important;
-        }
+      .sf-root .sf-dots .sf-dot.sf-active,
+      .sf-root .sf-dots .sf-dot:hover {
+        background: linear-gradient(
+          to right,
+          var(--gradient-start),
+          var(--gradient-end)
+        ) !important;
+      }
 
-        .sf-content h3 {
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            padding-bottom: 4px;
-        }
+      .sf-content h3 {
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding-bottom: 4px;
+      }
 
-        .sf-progress {
-            padding: 6px 0px;
-        }
+      .sf-progress {
+        padding: 6px 0px;
+      }
 
-        .logo a {
-            text-decoration: none;
-            color: var(--primary)
-        }
+      .logo a {
+        text-decoration: none;
+        color: var(--primary);
+      }
     </style>
-</head>
-<body>
-<!-- Header -->
-<header>
-    <div class="container">
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
         <nav>
-
-            <div class="logo"><a href="#"> <i class="fas fa-map-signs"></i> Stepflow </a></div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#installation">Installation</a></li>
-                <li><a href="#github">GitHub</a></li>
-            </ul>
-            <a class="cta-button" href="https://github.com/MohamedElGhandour/Stepflow">Get Started</a>
+          <div class="logo">
+            <a href="#"> <i class="fas fa-map-signs"></i> Stepflow </a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#github">GitHub</a></li>
+          </ul>
+          <a class="cta-button" href="https://github.com/MohamedElGhandour/Stepflow">Get Started</a>
         </nav>
-    </div>
-</header>
+      </div>
+    </header>
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
         <div class="hero-content">
-            <div class="hero-text">
-                <h1 data-stepflow="step-1-1">Guide Your Users Every Step of the Way</h1>
-                <p>
-                    Stepflow is a powerful, customizable tour and onboarding solution that helps users
-                    discover and navigate your application with ease.
-                </p>
-                <div class="hero-buttons">
-                    <a class="cta-button" href="https://github.com/MohamedElGhandour/Stepflow"
-                    >Get Started</a
-                    >
-                    <a class="secondary-button" onclick="start()">View Demo</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img
-                        alt="Stepflow Demo"
-                        data-stepflow="step-2"
-                        height="400px"
-                        src="./asset/banner.png"
-                        width="600px"
-                />
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Lightweight Banner (Improved) -->
-<section class="lightweight-banner">
-    <div class="container">
-        <div class="lightweight-content">
-            <div class="section-header">
-                <span class="accent-badge">Lightweight</span>
-                <h2>Built with Performance in Mind</h2>
-                <p>
-                    Stepflow is incredibly lightweight and has zero dependencies, making it perfect for
-                    any project.
-                </p>
-            </div>
-
-            <div class="lightweight-stats">
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-box-open"></i>
-                    </div>
-                    <div class="stat-number">0</div>
-                    <div class="stat-label">Dependencies</div>
-                </div>
-
-                <div class="stat-item" data-stepflow="step-3">
-                    <div class="stat-icon">
-                        <i class="fas fa-feather"></i>
-                    </div>
-                    <div class="stat-number">&lt; 5KB</div>
-                    <div class="stat-label">Minified Size</div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Free</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="banner-shape"></div>
-</section>
-
-<!-- Features Section -->
-<section class="features" id="features">
-    <div class="container">
-        <div class="section-header">
-            <h2 data-stepflow='step-4.1'>Powerful Features at Your Fingertips</h2>
+          <div class="hero-text">
+            <h1 data-stepflow="step-1-1">Guide Your Users Every Step of the Way</h1>
             <p>
-                Everything you need to create engaging onboarding experiences and guided tours for your
-                users.
+              Stepflow is a powerful, customizable tour and onboarding solution that helps users
+              discover and navigate your application with ease.
             </p>
+            <div class="hero-buttons">
+              <a class="cta-button" href="https://github.com/MohamedElGhandour/Stepflow">Get Started</a>
+              <a class="secondary-button" onclick="start()">View Demo</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img
+              alt="Stepflow Demo"
+              data-stepflow="step-2"
+              height="400px"
+              src="./asset/banner.png"
+              width="600px"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightweight Banner (Improved) -->
+    <section class="lightweight-banner">
+      <div class="container">
+        <div class="lightweight-content">
+          <div class="section-header">
+            <span class="accent-badge">Lightweight</span>
+            <h2>Built with Performance in Mind</h2>
+            <p>
+              Stepflow is incredibly lightweight and has zero dependencies, making it perfect for any
+              project.
+            </p>
+          </div>
+
+          <div class="lightweight-stats">
+            <div class="stat-item">
+              <div class="stat-icon">
+                <i class="fas fa-box-open"></i>
+              </div>
+              <div class="stat-number">0</div>
+              <div class="stat-label">Dependencies</div>
+            </div>
+
+            <div class="stat-item" data-stepflow="step-3">
+              <div class="stat-icon">
+                <i class="fas fa-feather"></i>
+              </div>
+              <div class="stat-number">&lt; 5KB</div>
+              <div class="stat-label">Minified Size</div>
+            </div>
+
+            <div class="stat-item">
+              <div class="stat-icon">
+                <i class="fas fa-gift"></i>
+              </div>
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Free</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="banner-shape"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-stepflow="step-4.1">Powerful Features at Your Fingertips</h2>
+          <p>
+            Everything you need to create engaging onboarding experiences and guided tours for your
+            users.
+          </p>
         </div>
 
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-magic"></i>
-                </div>
-                <h3>Interactive Tours</h3>
-                <p>
-                    Create step-by-step guided tours that showcase your application's features in a
-                    natural, intuitive way.
-                </p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-magic"></i>
             </div>
+            <h3>Interactive Tours</h3>
+            <p>
+              Create step-by-step guided tours that showcase your application's features in a natural,
+              intuitive way.
+            </p>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>Customizable Themes</h3>
-                <p>Match your brand identity with fully customizable themes, colors, and animations.</p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-palette"></i>
             </div>
+            <h3>Customizable Themes</h3>
+            <p>Match your brand identity with fully customizable themes, colors, and animations.</p>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Responsive Design</h3>
-                <p>
-                    Tours that look perfect on any device, from desktops to tablets and mobile phones.
-                </p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
             </div>
+            <h3>Responsive Design</h3>
+            <p>Tours that look perfect on any device, from desktops to tablets and mobile phones.</p>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3>Developer Friendly</h3>
-                <p>
-                    Simple API with extensive documentation and examples to get you up and running
-                    quickly.
-                </p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-code"></i>
             </div>
+            <h3>Developer Friendly</h3>
+            <p>
+              Simple API with extensive documentation and examples to get you up and running quickly.
+            </p>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-feather-alt"></i>
-                </div>
-                <h3>Lightweight</h3>
-                <p>
-                    Extremely small footprint with zero dependencies to keep your application fast and
-                    efficient.
-                </p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-feather-alt"></i>
             </div>
+            <h3>Lightweight</h3>
+            <p>
+              Extremely small footprint with zero dependencies to keep your application fast and
+              efficient.
+            </p>
+          </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <h3>Progress Tracking</h3>
-                <p>
-                    Help users keep track of their onboarding progress with visual indicators and
-                    checkpoints.
-                </p>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tasks"></i>
             </div>
+            <h3>Progress Tracking</h3>
+            <p>
+              Help users keep track of their onboarding progress with visual indicators and
+              checkpoints.
+            </p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Installation Section -->
-<section class="installation" id="installation">
-    <div class="container">
+    <!-- Installation Section -->
+    <section class="installation" id="installation">
+      <div class="container">
         <div class="section-header">
-            <h2>Quick and Easy Installation</h2>
-            <p>Get up and running with Stepflow in minutes with our simple installation process.</p>
+          <h2>Quick and Easy Installation</h2>
+          <p>Get up and running with Stepflow in minutes with our simple installation process.</p>
         </div>
 
         <div class="installation-content">
-            <div class="installation-tabs">
-                <button class="tab-button active" data-tab="npm">npm</button>
-                <button class="tab-button" data-tab="yarn">yarn</button>
-                <button class="tab-button" data-tab="cdn">CDN</button>
+          <div class="installation-tabs">
+            <button class="tab-button active" data-tab="npm">npm</button>
+            <button class="tab-button" data-tab="yarn">yarn</button>
+            <button class="tab-button" data-tab="cdn">CDN</button>
+          </div>
+
+          <div class="code-container" data-stepflow="step-4">
+            <div class="tab-content active" id="npm-content">
+              <div class="code-header">
+                <span>Terminal</span>
+                <button class="copy-button" data-code="npm install stepflow">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+              <div class="code-block">
+                <code>
+                  <span class="command">npm install stepflow</span>
+                </code>
+              </div>
             </div>
 
-            <div class="code-container" data-stepflow="step-4">
-                <div class="tab-content active" id="npm-content">
-                    <div class="code-header">
-                        <span>Terminal</span>
-                        <button class="copy-button" data-code="npm install stepflow">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <div class="code-block">
-                        <code>
-                            <span class="command">npm install stepflow</span>
-                        </code>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="yarn-content">
-                    <div class="code-header">
-                        <span>Terminal</span>
-                        <button class="copy-button" data-code="yarn add stepflow">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <div class="code-block">
-                        <code>
-                            <span class="command">yarn add stepflow</span>
-                        </code>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="cdn-content">
-                    <div class="code-header">
-                        <span>HTML</span>
-                        <button
-                                class="copy-button"
-                                data-code='<script src="https://cdn.jsdelivr.net/npm/stepflow@latest/dist/stepflow.min.js"></script>'
-                        >
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
-                    <div class="code-block">
-                        <code>
-                            <span class="comment">&lt;!-- Add to your HTML head --&gt;</span><br/>
-                            <span class="command"
-                            >&lt;script
-                    src="https://cdn.jsdelivr.net/npm/stepflow@latest/dist/stepflow.min.js"&gt;&lt;/script&gt;</span
-                            >
-                        </code>
-                    </div>
-                </div>
+            <div class="tab-content" id="yarn-content">
+              <div class="code-header">
+                <span>Terminal</span>
+                <button class="copy-button" data-code="yarn add stepflow">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+              <div class="code-block">
+                <code>
+                  <span class="command">yarn add stepflow</span>
+                </code>
+              </div>
             </div>
 
-            <div class="usage-container">
-                <div class="usage-header">
-                    <span>Quick Implementation</span>
-                    <button
-                            class="copy-button"
-                            data-code="import stepflow from 'stepflow';
+            <div class="tab-content" id="cdn-content">
+              <div class="code-header">
+                <span>HTML</span>
+                <button
+                  class="copy-button"
+                  data-code='<script src="https://cdn.jsdelivr.net/npm/stepflow@latest/dist/stepflow.min.js"></script>'>
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+              <div class="code-block">
+                <code>
+                  <span class="comment">&lt;!-- Add to your HTML head --&gt;</span><br />
+                  <span class="command"
+                    >&lt;script
+                    src="https://cdn.jsdelivr.net/npm/stepflow@latest/dist/stepflow.min.js"&gt;&lt;/script&gt;</span>
+                </code>
+              </div>
+            </div>
+          </div>
+
+          <div class="usage-container">
+            <div class="usage-header">
+              <span>Quick Implementation</span>
+              <button
+                class="copy-button"
+                data-code="import stepflow from 'stepflow';
 
 stepflow.start({
   steps: [
@@ -350,336 +342,344 @@ stepflow.start({
     }
   ]
 });
-"
-                    >
-                        <i class="fas fa-copy"></i>
-                    </button>
-                </div>
-                <div class="usage-code">
-                    <code>
-                        <span class="comment">// Import and initialize</span><br/>
-                        <span class="keyword">import</span> stepflow <span class="keyword">from</span> <span
-                            class="string">'stepflow'</span>;<br/><br/>
-                        <span class="class">stepflow</span>.<span class="keyword">start</span>({<br/>
-                        &nbsp;&nbsp;steps: [<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target: <span class="string">'#dashboard'</span>,<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header: <span class="string">'Welcome to the Dashboard'</span>,<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: <span class="string">'This is where you can see all your important metrics at a glance.'</span><br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target: <span class="string">'.user-profile'</span>,<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: {<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header: <span
-                            class="string">'Your Profile'</span>,<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: <span class="string">'Click here to access your profile settings and preferences.'</span><br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-                        &nbsp;&nbsp;]<br/>
-                        });
-                    </code>
-                </div>
+">
+                <i class="fas fa-copy"></i>
+              </button>
             </div>
+            <div class="usage-code">
+              <code>
+                <span class="comment">// Import and initialize</span><br />
+                <span class="keyword">import</span> stepflow <span class="keyword">from</span>
+                <span class="string">'stepflow'</span>;<br /><br />
+                <span class="class">stepflow</span>.<span class="keyword">start</span>({<br />
+                &nbsp;&nbsp;steps: [<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target:
+                <span class="string">'#dashboard'</span>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: {<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header:
+                <span class="string">'Welcome to the Dashboard'</span>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body:
+                <span
+                  class="string"
+                  >'This is where you can see all your important metrics at a glance.'</span
+                ><br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;},<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;{<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target:
+                <span class="string">'.user-profile'</span>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: {<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header:
+                <span class="string">'Your Profile'</span>,<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body:
+                <span class="string"
+                  >'Click here to access your profile settings and preferences.'</span
+                ><br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+                &nbsp;&nbsp;]<br />
+                });
+              </code>
+            </div>
+          </div>
         </div>
 
         <div class="installation-features">
-            <div class="installation-feature">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Super Simple API</h3>
-                <p>Just a few lines of code to create beautiful guided tours</p>
+          <div class="installation-feature">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
             </div>
-            <div class="installation-feature">
-                <div class="feature-icon">
-                    <i class="fas fa-plug"></i>
-                </div>
-                <h3>Framework Agnostic</h3>
-                <p>Works with any JavaScript framework or vanilla JS</p>
+            <h3>Super Simple API</h3>
+            <p>Just a few lines of code to create beautiful guided tours</p>
+          </div>
+          <div class="installation-feature">
+            <div class="feature-icon">
+              <i class="fas fa-plug"></i>
             </div>
-            <div class="installation-feature">
-                <div class="feature-icon">
-                    <i class="fas fa-terminal"></i>
-                </div>
-                <h3>TypeScript Support</h3>
-                <p>Full TypeScript definitions included</p>
+            <h3>Framework Agnostic</h3>
+            <p>Works with any JavaScript framework or vanilla JS</p>
+          </div>
+          <div class="installation-feature">
+            <div class="feature-icon">
+              <i class="fas fa-terminal"></i>
             </div>
+            <h3>TypeScript Support</h3>
+            <p>Full TypeScript definitions included</p>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!--    <div class="installation-shape-top"></div>-->
-    <div class="installation-shape-bottom"></div>
-</section>
+      <!--    <div class="installation-shape-top"></div>-->
+      <div class="installation-shape-bottom"></div>
+    </section>
 
-<!--&lt;!&ndash; Demo Section &ndash;&gt;-->
-<!--<section class="demo" id="demo">-->
-<!--    <div class="container">-->
-<!--        <div class="section-header">-->
-<!--            <h2>See Stepflow in Action</h2>-->
-<!--            <p>Experience the power and simplicity of Stepflow with our interactive demo.</p>-->
-<!--        </div>-->
+    <!--&lt;!&ndash; Demo Section &ndash;&gt;-->
+    <!--<section class="demo" id="demo">-->
+    <!--    <div class="container">-->
+    <!--        <div class="section-header">-->
+    <!--            <h2>See Stepflow in Action</h2>-->
+    <!--            <p>Experience the power and simplicity of Stepflow with our interactive demo.</p>-->
+    <!--        </div>-->
 
-<!--        <div class="demo-content">-->
-<!--            <div class="browser-mockup">-->
-<!--                <div class="browser-top">-->
-<!--                    <div class="browser-dot red"></div>-->
-<!--                    <div class="browser-dot yellow"></div>-->
-<!--                    <div class="browser-dot green"></div>-->
-<!--                    <div class="browser-address">https://stepflow.demo/dashboard</div>-->
-<!--                </div>-->
-<!--                <div class="browser-content">-->
-<!--                    <img alt="Stepflow Demo" src="/api/placeholder/800/400"/>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+    <!--        <div class="demo-content">-->
+    <!--            <div class="browser-mockup">-->
+    <!--                <div class="browser-top">-->
+    <!--                    <div class="browser-dot red"></div>-->
+    <!--                    <div class="browser-dot yellow"></div>-->
+    <!--                    <div class="browser-dot green"></div>-->
+    <!--                    <div class="browser-address">https://stepflow.demo/dashboard</div>-->
+    <!--                </div>-->
+    <!--                <div class="browser-content">-->
+    <!--                    <img alt="Stepflow Demo" src="/api/placeholder/800/400"/>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</section>-->
 
-<!--&lt;!&ndash; Testimonials Section &ndash;&gt;-->
-<!--<section class="testimonials">-->
-<!--    <div class="container">-->
-<!--        <div class="section-header">-->
-<!--            <h2>What Our Users Say</h2>-->
-<!--            <p>Join thousands of developers who love building with Stepflow.</p>-->
-<!--        </div>-->
+    <!--&lt;!&ndash; Testimonials Section &ndash;&gt;-->
+    <!--<section class="testimonials">-->
+    <!--    <div class="container">-->
+    <!--        <div class="section-header">-->
+    <!--            <h2>What Our Users Say</h2>-->
+    <!--            <p>Join thousands of developers who love building with Stepflow.</p>-->
+    <!--        </div>-->
 
-<!--        <div class="testimonials-grid">-->
-<!--            <div class="testimonial-card">-->
-<!--                <div class="testimonial-header">-->
-<!--                    <div class="testimonial-avatar">SA</div>-->
-<!--                    <div class="testimonial-author">-->
-<!--                        <h4>Sarah Anderson</h4>-->
-<!--                        <p>Lead Developer, TechCorp</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <p class="testimonial-quote">-->
-<!--                    "Stepflow transformed our onboarding process. I love that it's completely free and has-->
-<!--                    zero dependencies!"-->
-<!--                </p>-->
-<!--            </div>-->
+    <!--        <div class="testimonials-grid">-->
+    <!--            <div class="testimonial-card">-->
+    <!--                <div class="testimonial-header">-->
+    <!--                    <div class="testimonial-avatar">SA</div>-->
+    <!--                    <div class="testimonial-author">-->
+    <!--                        <h4>Sarah Anderson</h4>-->
+    <!--                        <p>Lead Developer, TechCorp</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <p class="testimonial-quote">-->
+    <!--                    "Stepflow transformed our onboarding process. I love that it's completely free and has-->
+    <!--                    zero dependencies!"-->
+    <!--                </p>-->
+    <!--            </div>-->
 
-<!--            <div class="testimonial-card">-->
-<!--                <div class="testimonial-header">-->
-<!--                    <div class="testimonial-avatar">MJ</div>-->
-<!--                    <div class="testimonial-author">-->
-<!--                        <h4>Michael Johnson</h4>-->
-<!--                        <p>UX Designer, DesignHub</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <p class="testimonial-quote">-->
-<!--                    "The customization options are incredible. We were able to create tours that perfectly-->
-<!--                    match our brand identity with minimal effort."-->
-<!--                </p>-->
-<!--            </div>-->
+    <!--            <div class="testimonial-card">-->
+    <!--                <div class="testimonial-header">-->
+    <!--                    <div class="testimonial-avatar">MJ</div>-->
+    <!--                    <div class="testimonial-author">-->
+    <!--                        <h4>Michael Johnson</h4>-->
+    <!--                        <p>UX Designer, DesignHub</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <p class="testimonial-quote">-->
+    <!--                    "The customization options are incredible. We were able to create tours that perfectly-->
+    <!--                    match our brand identity with minimal effort."-->
+    <!--                </p>-->
+    <!--            </div>-->
 
-<!--            <div class="testimonial-card">-->
-<!--                <div class="testimonial-header">-->
-<!--                    <div class="testimonial-avatar">RL</div>-->
-<!--                    <div class="testimonial-author">-->
-<!--                        <h4>Rachel Lee</h4>-->
-<!--                        <p>Product Manager, StartupX</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <p class="testimonial-quote">-->
-<!--                    "As a startup watching our budget, finding such a powerful free tool was a-->
-<!--                    game-changer. The lightweight nature means our app stays fast."-->
-<!--                </p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+    <!--            <div class="testimonial-card">-->
+    <!--                <div class="testimonial-header">-->
+    <!--                    <div class="testimonial-avatar">RL</div>-->
+    <!--                    <div class="testimonial-author">-->
+    <!--                        <h4>Rachel Lee</h4>-->
+    <!--                        <p>Product Manager, StartupX</p>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <p class="testimonial-quote">-->
+    <!--                    "As a startup watching our budget, finding such a powerful free tool was a-->
+    <!--                    game-changer. The lightweight nature means our app stays fast."-->
+    <!--                </p>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</section>-->
 
-<!-- GitHub Section -->
-<section class="github-section" id="github">
-    <div class="container">
+    <!-- GitHub Section -->
+    <section class="github-section" id="github">
+      <div class="container">
         <div class="github-card">
-            <i class="fab fa-github github-icon"></i>
-            <h3>Open Source and Free Forever</h3>
-            <p>
-                Stepflow is an open-source project created by Mohamed Elghandour and available for free
-                on GitHub. Feel free to contribute, report issues, or suggest improvements!
-            </p>
-            <a
-                    class="github-link"
-                    href="https://github.com/MohamedElGhandour/Stepflow"
-                    target="_blank"
-            >
-                <i class="fas fa-code-branch"></i> View on GitHub
-            </a>
+          <i class="fab fa-github github-icon"></i>
+          <h3>Open Source and Free Forever</h3>
+          <p>
+            Stepflow is an open-source project created by Mohamed Elghandour and available for free on
+            GitHub. Feel free to contribute, report issues, or suggest improvements!
+          </p>
+          <a
+            class="github-link"
+            href="https://github.com/MohamedElGhandour/Stepflow"
+            target="_blank">
+            <i class="fas fa-code-branch"></i> View on GitHub
+          </a>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- CTA Section -->
-<section class="cta-section" id="cta">
-    <div class="container">
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+      <div class="container">
         <div class="cta-content">
-            <div class="section-header">
-                <h2>Start Building Amazing User Experiences Today</h2>
-                <p>
-                    Join thousands of developers who use Stepflow to create intuitive onboarding
-                    experiences for their users.
-                </p>
-            </div>
+          <div class="section-header">
+            <h2>Start Building Amazing User Experiences Today</h2>
+            <p>
+              Join thousands of developers who use Stepflow to create intuitive onboarding experiences
+              for their users.
+            </p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Made With Love Section -->
-<section class="made-with-love-section">
-    <div class="container">
+    <!-- Made With Love Section -->
+    <section class="made-with-love-section">
+      <div class="container">
         <div class="creator-card" data-stepflow="step-5">
-            <div class="creator-avatar">
-                <i class="fas fa-code"></i>
-            </div>
-            <h3>
-                Made with <span class="heart"><i class="fas fa-heart"></i></span> by
-            </h3>
-            <div class="creator-name">Mohamed Elghandour</div>
-            <p>Frontend developer passionate about creating elegant, lightweight solutions</p>
-            <div class="creator-links">
-                <a href="https://github.com/MohamedElGhandour" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://twitter.com/YourTwitterHandle" target="_blank" title="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://linkedin.com/in/YourLinkedInHandle" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="mailto:your.email@example.com" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
+          <div class="creator-avatar">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>
+            Made with <span class="heart"><i class="fas fa-heart"></i></span> by
+          </h3>
+          <div class="creator-name">Mohamed Elghandour</div>
+          <p>Frontend developer passionate about creating elegant, lightweight solutions</p>
+          <div class="creator-links">
+            <a href="https://github.com/MohamedElGhandour" target="_blank" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/YourTwitterHandle" target="_blank" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://linkedin.com/in/YourLinkedInHandle" target="_blank" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:your.email@example.com" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         const tabButtons = document.querySelectorAll(".tab-button");
         const tabContents = document.querySelectorAll(".tab-content");
 
         tabButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                // Remove active class from all buttons and contents
-                tabButtons.forEach((btn) => btn.classList.remove("active"));
-                tabContents.forEach((content) => content.classList.remove("active"));
+          button.addEventListener("click", () => {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            tabContents.forEach((content) => content.classList.remove("active"));
 
-                // Add active class to clicked button
-                button.classList.add("active");
+            // Add active class to clicked button
+            button.classList.add("active");
 
-                // Show corresponding content
-                const tabId = button.getAttribute("data-tab");
-                document.getElementById(`${tabId}-content`).classList.add("active");
-            });
+            // Show corresponding content
+            const tabId = button.getAttribute("data-tab");
+            document.getElementById(`${tabId}-content`).classList.add("active");
+          });
         });
 
         // Copy button functionality
         const copyButtons = document.querySelectorAll(".copy-button");
 
         copyButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const codeToCopy = button.getAttribute("data-code");
-                navigator.clipboard.writeText(codeToCopy).then(() => {
-                    const originalIcon = button.innerHTML;
-                    button.innerHTML = '<i class="fas fa-check"></i>';
+          button.addEventListener("click", () => {
+            const codeToCopy = button.getAttribute("data-code");
+            navigator.clipboard.writeText(codeToCopy).then(() => {
+              const originalIcon = button.innerHTML;
+              button.innerHTML = '<i class="fas fa-check"></i>';
 
-                    setTimeout(() => {
-                        button.innerHTML = originalIcon;
-                    }, 2000);
-                });
+              setTimeout(() => {
+                button.innerHTML = originalIcon;
+              }, 2000);
             });
+          });
         });
-    });
-</script>
-<script src="../dist/iife/stepflow.iife.js"></script>
-<script>
-    function start() {
+      });
+    </script>
+    <script src="../dist/iife/stepflow.iife.js"></script>
+    <script>
+      function start() {
         Stepflow.start({
-            steps: [
-                {
-                    // No target, introductory fullscreen overlay
-                    content: {
-                        header: `Welcome to <b class='primary-color'>Stepflow</b>!`,
-                        body: "This short guide will walk you through how to build an engaging onboarding experience using Stepflow in your own app.",
-                    },
-                    callbacks: {
-                        onNext: () => console.log('Next step'),
-                        onPrev: () => console.log('Prev step'),
-                    }
-                },
-                {
-                    target: "[data-stepflow='step-1-1']",
-                    content: {
-                        header: "Target Any Element",
-                        body: "You can point a step to any part of your UI using a selector. The highlighted element here is an example.",
-                    },
-                },
-                {
-                    target: "[data-stepflow='step-2']",
-                    content: {
-                        header: "Customize Content",
-                        body: "Use plain text, HTML, or even your own components to explain things clearly to your users.",
-                    },
-                },
-                {
-                    target: "[data-stepflow='step-3']",
-                    content: {
-                        header: "Smooth Transitions",
-                        body: "Each step moves seamlessly into the next, keeping the flow intuitive and user-friendly.",
-                    },
-                },
-                {
-                    target: "[data-stepflow='step-4']",
-                    content: {
-                        header: "Add Unlimited Steps",
-                        body: "You’re not limited! Build detailed walkthroughs for power users or short intros for first-time visitors.",
-                    },
-                },
-                {
-                    target: "[data-stepflow='step-5']",
-                    content: {
-                        header: "Wrap It Up",
-                        body: "Use a final step to summarize actions, confirm completion, or suggest next steps.",
-                    },
-                },
-                {
-                    target: "[data-stepflow='step-4.1']",
-                    content: {
-                        header: "Fully Customizable Style",
-                        body: "You have complete control over the appearance of each step. Customize layouts, fonts, colors, and animations to perfectly match your app's design.",
-                    },
-                },
-                {
-                    content: {
-                        component: () =>
-                            `<div style="text-align:center">
+          steps: [
+            {
+              // No target, introductory fullscreen overlay
+              content: {
+                header: `Welcome to <b class='primary-color'>Stepflow</b>!`,
+                body: "This short guide will walk you through how to build an engaging onboarding experience using Stepflow in your own app.",
+              },
+              callbacks: {
+                onNext: () => console.log("Next step"),
+                onPrev: () => console.log("Prev step"),
+              },
+            },
+            {
+              target: "[data-stepflow='step-1-1']",
+              content: {
+                header: "Target Any Element",
+                body: "You can point a step to any part of your UI using a selector. The highlighted element here is an example.",
+              },
+            },
+            {
+              target: "[data-stepflow='step-2']",
+              content: {
+                header: "Customize Content",
+                body: "Use plain text, HTML, or even your own components to explain things clearly to your users.",
+              },
+            },
+            {
+              target: "[data-stepflow='step-3']",
+              content: {
+                header: "Smooth Transitions",
+                body: "Each step moves seamlessly into the next, keeping the flow intuitive and user-friendly.",
+              },
+            },
+            {
+              target: "[data-stepflow='step-4']",
+              content: {
+                header: "Add Unlimited Steps",
+                body: "You’re not limited! Build detailed walkthroughs for power users or short intros for first-time visitors.",
+              },
+            },
+            {
+              target: "[data-stepflow='step-5']",
+              content: {
+                header: "Wrap It Up",
+                body: "Use a final step to summarize actions, confirm completion, or suggest next steps.",
+              },
+            },
+            {
+              target: "[data-stepflow='step-4.1']",
+              content: {
+                header: "Fully Customizable Style",
+                body: "You have complete control over the appearance of each step. Customize layouts, fonts, colors, and animations to perfectly match your app's design.",
+              },
+            },
+            {
+              content: {
+                component: () =>
+                  `<div style="text-align:center">
                         <img width='300' style="border-radius:10px;" src='https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3pzZGVubzkzcW0wYWNuZ2N6aXl3YnJ0dW1tb2w2cHhvNGg4dHpvaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qIXVd1RoKGqlO/giphy.gif' alt='fun step gif' />
                         <p style="margin-top:1rem;font-size:1.1rem;">That’s it! Now go make your app awesome 🥳</p>
                     </div>`,
-                    },
-                },
-            ],
-            callbacks: {
-                onNext: () => console.log('Next global step'),
-                onPrev: () => console.log('Prev global step'),
+              },
             },
-            buttons: {
-                prev: {visible: true},
-                cancel: {visible: true},
+          ],
+          callbacks: {
+            onNext: () => console.log("Next global step"),
+            onPrev: () => console.log("Prev global step"),
+          },
+          buttons: {
+            prev: { visible: true },
+            cancel: { visible: true },
+          },
+          options: {
+            keyboardControls: true,
+            escapeToCancel: false,
+            overlay: {
+              opacity: 0.5,
             },
-            options: {
-                keyboardControls: true,
-                escapeToCancel: false,
-                overlay: {
-                    opacity: 0.5,
-                },
-            },
+          },
         });
-    }
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>
