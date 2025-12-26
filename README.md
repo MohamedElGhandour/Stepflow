@@ -3,31 +3,27 @@
   Stepflow
 </h1>
 
-A lightweight onboarding and user tour library for modern web apps.
-
 [![npm version](https://img.shields.io/npm/v/@mohamedelghandour/stepflow.svg)](https://www.npmjs.com/package/@mohamedelghandour/stepflow)
 [![npm downloads](https://img.shields.io/npm/dm/@mohamedelghandour/stepflow.svg)](https://www.npmjs.com/package/@mohamedelghandour/stepflow)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./licence)
 [![Demo](https://img.shields.io/badge/demo-live-blue.svg)](https://mohamedelghandour.github.io/Stepflow/public/)
+[![GitHub stars](https://img.shields.io/github/stars/MohamedElGhandour/Stepflow.svg)](https://github.com/MohamedElGhandour/Stepflow/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/MohamedElGhandour/Stepflow.svg)](https://github.com/MohamedElGhandour/Stepflow/network/members)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./licence)
 
-## Demo
+> A lightweight onboarding and user tour library for modern web apps — build guided tours with highlights, tooltips, overlays, and step navigation.
+
+![](./doc/assets/hero.png)
 
 Live demo: https://mohamedelghandour.github.io/Stepflow/public/
 
-## Installation
+---
 
-Install via package manager:
+## Installation
 
 ```bash
 npm i @mohamedelghandour/stepflow
-```
-
-```bash
-pnpm add @mohamedelghandour/stepflow
-```
-
-```bash
-yarn add @mohamedelghandour/stepflow
+# or pnpm add @mohamedelghandour/stepflow
+# or yarn add @mohamedelghandour/stepflow
 ```
 
 ## Quick Start
