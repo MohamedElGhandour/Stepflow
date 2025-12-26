@@ -7,7 +7,7 @@ A lightweight onboarding and user tour library for modern web apps.
 Add npm and CI badges here if desired.
 
 ## Installation
-
+Install via package manager:
 ```bash
 npm i @mohamedelghandour/stepflow
 ```
