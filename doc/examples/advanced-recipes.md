@@ -45,4 +45,8 @@ await start({
 ```
 
 ---
-← Prev: [Common Recipes](common-recipes.md) | Next →: [Contributing](../developers/contributing.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="common-recipes.md">Common Recipes</a></div>
+  <div>Next: <a href="../developers/contributing.md">Contributing</a></div>
+</div>

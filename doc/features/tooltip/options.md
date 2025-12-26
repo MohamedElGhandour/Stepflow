@@ -14,4 +14,8 @@ Notes:
 - Tooltip dimensions and spacing are controlled by CSS in `src/styles/stepflow.scss`.
 
 ---
-← Prev: [Tooltip: Overview](overview.md) | Next →: [Tooltip: API](api.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="overview.md">Tooltip: Overview</a></div>
+  <div>Next: <a href="api.md">Tooltip: API</a></div>
+</div>

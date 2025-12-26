@@ -36,4 +36,8 @@ Notes:
 - The CSS file is required for positioning and baseline styling.
 
 ---
-← Prev: [Doc Home](../README.md) | Next →: [Quick Start](quick-start.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../README.md">Doc Home</a></div>
+  <div>Next: <a href="quick-start.md">Quick Start</a></div>
+</div>

@@ -53,4 +53,8 @@ await start({
 ```
 
 ---
-← Prev: [Hello World](hello-world.md) | Next →: [Advanced Recipes](advanced-recipes.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="hello-world.md">Hello World</a></div>
+  <div>Next: <a href="advanced-recipes.md">Advanced Recipes</a></div>
+</div>

@@ -23,4 +23,8 @@ npm run build
 - Type declarations in `dist/types/`
 
 ---
-← Prev: [Contributing](contributing.md) | Next →: [Architecture](architecture.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="contributing.md">Contributing</a></div>
+  <div>Next: <a href="architecture.md">Architecture</a></div>
+</div>

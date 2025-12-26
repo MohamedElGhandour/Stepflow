@@ -60,4 +60,8 @@ options: {
   - `opacity` is validated to be within `[0, 1]`.
 
 ---
-← Prev: [Overlay and Highlight: Overview](overview.md) | Next →: [Overlay and Highlight: API](api.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="overview.md">Overlay and Highlight: Overview</a></div>
+  <div>Next: <a href="api.md">Overlay and Highlight: API</a></div>
+</div>

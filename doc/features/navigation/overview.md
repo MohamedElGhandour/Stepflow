@@ -20,4 +20,8 @@ TODO: Replace with a screenshot of the navigation buttons.
 - Global callbacks run second.
 
 ---
-← Prev: [Overlay and Highlight: Examples](../overlay-and-highlight/examples.md) | Next →: [Navigation: Options](options.md)
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>Prev: <a href="../overlay-and-highlight/examples.md">Overlay and Highlight: Examples</a></div>
+  <div>Next: <a href="options.md">Navigation: Options</a></div>
+</div>
