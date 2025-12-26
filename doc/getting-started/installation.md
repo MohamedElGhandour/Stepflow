@@ -2,38 +2,61 @@
 
 [Home](../README.md) → [Getting Started](installation.md) → Installation
 
-Stepflow is not published to npm yet. When it is, the expected install command will be:
+Install via package manager:
 
 ```bash
-npm install stepflow
+npm i @mohamedelghandour/stepflow
 ```
 
-If you are using a local build from this repository, the compiled bundles and CSS live in `dist/`:
+```bash
+pnpm add @mohamedelghandour/stepflow
+```
 
-- JavaScript bundles: `dist/esm/`, `dist/cjs/`, `dist/iife/`, `dist/umd/`
-- Stylesheets: `dist/styles/stepflow.css` or `dist/styles/stepflow.min.css`
+```bash
+yarn add @mohamedelghandour/stepflow
+```
 
-Example (local build in a browser page):
+## Usage
 
-```html
-<link rel="stylesheet" href="./dist/styles/stepflow.css" />
-<script src="./dist/umd/stepflow.umd.js"></script>
-<script>
-  Stepflow.start({
-    steps: [
-      {
-        target: "#step-1",
-        content: { header: "Welcome", body: "This is Stepflow." },
-      },
-    ],
-  });
-</script>
+```ts
+import { start } from "@mohamedelghandour/stepflow";
+
+await start({
+  steps: [
+    {
+      target: "#step-1",
+      content: { header: "Welcome", body: "This is Stepflow." },
+    },
+  ],
+});
 ```
 
 Notes:
 
 - The public API entry point is `start(config: StepflowConfig)`.
 - The CSS file is required for positioning and baseline styling.
+
+## Local development
+
+Build output is generated locally into `./dist` and is not committed to git.
+
+```bash
+git clone https://github.com/MohamedElGhandour/Stepflow.git
+```
+
+```bash
+cd Stepflow
+```
+
+```bash
+pnpm install
+```
+
+```bash
+pnpm build
+```
+
+Running the build produces `./dist` locally.
 
 ---
 

@@ -12,15 +12,10 @@ npm run build
 
 ## Outputs
 
-- JavaScript bundles in `dist/`:
-  - `dist/esm/stepflow.esm.js`
-  - `dist/cjs/stepflow.js`
-  - `dist/iife/stepflow.iife.js`
-  - `dist/umd/stepflow.umd.js`
-- Stylesheets in `dist/styles/`:
-  - `dist/styles/stepflow.css`
-  - `dist/styles/stepflow.min.css`
-- Type declarations in `dist/types/`
+- Build output is generated locally into `./dist` and is not committed to git.
+- JavaScript bundles are produced in ESM, CJS, UMD, and IIFE formats.
+- Stylesheets and TypeScript declaration files are generated alongside the bundles.
+- Package consumers should rely on the `package.json` exports rather than filesystem paths.
 
 ---
 
