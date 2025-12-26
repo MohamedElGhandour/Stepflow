@@ -21,7 +21,7 @@ start(config: StepflowConfig): Promise<void>
 ## Example
 
 ```ts
-import { start } from "stepflow";
+import { start } from "@mohamedelghandour/stepflow";
 
 await start({
   steps: [

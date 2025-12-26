@@ -9,7 +9,10 @@ Stepflow ships with a stylesheet built from `src/styles/stepflow.scss`.
 ## Include the stylesheet
 
 ```html
-<link rel="stylesheet" href="./dist/styles/stepflow.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@mohamedelghandour/stepflow@1.0.0/dist/styles/stepflow.css"
+/>
 ```
 
 ## Key CSS hooks

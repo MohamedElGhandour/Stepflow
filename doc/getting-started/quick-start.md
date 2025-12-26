@@ -16,7 +16,7 @@ This is the minimal setup to start a Stepflow tour.
 ## 2) Start the tour
 
 ```ts
-import { start } from "stepflow";
+import { start } from "@mohamedelghandour/stepflow";
 
 await start({
   steps: [

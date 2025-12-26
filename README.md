@@ -4,20 +4,26 @@ A lightweight onboarding and user tour library for modern web apps.
 
 ## Badges
 
-Badges will be added when the package is published and CI is available.
+Add npm and CI badges here if desired.
 
 ## Installation
 
 ```bash
-npm i stepflow
-pnpm add stepflow
-yarn add stepflow
+npm i @mohamedelghandour/stepflow
+```
+
+```bash
+pnpm add @mohamedelghandour/stepflow
+```
+
+```bash
+yarn add @mohamedelghandour/stepflow
 ```
 
 ## Quick Start
 
 ```ts
-import { start } from "stepflow";
+import { start } from "@mohamedelghandour/stepflow";
 
 await start({
   steps: [
@@ -57,7 +63,7 @@ Quick links:
 ## Browser Support / Requirements
 
 - Requires a real browser DOM (uses layout APIs like `getBoundingClientRect` and `scrollBy`).
-- Include the Stepflow stylesheet from `dist/styles/stepflow.css`.
+- Include the Stepflow stylesheet from the published package (see docs).
 
 ## Contributing
 
