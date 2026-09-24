@@ -1,26 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationDir": "dist/types",
-    "rootDir": "./src",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "removeComments": true,
     "skipLibCheck": true,
-    "importHelpers": true,
-    "baseUrl": ".",
-    "paths": {
-      "@stepflow/*": ["src/*"]
-    }
+    "noEmit": true,
+    "types": ["node"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "tests"]
+  "include": ["src", "tests", "*.mjs", "scripts"]
 }

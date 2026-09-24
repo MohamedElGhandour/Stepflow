@@ -1,0 +1,131 @@
+.sf-root .sf-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+}
+.sf-root .sf-highlight {
+  position: fixed;
+  z-index: 2147483000;
+  pointer-events: none;
+  box-sizing: border-box;
+  border-radius: 3px;
+  transition: top 0.3s ease-out, left 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+}
+.sf-root .sf-tooltip {
+  position: fixed;
+  z-index: 2147483001;
+  box-sizing: border-box;
+  width: 280px;
+  max-width: calc(100vw - 20px);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  --sf-arrow-offset: 50%;
+  background: #fff;
+  color: #111;
+  border-radius: 6px;
+  box-shadow: 0 3px 30px rgba(33, 33, 33, 0.3);
+}
+.sf-root .sf-tooltip.sf-visible {
+  opacity: 1;
+}
+.sf-root .sf-tooltip:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+.sf-root .sf-tooltip.sf-arrow-top::before, .sf-root .sf-tooltip.sf-arrow-bottom::before {
+  content: "";
+  position: absolute;
+  left: var(--sf-arrow-offset);
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.sf-root .sf-tooltip.sf-arrow-top::before {
+  top: -10px;
+  border-bottom: 10px solid #fff;
+}
+.sf-root .sf-tooltip.sf-arrow-bottom::before {
+  bottom: -10px;
+  border-top: 10px solid #fff;
+}
+.sf-root .sf-card-header {
+  padding: 15px 10px 10px;
+}
+.sf-root.sf-no-body .sf-card-header {
+  padding: 10px 10px 0;
+}
+.sf-root .sf-card-body {
+  padding: 0 10px;
+}
+.sf-root .sf-card-footer {
+  padding: 10px;
+}
+.sf-root .sf-content h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+.sf-root .sf-content .sf-body {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.sf-root .sf-btn {
+  background: #000;
+  color: #fff;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+.sf-root .sf-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.sf-root .sf-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sf-root .sf-dots .sf-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #ccc;
+  transition: width 0.1s ease-in-out, background 0.1s ease-in-out;
+}
+.sf-root .sf-dots .sf-dot.sf-active {
+  background: #000;
+  width: 12px;
+}
+.sf-root .sf-progress {
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+}
+.sf-root .sf-controls,
+.sf-root .sf-progress-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.sf-root .sf-controls-inline {
+  gap: 6px;
+}
+.sf-root .sf-left {
+  display: flex;
+  gap: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-root .sf-highlight,
+  .sf-root .sf-tooltip,
+  .sf-root .sf-dot {
+    transition: none;
+  }
+}

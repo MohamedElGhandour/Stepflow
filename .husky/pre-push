@@ -1,7 +1,1 @@
-#!/bin/sh
-branch=$(git symbolic-ref --short HEAD)
-if [ "$branch" = "master" ]; then
-  echo "Direct pushes to master are disabled. Please push from a feature branch and open a pull request."
-  exit 1
-fi
-exit 0
+npm run check && npm run test
