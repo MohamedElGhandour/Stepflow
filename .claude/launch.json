@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docs",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vitepress", "preview", "doc", "--port", "4174"],
+      "port": 4174,
+      "url": "http://localhost:4174"
+    },
+    {
+      "name": "demo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4173"],
+      "port": 4173
+    }
+  ]
+}

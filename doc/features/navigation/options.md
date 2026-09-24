@@ -2,104 +2,116 @@
 
 [Home](../../README.md) → [Features](../steps/overview.md) → [Navigation](overview.md) → Navigation: Options
 
-Navigation is configured via `buttons` and `callbacks` in `StepflowConfig`.
+Navigation is configured with flat props on `<Stepflow>`: `labels`, `showPrev`,
+`showCancel`, `keyboard`, and `escapeToCancel`.
 
-## `buttons`
+## `labels`
 
-- What it is: Labels, visibility, and classes for navigation buttons.
-- Signature:
+Button text. Supply only the ones you want to change; the rest keep their
+defaults.
 
 ```ts
-interface ButtonConfig {
-  cancel?: { visible?: boolean; label?: string; className?: string; ariaLabel?: string };
-  prev?: { visible?: boolean; label?: string; className?: string; ariaLabel?: string };
-  next?: { label?: string; className?: string; loading?: boolean; ariaLabel?: string };
-  complete?: { label?: string; className?: string; ariaLabel?: string };
+interface Labels {
+  next?: string;
+  prev?: string;
+  cancel?: string;
+  complete?: string;
 }
 ```
 
-- Parameters:
-  - `visible`: whether the button is shown (where applicable)
-  - `label`: button text
-  - `className`: additional class name to append
-  - `ariaLabel`: accessible label
-  - `loading`: reserved for future use (not read by current UI code)
-- Returns: N/A
-- Defaults:
-  - `cancel.visible: true`, `cancel.label: "Skip"`, `cancel.className: ""`
-  - `prev.visible: true`, `prev.label: "Back"`, `prev.className: ""`
-  - `next.label: "Next"`, `next.className: ""`
-  - `complete.label: "Done"`, `complete.className: ""`
-- Example:
+Defaults: `next: "Next"`, `prev: "Back"`, `cancel: "Skip"`, `complete: "Done"`.
 
-```ts
-buttons: {
-  cancel: { label: "Skip tour", className: "btn-muted" },
-  next: { label: "Continue" },
-}
+```tsx
+<Stepflow
+  steps={steps}
+  run={run}
+  labels={{ cancel: "Skip tour", next: "Continue", complete: "Finish" }}
+  onComplete={() => setRun(false)}
+  onCancel={() => setRun(false)}
+/>
 ```
 
-- Notes / Edge cases:
-  - Cancel is hidden on the last step; Prev is hidden on the first step.
+`cancel` is the Skip button and `complete` is the Done button — the names come
+from what they do, not from what they say. Labels are plain strings, so pass
+translated text straight from your i18n layer.
 
-## `callbacks`
+## `showPrev`
 
-- What it is: Global tour callbacks triggered by navigation.
-- Signature:
-
-```ts
-interface StepflowCallbacks {
-  onStart?: (firstStep: Step) => Promise<void> | void;
-  onComplete?: (lastStep: Step) => Promise<void> | void;
-  onCancel?: (currentStep: Step) => Promise<void> | void;
-  onNext?: (currentStep: Step) => Promise<void> | void;
-  onPrev?: (currentStep: Step) => Promise<void> | void;
-  onError?: (error: Error | unknown) => void;
-}
-```
-
-- Parameters:
-  - `currentStep` / `firstStep` / `lastStep`: the active `Step`
-  - `error`: the thrown error
-- Returns: `Promise<void> | void` (except `onError`)
-- Example:
+Whether the Back button renders at all. It is hidden on the first step either
+way.
 
 ```ts
-callbacks: {
-  onComplete: () => console.log("Tour done"),
-  onError: (err) => console.error(err),
-},
+showPrev?: boolean; // default true
 ```
 
-- Notes / Edge cases:
-  - Errors inside callbacks set status to `error`, call `onError`, and rethrow.
+```tsx
+<Stepflow steps={steps} run={run} showPrev={false} onComplete={() => setRun(false)} />
+```
 
-## `options.keyboardControls` and `options.escapeToCancel`
+Turn it off for a tour where a step has a side effect you cannot undo.
 
-- What it is: Enables ArrowLeft/ArrowRight navigation and Escape-to-cancel.
-- Signature:
+## `showCancel`
+
+Whether the Skip button renders at all. It is hidden on the last step either
+way, where Done is the way out.
 
 ```ts
-keyboardControls?: boolean;
-escapeToCancel?: boolean;
+showCancel?: boolean; // default true
 ```
 
-- Parameters: N/A
-- Returns: N/A
-- Defaults:
-  - `keyboardControls: true`
-  - `escapeToCancel: true`
-- Example:
+```tsx
+<Stepflow steps={steps} run={run} showCancel={false} onComplete={() => setRun(false)} />
+```
+
+Hiding Skip does not make the tour inescapable: Escape still cancels unless you
+also pass `escapeToCancel={false}`, and `run` is yours to flip at any time.
+
+## `keyboard`
+
+ArrowRight to advance, ArrowLeft to go back. ArrowRight on the last step
+completes the tour.
 
 ```ts
-options: {
-  keyboardControls: false,
-  escapeToCancel: false,
-}
+keyboard?: boolean; // default true
 ```
 
-- Notes / Edge cases:
-  - Keyup listeners are only attached when at least one of these options is enabled.
+```tsx
+<Stepflow steps={steps} run={run} keyboard={false} onComplete={() => setRun(false)} />
+```
+
+Ignored while focus sits in a text field outside the card — `input`, `textarea`,
+`select`, or `[contenteditable=true]` — and while an IME composition is active.
+Note the "outside the card" part: a text input you render inside `content` is
+part of the tour UI, and arrow keys there still navigate.
+
+## `escapeToCancel`
+
+Escape cancels the tour, calling `onCancel` with the current step.
+
+```ts
+escapeToCancel?: boolean; // default true
+```
+
+```tsx
+<Stepflow
+  steps={steps}
+  run={run}
+  escapeToCancel={false}
+  onComplete={() => setRun(false)}
+  onCancel={() => setRun(false)}
+/>
+```
+
+Same text-field exemption as `keyboard`. The keydown listener is attached only
+while the tour is active and only when at least one of `keyboard` /
+`escapeToCancel` is on, and it is removed on teardown.
+
+## Styling the buttons
+
+There is no per-button `className` prop. Pass `className` to add a class to the
+card and style the buttons through `.sf-btn`, `.sf-btn-skip`, `.sf-btn-prev`,
+`.sf-btn-next`, and `.sf-btn-done`. Disabled buttons carry the native
+`:disabled` state. See [Styling and Theming](../../guides/styling-and-theming.md).
 
 ---
 

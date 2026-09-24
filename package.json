@@ -1,53 +1,66 @@
 {
   "name": "@mohamedelghandour/stepflow",
-  "version": "1.0.2",
-  "description": "A lightweight onboarding and user tour library for modern web apps",
-  "main": "stepflow.js",
-  "module": "stepflow.esm.js",
-  "browser": "stepflow.iife.js",
-  "unpkg": "stepflow.umd.js",
-  "types": "dist/types/index.d.ts",
+  "version": "2.0.0",
+  "description": "A tiny React library for product tours and onboarding walkthroughs",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/cjs/stepflow.cjs",
+  "module": "./dist/esm/stepflow.js",
+  "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": "./dist/stepflow.esm.js",
-    "import:min": "./dist/stepflow.esm.min.js",
-    "require": "./dist/stepflow.cjs.js",
-    "require:min": "./dist/stepflow.cjs.min.js",
-    "browser": "./dist/stepflow.iife.js",
-    "browser:min": "./dist/stepflow.iife.min.js",
-    "umd": "./dist/stepflow.umd.js",
-    "umd:min": "./dist/stepflow.umd.min.js"
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/stepflow.js",
+      "require": "./dist/cjs/stepflow.cjs",
+      "default": "./dist/esm/stepflow.js"
+    },
+    "./styles.css": "./dist/styles/stepflow.css",
+    "./package.json": "./package.json"
   },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "rollup:ts": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "build": "rm -rf dist && npm run rollup:ts",
-    "dev": "npm run rollup:ts -- --watch",
-    "prepublishOnly": "npm run build",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && rollup -c && npm run build:css && npm run build:demo",
+    "build:css": "sass src/styles/stepflow.scss dist/styles/stepflow.css --no-source-map --style=expanded",
+    "dev": "rollup -c --watch",
     "format": "prettier --write .",
-    "lint": "eslint . --ext .js,.ts,.tsx",
+    "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "check": "npm run lint && npm run type-check",
-    "test": "vitest",
-    "test:run": "vitest run",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "coverage": "vitest run --coverage",
-    "tree": "( echo '```'; tree -I \"node_modules|.git|.rollup.cache|.idea\"; echo '```' ) | tee analyze/tree.md"
+    "verify-pack": "node scripts/verify-pack.mjs",
+    "prepare": "husky",
+    "prepublishOnly": "npm run check && npm run test && npm run build && npm run verify-pack",
+    "build:demo": "cp dist/esm/stepflow.js dist/esm/stepflow.js.map public/vendor/ && cp dist/styles/stepflow.css public/vendor/",
+    "docs:prepare": "node scripts/docs-prepare.mjs",
+    "docs:dev": "npm run docs:prepare && vitepress dev doc",
+    "docs:build": "npm run docs:prepare && vitepress build doc",
+    "docs:preview": "vitepress preview doc"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --fix"
+    "*.{js,mjs,ts,tsx}": "eslint --fix"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MohamedElGhandour/Stepflow.git"
+    "url": "git+https://github.com/MohamedElGhandour/Stepflow.git"
   },
   "keywords": [
+    "react",
     "onboarding",
-    "user",
-    "guide",
+    "product-tour",
     "tour",
     "walkthrough",
+    "guide",
     "intro"
   ],
   "author": "Mohamed Elghandour",
@@ -57,40 +70,28 @@
   },
   "homepage": "https://github.com/MohamedElGhandour/Stepflow#readme",
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
     "@eslint/js": "^9.23.0",
-    "@rollup/plugin-alias": "^5.1.1",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^22.13.11",
-    "autoprefixer": "^10.4.21",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.23.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^16.0.0",
+    "happy-dom": "^17.6.3",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
-    "postcss-normalize": "^13.0.1",
     "prettier": "^3.5.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "rollup": "^4.36.0",
-    "rollup-plugin-filesize": "^10.0.0",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-progress": "^1.1.2",
-    "rollup-plugin-sass": "^1.15.2",
-    "rollup-plugin-visualizer": "^5.14.0",
     "sass": "^1.86.3",
-    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.28.0",
-    "happy-dom": "^17.6.3",
+    "vitepress": "^1.6.4",
     "vitest": "^3.2.4"
-  },
-  "dependencies": {
-    "@types/postcss-normalize": "^9.0.4",
-    "tslib": "^2.8.1"
   }
 }

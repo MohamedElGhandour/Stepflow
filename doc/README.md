@@ -2,49 +2,46 @@
 
 [Home](README.md)
 
-Stepflow is a lightweight onboarding and user tour library for modern web apps. This documentation is generated from the repository source and TypeScript types.
+Stepflow renders product tours and onboarding walkthroughs in React. You render one component, `<Stepflow steps={steps} run={run} />`, and control when it runs. This documentation tracks the repository source and the TypeScript types in `src/`.
 
 ![](./assets/hero.png)
 
+Start with [Installation](./getting-started/installation.md), then [Quick Start](./getting-started/quick-start.md). Coming from 1.x? Read [Migrating from 1.x to 2.0](../MIGRATION.md) first — the vanilla `start()` API is gone.
+
 ## Table of contents
 
-- [Installation](./getting-started/installation.md)
-- [Quick Start](./getting-started/quick-start.md)
-- [Mental Model](./core-concepts/mental-model.md)
-- [Steps and Targets](./core-concepts/steps-and-targets.md)
-- [Positioning and Overlay](./core-concepts/positioning-and-overlay.md)
-- [Configuration](./guides/configuration.md)
-- [Styling and Theming](./guides/styling-and-theming.md)
-- [Accessibility](./guides/accessibility.md)
-- [Steps: Overview](./features/steps/overview.md)
-- [Steps: Options](./features/steps/options.md)
-- [Steps: API](./features/steps/api.md)
-- [Steps: Examples](./features/steps/examples.md)
-- [Tooltip: Overview](./features/tooltip/overview.md)
-- [Tooltip: Options](./features/tooltip/options.md)
-- [Tooltip: API](./features/tooltip/api.md)
-- [Tooltip: Examples](./features/tooltip/examples.md)
-- [Overlay and Highlight: Overview](./features/overlay-and-highlight/overview.md)
-- [Overlay and Highlight: Options](./features/overlay-and-highlight/options.md)
-- [Overlay and Highlight: API](./features/overlay-and-highlight/api.md)
-- [Overlay and Highlight: Examples](./features/overlay-and-highlight/examples.md)
-- [Navigation: Overview](./features/navigation/overview.md)
-- [Navigation: Options](./features/navigation/options.md)
-- [Navigation: API](./features/navigation/api.md)
-- [Navigation: Examples](./features/navigation/examples.md)
-- [Progress Indicator: Overview](./features/progress-indicator/overview.md)
-- [Progress Indicator: Options](./features/progress-indicator/options.md)
-- [Progress Indicator: API](./features/progress-indicator/api.md)
-- [Progress Indicator: Examples](./features/progress-indicator/examples.md)
-- [API Index](./api/index.md)
-- [API: start](./api/start.md)
-- [Hello World](./examples/hello-world.md)
-- [Common Recipes](./examples/common-recipes.md)
-- [Advanced Recipes](./examples/advanced-recipes.md)
-- [Contributing](./developers/contributing.md)
-- [Building](./developers/building.md)
-- [Architecture](./developers/architecture.md)
-- [Assets: Placeholders](./assets/placeholders/README.md)
+- Getting started
+  - [Installation](./getting-started/installation.md)
+  - [Quick Start](./getting-started/quick-start.md)
+- Core concepts
+  - [Mental Model](./core-concepts/mental-model.md)
+  - [Steps and Targets](./core-concepts/steps-and-targets.md)
+  - [Positioning and Overlay](./core-concepts/positioning-and-overlay.md)
+- Guides
+  - [Configuration](./guides/configuration.md)
+  - [Styling and Theming](./guides/styling-and-theming.md)
+  - [Accessibility](./guides/accessibility.md)
+- Features
+  - Steps: [Overview](./features/steps/overview.md) · [Options](./features/steps/options.md) · [API](./features/steps/api.md) · [Examples](./features/steps/examples.md)
+  - Tooltip: [Overview](./features/tooltip/overview.md) · [Options](./features/tooltip/options.md) · [API](./features/tooltip/api.md) · [Examples](./features/tooltip/examples.md)
+  - Overlay and Highlight: [Overview](./features/overlay-and-highlight/overview.md) · [Options](./features/overlay-and-highlight/options.md) · [API](./features/overlay-and-highlight/api.md) · [Examples](./features/overlay-and-highlight/examples.md)
+  - Navigation: [Overview](./features/navigation/overview.md) · [Options](./features/navigation/options.md) · [API](./features/navigation/api.md) · [Examples](./features/navigation/examples.md)
+  - Progress Indicator: [Overview](./features/progress-indicator/overview.md) · [Options](./features/progress-indicator/options.md) · [API](./features/progress-indicator/api.md) · [Examples](./features/progress-indicator/examples.md)
+- API reference
+  - [API Index](./api/index.md)
+  - [`Stepflow`](./api/stepflow.md)
+  - [`useTour`](./api/use-tour.md)
+- Examples
+  - [Hello World](./examples/hello-world.md)
+  - [Common Recipes](./examples/common-recipes.md)
+  - [Advanced Recipes](./examples/advanced-recipes.md)
+- Developers
+  - [Contributing](./developers/contributing.md)
+  - [Building](./developers/building.md)
+  - [Architecture](./developers/architecture.md)
+- Project
+  - [Migrating from 1.x to 2.0](../MIGRATION.md)
+  - [Changelog](../CHANGELOG.md)
 
 ---
 

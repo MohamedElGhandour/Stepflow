@@ -3,10 +3,11 @@ node_modules/
 
 # Build output
 dist/
+!public/vendor/
 
 .rollup.cache
 
-analyze/
+coverage/
 
 # IDE settings
 .idea/
@@ -18,3 +19,10 @@ Thumbs.db
 # Environment variables
 .env
 .npmrc
+
+# VitePress build output and staged copies of root-level docs
+doc/.vitepress/dist/
+doc/.vitepress/cache/
+doc/public/
+doc/MIGRATION.md
+doc/CHANGELOG.md
